@@ -10,7 +10,7 @@ public class Login {
     private JPasswordField PW_INPUT;
     private JButton LoginButton;
     private JTextField ID_INPUT;
-    public JPanel panelMain;
+    public JPanel panelLogin;
     private String ID_tmp;
 
 

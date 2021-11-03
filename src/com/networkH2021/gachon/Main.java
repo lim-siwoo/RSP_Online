@@ -8,12 +8,10 @@ public class Main {
     public static void main(String[] args) {
 	// write your code here
         JFrame frame = new JFrame("RSP Online");
-        frame.setContentPane(new Login().panelMain);
+        frame.setContentPane(new Login().panelLogin);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-
-
 
     }
 }
