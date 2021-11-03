@@ -5,4 +5,5 @@ public class Login {
     private JLabel Password;
     private JTextField textField1;
     private JPasswordField passwordField1;
+    private JButton button1;
 }
