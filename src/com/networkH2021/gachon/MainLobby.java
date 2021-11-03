@@ -1,3 +1,5 @@
+package com.networkH2021.gachon;
+
 import javax.swing.*;
 
 public class MainLobby {
