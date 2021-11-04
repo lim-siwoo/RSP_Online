@@ -7,7 +7,6 @@ public class MainLobby {
     private JTextField textField2;
     private JButton Rankbutton;
     private JButton Sendbutton;
-    private JTextField USERLISTTextField;
     private JButton INFOButton5;
     private JButton INFOButton4;
     private JButton INFOButton;

@@ -14,7 +14,9 @@
             <preferred-size width="150" height="197"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <text value=""/>
+        </properties>
       </component>
       <component id="ea9f8" class="javax.swing.JTextField" binding="textField2" default-binding="true">
         <constraints>
@@ -22,11 +24,13 @@
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <text value=""/>
+        </properties>
       </component>
       <component id="39baa" class="javax.swing.JButton" binding="Rankbutton">
         <constraints>
-          <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="2" row-span="2" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="RANK"/>
@@ -34,7 +38,7 @@
       </component>
       <component id="59973" class="javax.swing.JButton" binding="Sendbutton">
         <constraints>
-          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="1" row-span="2" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="SEND"/>
@@ -48,16 +52,6 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="69135" class="javax.swing.JTextField" binding="USERLISTTextField" default-binding="true">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-            </constraints>
-            <properties>
-              <text value="USER LIST"/>
-            </properties>
-          </component>
           <component id="bdd6a" class="javax.swing.JButton" binding="INFOButton5" default-binding="true">
             <constraints>
               <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
@@ -200,6 +194,14 @@
             </constraints>
             <properties>
               <text value="USER6"/>
+            </properties>
+          </component>
+          <component id="2073d" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="USER LIST"/>
             </properties>
           </component>
         </children>
