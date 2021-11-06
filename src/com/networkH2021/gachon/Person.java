@@ -5,12 +5,29 @@ public class Person {
     private String id;
     private char[] Password;
     private String email;
+    private int score = 0;
 
     public Person(String name, String id, char[] password, String email) {
         this.name = name;
         this.id = id;
         Password = password;
         this.email = email;
+    }
+
+    public Person(String name, String id, char[] password, String email, int score) {
+        this.name = name;
+        this.id = id;
+        Password = password;
+        this.email = email;
+        this.score = score;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 
     public String getName() {

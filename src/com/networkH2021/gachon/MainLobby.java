@@ -1,6 +1,8 @@
 package com.networkH2021.gachon;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MainLobby extends JFrame{
     private JTextField textField1;
@@ -22,14 +24,18 @@ public class MainLobby extends JFrame{
     private JPanel panelLobby;
 
     public MainLobby(){
+
         setTitle("RSP Online Main Lobby");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setContentPane(panelLobby);
+        setContentPane(this.panelLobby);
         pack();
         setLocationRelativeTo(null);
-        setVisible(true);
-
-
-
+        setVisible(false);
+        Rankbutton.addActionListener(new ActionListener() {//Rank버튼 눌렀을때 실행됨
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                GameLauncher.getRank().setVisible(true);
+            }
+        });
     }
 }

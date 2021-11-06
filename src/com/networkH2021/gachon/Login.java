@@ -27,18 +27,25 @@ public class Login extends JFrame{
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
+
         LoginButton.addActionListener(new ActionListener() {//로그인 버튼을 누르면 실행됨
-
-
-            String ID_Str = ID_INPUT.getText();
-            char[] PW_Str = PW_INPUT.getPassword();
             @Override
-            public void actionPerformed(ActionEvent e) {//다이얼로그 출력
-                JOptionPane.showMessageDialog(null,"Helloworld!");
+            public void actionPerformed(ActionEvent e) {
+                String ID_Str = ID_INPUT.getText();
+                char[] PW_Str = PW_INPUT.getPassword();
+                JOptionPane.showMessageDialog(null,"Helloworld!");//다이얼로그 출력
+                setVisible(false);
+                GameLauncher.MakeMainLobby();
+                GameLauncher.getMainLobby().setVisible(true);
+
             }
-
-
-
+        });
+        SignUpbutton.addActionListener(new ActionListener() {//SignUp버튼 눌렀을때 실행됨
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                GameLauncher.getSignUp().setVisible(true);
+            }
         });
     }
 

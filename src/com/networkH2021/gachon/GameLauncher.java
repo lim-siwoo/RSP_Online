@@ -1,16 +1,35 @@
 package com.networkH2021.gachon;
 
-import javax.swing.*;
-
 
 public class GameLauncher {
 
-    private MainLobby mainLobby;
-
-
+    private static MainLobby mainLobby;
+    private static SignUp signUp;
+    private static Login login;
+    private static Rank rank;
+    private Person User;
 
     public GameLauncher(){
-        new Login();
+        login = new Login();
+        signUp = new SignUp();
+        rank = new Rank();
+    }
+    public static Login getLogin(){
+        return login;
+    }
+    public static SignUp getSignUp(){
+        return signUp;
+    }
+    public static MainLobby getMainLobby(){
+        return mainLobby;
+    }
+
+    public static void MakeMainLobby(){
+        mainLobby = new MainLobby();
+    }
+
+    public static Rank getRank(){
+        return rank;
     }
 
     public static void main(String[] args) {
