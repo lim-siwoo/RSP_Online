@@ -5,7 +5,7 @@ import javax.swing.*;
 public class Invitation {
 
 
-    private JPanel panel1;
+    private JPanel panelInvite;
     private JButton YESButton;
     private JButton NOButton;
     private JTextPane textPane1;

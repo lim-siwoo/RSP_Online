@@ -2,7 +2,7 @@ package com.networkH2021.gachon;
 
 import javax.swing.*;
 
-public class MainLobby {
+public class MainLobby extends JFrame{
     private JTextField textField1;
     private JTextField textField2;
     private JButton Rankbutton;
@@ -19,4 +19,17 @@ public class MainLobby {
     private JButton INVITEButton3;
     private JButton INVITEButton4;
     private JButton INVITEButton5;
+    private JPanel panelLobby;
+
+    public MainLobby(){
+        setTitle("RSP Online Main Lobby");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setContentPane(panelLobby);
+        pack();
+        setLocationRelativeTo(null);
+        setVisible(true);
+
+
+
+    }
 }
