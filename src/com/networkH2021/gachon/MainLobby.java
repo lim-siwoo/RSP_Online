@@ -29,7 +29,7 @@ public class MainLobby extends JFrame{
     private DatagramSocket socket;//User Datagram Protocal
     private DatagramPacket packet;//Data packet
     private InetAddress address;//상대방주소
-    private int myPort = GameLauncher.getUser().getPort();//내 포트
+    private int myPort = 10001;//내 포트
     private int oppPort = 10002;//상대 포트
 
     public void Chatting(){

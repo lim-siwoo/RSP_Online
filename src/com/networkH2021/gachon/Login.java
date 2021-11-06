@@ -18,7 +18,7 @@ public class Login extends JFrame{
 
     private String ID_Str;
     private String PW_Str;
-    private Person user;
+    private MyCharacter user = GameLauncher.getUser();
 
     public Login() {
         setTitle("RSP Online");
@@ -37,9 +37,8 @@ public class Login extends JFrame{
                 setVisible(false);
                 GameLauncher.MakeMainLobby();
                 GameLauncher.getMainLobby().setVisible(true);
-                user = GameLauncher.getUser();
                 //데이터베이스에서 값을 가져와야함
-                user.setName("KimGachon");
+                user.setName("GachonKim");
                 user.setEmail("Hello@gachon.ac.kr");
                 user.setScore(100);
             }
