@@ -3,6 +3,9 @@ package com.networkH2021.gachon;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
 
 public class MainLobby extends JFrame{
     private JTextField textField1;
@@ -22,6 +25,16 @@ public class MainLobby extends JFrame{
     private JButton INVITEButton4;
     private JButton INVITEButton5;
     private JPanel panelLobby;
+
+    private DatagramSocket socket;//User Datagram Protocal
+    private DatagramPacket packet;//Data packet
+    private InetAddress address;//상대방주소
+    private int myPort = GameLauncher.getUser().getPort();//내 포트
+    private int oppPort = 10002;//상대 포트
+
+    public void Chatting(){
+
+    }
 
     public MainLobby(){
 

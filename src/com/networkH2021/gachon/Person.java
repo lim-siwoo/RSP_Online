@@ -7,6 +7,7 @@ public class Person {
     private String email;
     private int score = 0;
 
+
     public Person(String name, String id, char[] password, String email) {
         this.name = name;
         this.id = id;

@@ -3,6 +3,7 @@ package com.networkH2021.gachon;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import com.networkH2021.gachon.GameLauncher;
 
 public class SignUp extends JFrame{
 
@@ -44,7 +45,7 @@ public class SignUp extends JFrame{
                 else{
                     JOptionPane.showMessageDialog(null,"계정이 생성되었습니다.");
                 }*/
-                Person User = new Person(name,id,password,email,0);
+                //User = new Person(name,id,password,email,0);
                 setVisible(false);
                 GameLauncher.getLogin().setVisible(true);
             }

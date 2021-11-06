@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.desktop.ScreenSleepListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import com.networkH2021.gachon.GameLauncher;
 
 public class Login extends JFrame{
     private JLabel ID;
@@ -17,8 +18,7 @@ public class Login extends JFrame{
 
     private String ID_Str;
     private String PW_Str;
-
-
+    private Person user;
 
     public Login() {
         setTitle("RSP Online");
@@ -33,11 +33,15 @@ public class Login extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 String ID_Str = ID_INPUT.getText();
                 char[] PW_Str = PW_INPUT.getPassword();
-                JOptionPane.showMessageDialog(null,"Helloworld!");//다이얼로그 출력
+                JOptionPane.showMessageDialog(null,"Welcome to RSP Online!!");//다이얼로그 출력
                 setVisible(false);
                 GameLauncher.MakeMainLobby();
                 GameLauncher.getMainLobby().setVisible(true);
-
+                user = GameLauncher.getUser();
+                //데이터베이스에서 값을 가져와야함
+                user.setName("KimGachon");
+                user.setEmail("Hello@gachon.ac.kr");
+                user.setScore(100);
             }
         });
         SignUpbutton.addActionListener(new ActionListener() {//SignUp버튼 눌렀을때 실행됨
