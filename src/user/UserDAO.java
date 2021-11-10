@@ -14,7 +14,7 @@ public class UserDAO {
 
     public UserDAO() {
         try {
-            String dbURL = "jdbc:mysql://localhost/mydb";
+            String dbURL = "jdbc:mysql://localhost/mydb";       // 추후 수정
             String dbID = "root";
             String dbPassword = "12345";
             Class.forName("com.mysql.jdbc.Driver");
@@ -57,6 +57,56 @@ public class UserDAO {
             pstmt.setString(3, user.getUserName());
             pstmt.setString(4, user.getUserGender());
             pstmt.setString(5, user.getUserEmail());
+            return pstmt.executeUpdate();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+    public int rank(){
+
+        String SQL = "SELECT NICKNAME, WIN, LOSE FROM USER ORDER BY WIN DESC LIMIT 5";
+        try {
+            pstmt = conn.prepareStatement(SQL);
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                String nickname = rs.getString(1);
+                if (rs.wasNull()) nickname = "null";
+                String win = rs.getString(2);
+                if (rs.wasNull()) win = "null";
+                String lose = rs.getString(1);
+                if (rs.wasNull()) lose = "null";
+                System.out.println(nickname + "\t" + win + "\t" + lose);    // 출력 부분 수정
+            }
+            return 0;       // 정상적으로 작동할 경우
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return -1;
+
+
+    }
+
+    public int updateWin(String userID){
+
+        String SQL = "UPDATE USER SET WIN++ WHERE ID = ?";
+        try {
+            pstmt.setString(1, userID);
+            return pstmt.executeUpdate();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+    public int updateLose(String userID){
+
+        String SQL = "UPDATE USER SET WIN-- WHERE ID = ?";
+        try {
+            pstmt.setString(1, userID);
             return pstmt.executeUpdate();
         }catch(Exception e){
             e.printStackTrace();
