@@ -29,20 +29,39 @@ public class UserDAO {
         try {
             pstmt = conn.prepareStatement(SQL);
             pstmt.setString(1, userID);
-            rs = pstmt.executeQuery();
+
+            // 인젝션 해킹 등을 방지하기 위한 기법으로 ?에 ID 값을 받은 후 사용용
+           rs = pstmt.executeQuery();
             if(rs.next()) {
                 if(rs.getString(1).contentEquals(userPassword)) {
-                    return 1;
+                    return 1;   // 로그인 성공
                 }
                 else
-                    return 0;
+                    return 0;   // 비밀번호 불일치
             }
-            return -1;
+            return -1;  // There's no ID
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return -2;
+        return -2;  // 데이터베이스 오류
+    }
+
+
+    public int join(User user) {
+        String SQL = "INSERT INTO USER VALUES( ?, ?, ?, ?, ?)";
+        try {
+            pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, user.getUserID());
+            pstmt.setString(2, user.getUserPassword());
+            pstmt.setString(3, user.getUserName());
+            pstmt.setString(4, user.getUserGender());
+            pstmt.setString(5, user.getUserEmail());
+            return pstmt.executeUpdate();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return -1;
     }
 
 
