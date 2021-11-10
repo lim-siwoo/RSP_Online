@@ -86,8 +86,6 @@ public class UserDAO {
             e.printStackTrace();
         }
         return -1;
-
-
     }
 
     public int updateWin(String userID){
