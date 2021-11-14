@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.desktop.ScreenSleepListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.UnknownHostException;
+
 import com.networkH2021.gachon.GameLauncher;
 
 public class Login extends JFrame{
@@ -18,7 +20,7 @@ public class Login extends JFrame{
 
     private String ID_Str;
     private String PW_Str;
-    ///   여기서 없음 userdao에서 구현 - private MyCharacter user = GameLauncher.getUser();
+    private MyCharacter user = GameLauncher.getUser();
 
     public Login() {
         setTitle("RSP Online");
@@ -39,22 +41,24 @@ public class Login extends JFrame{
                 GameLauncher.getMainLobby().setVisible(true);
 
                 // 데이터 베이스
-                int i;
-                while(true){
-
-                    i = GameLauncher.getUserDAO().login(ID_Str, PW_Str);
-                    if(i == 0) break;   // 로그인 성공
-                    else if(i == 1){    //
-                        JOptionPane.showMessageDialog(null,"ID is wrong!");
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(null,"Password is wrong!");
-                    }
+                int i = GameLauncher.getUserDAO().login(ID_Str, PW_Str);
+                if(i == 0);  // 로그인 성공
+                else if(i == 1){    //
+                    JOptionPane.showMessageDialog(null,"ID is wrong!");
+                }
+                else{
+                    JOptionPane.showMessageDialog(null,"Password is wrong!");
                 }
 
+
                 // 캐릭터 생성
-                if(GameLauncher.getUserDAO().createUser(ID_Str) == 0); // 성공
-                else; // 실패
+                if(GameLauncher.getUserDAO().createUser(ID_Str) == 0) { // 성공
+
+                    String nick = GameLauncher.getUserDAO().getNickname();
+                    GameLauncher.getUser().setUserID(ID_Str);
+                    GameLauncher.getUser().setUserNickname(nick);
+                };
+                // else 실패시 
 
             }
         });

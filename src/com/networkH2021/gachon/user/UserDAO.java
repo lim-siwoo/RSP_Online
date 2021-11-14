@@ -8,7 +8,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
 
 import static com.networkH2021.gachon.GameLauncher.*;
 
@@ -21,6 +20,15 @@ public class UserDAO {
     private PreparedStatement pstmt;
     private ResultSet rs;
     private String nickname;
+
+
+    public String getNickname() {
+        return nickname;
+    }
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
 
     public UserDAO() {
         try {
@@ -86,9 +94,8 @@ public class UserDAO {
 
 
             while (rs.next()) {
-                nickname = rs.getString(1);
+                setNickname(rs.getString(1));
             }
-            // GameLauncher.getUser() = new MyCharacter(userID, nickname);
             return 0;   // 생성 성공
 
         }catch(Exception e){
