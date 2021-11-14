@@ -1,4 +1,4 @@
-package user;
+package com.networkH2021.gachon.user;
 
 
 import java.sql.Connection;
@@ -48,7 +48,7 @@ public class UserDAO {
     }
 
 
-    public int join(User user) {
+    public int join(user user) {
         String SQL = "INSERT INTO USER VALUES( ?, ?, ?, ?, ?)";
         try {
             pstmt = conn.prepareStatement(SQL);

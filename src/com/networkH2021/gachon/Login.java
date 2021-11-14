@@ -18,7 +18,7 @@ public class Login extends JFrame{
 
     private String ID_Str;
     private String PW_Str;
-    private final MyCharacter user = GameLauncher.getUser();
+    private MyCharacter user = GameLauncher.getUser();
 
     public Login() {
         setTitle("RSP Online");
@@ -38,9 +38,9 @@ public class Login extends JFrame{
                 GameLauncher.MakeMainLobby();
                 GameLauncher.getMainLobby().setVisible(true);
                 //데이터베이스에서 값을 가져와야함
-                //user.setName("GachonKim");
-                //user.setEmail("Hello@gachon.ac.kr");
-                //user.setScore(100);
+                //com.networkH2021.gachon.user.setName("GachonKim");
+                //com.networkH2021.gachon.user.setEmail("Hello@gachon.ac.kr");
+                //com.networkH2021.gachon.user.setScore(100);
             }
         });
         SignUpbutton.addActionListener(new ActionListener() {//SignUp버튼 눌렀을때 실행됨
