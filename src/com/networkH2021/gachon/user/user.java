@@ -2,7 +2,6 @@ package com.networkH2021.gachon.user;
 
 public class user {
 
-
     private String userID;
     private String userPassword;
     private String userName;
@@ -46,5 +45,4 @@ public class user {
     public void setUserSNS(String userEmail) {
         this.userSNS = userSNS;
     }
-
 }
