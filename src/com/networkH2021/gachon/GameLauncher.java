@@ -30,6 +30,10 @@ public class GameLauncher {
         return mainLobby;
     }
 
+    public static void setMainLobby(MainLobby mainLobby) {
+        GameLauncher.mainLobby = mainLobby;
+    }
+
     public static void MakeMainLobby(){
         mainLobby = new MainLobby();
     }

@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class ChatClientApp {
 	
-	private static final String SERVER_IP = "14.47.251.177";
+	private static final String SERVER_IP = "192.168.0.176";
 	private static final int SERVER_PORT = 9997;
 
 	public static void main(String[] args) {
