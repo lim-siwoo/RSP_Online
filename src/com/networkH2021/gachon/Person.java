@@ -1,7 +1,7 @@
 package com.networkH2021.gachon;
 
 public class Person {
-    private String name;
+    private String name = "GachonKim";
     private String id;
     private char[] Password;
     private String email;

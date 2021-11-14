@@ -38,9 +38,9 @@ public class Login extends JFrame{
                 GameLauncher.MakeMainLobby();
                 GameLauncher.getMainLobby().setVisible(true);
                 //데이터베이스에서 값을 가져와야함
-                user.setName("GachonKim");
-                user.setEmail("Hello@gachon.ac.kr");
-                user.setScore(100);
+                //user.setName("GachonKim");
+                //user.setEmail("Hello@gachon.ac.kr");
+                //user.setScore(100);
             }
         });
         SignUpbutton.addActionListener(new ActionListener() {//SignUp버튼 눌렀을때 실행됨
