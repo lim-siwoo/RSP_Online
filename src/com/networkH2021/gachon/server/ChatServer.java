@@ -33,7 +33,7 @@ public class ChatServer {
 			
 			serverSocket = new ServerSocket();
 			
-			serverSocket.bind(new InetSocketAddress("127.0.0.1", PORT));
+			serverSocket.bind(new InetSocketAddress("14.47.251.177", PORT));
 			System.out.println("server port : " + PORT);
 			
 			while(true) {

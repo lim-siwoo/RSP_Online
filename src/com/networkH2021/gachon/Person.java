@@ -10,9 +10,8 @@ public class Person {
     private String userSNS;
 
     public Person(String id, char[] password, String name, String nickname, String email, String SNS) {
-DDD
         this.userID = id;
-        userPassword = password;
+        userPassword = password.toString();
         this.userName = name;
         this.userNickname = nickname;
         this.userEmail = email;
