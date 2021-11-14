@@ -29,6 +29,7 @@ public class GameLauncher {
     public static MainLobby getMainLobby(){
         return mainLobby;
     }
+    public static UserDAO getUserDAO() { return database; }
 
     public static void setMainLobby(MainLobby mainLobby) {
         GameLauncher.mainLobby = mainLobby;

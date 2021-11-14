@@ -19,6 +19,13 @@ public class Person {
         this.userSNS = SNS;
     }
 
+    public Person(String id,String nickname) {
+
+        this.userID = id;
+        this.userNickname = nickname;
+    }
+
+
     public String getUserID() {
         return userID;
     }
