@@ -1,65 +1,67 @@
 package com.networkH2021.gachon;
 
 public class Person {
-    private String name = "GachonKim";
-    private String id;
-    private char[] Password;
-    private String email;
-    private int score = 0;
 
 
-    public Person(String name, String id, char[] password, String email) {
-        this.name = name;
-        this.id = id;
-        Password = password;
-        this.email = email;
+
+    private String userID;
+    private String userPassword;
+    private String userName;
+    private String userNickname;
+    private String userEmail;
+    private String userSNS;
+
+    public Person(String id, char[] password, String name, String nickname, String email, String SNS) {
+
+        this.userID = id;
+        userPassword = password;
+        this.userName = name;
+        this.userNickname = nickname;
+        this.userEmail = email;
+        this.userSNS = SNS;
     }
 
-    public Person(String name, String id, char[] password, String email, int score) {
-        this.name = name;
-        this.id = id;
-        Password = password;
-        this.email = email;
-        this.score = score;
+    public String getUserID() {
+        return userID;
+    }
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+    public String getUserPassword() {
+        return userPassword;
+    }
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
+    }
+    public String getUserName() {
+        return userName;
+    }
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+    public String getUserNickname() {
+        return userNickname;
+    }
+    public void setUserNickname(String userName) {
+        this.userNickname = userNickname;
+    }
+    public String getUserEmail() {
+        return userEmail;
+    }
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+    public String getUserSNS() {
+        return userSNS;
+    }
+    public void setUserSNS(String userEmail) {
+        this.userSNS = userSNS;
     }
 
-    public int getScore() {
-        return score;
-    }
 
-    public void setScore(int score) {
-        this.score = score;
-    }
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
-    public String getId() {
-        return id;
-    }
 
-    public void setId(String id) {
-        this.id = id;
-    }
 
-    public char[] getPassword() {
-        return Password;
-    }
-
-    public void setPassword(char[] password) {
-        Password = password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }
