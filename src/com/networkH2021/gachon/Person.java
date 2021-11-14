@@ -9,22 +9,12 @@ public class Person {
     private String userEmail;
     private String userSNS;
 
-    public Person(String id, String password, String name, String nickname, String email, String SNS) {
-
-        this.userID = id;
-        this.userPassword = password;
-        this.userName = name;
-        this.userNickname = nickname;
-        this.userEmail = email;
-        this.userSNS = SNS;
-    }
 
     public Person(String id,String nickname) {
 
         this.userID = id;
         this.userNickname = nickname;
     }
-
 
     public String getUserID() {
         return userID;
@@ -62,11 +52,5 @@ public class Person {
     public void setUserSNS(String userEmail) {
         this.userSNS = userSNS;
     }
-
-
-
-
-
-
 
 }
