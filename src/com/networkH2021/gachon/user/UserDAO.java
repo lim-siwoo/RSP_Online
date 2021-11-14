@@ -1,16 +1,26 @@
 package com.networkH2021.gachon.user;
 
 
+import com.networkH2021.gachon.GameLauncher;
+import com.networkH2021.gachon.MyCharacter;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+
+import static com.networkH2021.gachon.GameLauncher.*;
 
 
 public class UserDAO {
+
+
+    private MyCharacter user = getUser();
     private Connection conn;
     private PreparedStatement pstmt;
     private ResultSet rs;
+    private String nickname;
 
     public UserDAO() {
         try {
@@ -39,7 +49,7 @@ public class UserDAO {
                 else
                     return 0;   // 비밀번호 불일치
             }
-            return -1;  // There's no ID
+            return -1;  // ID 불일치
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -65,6 +75,29 @@ public class UserDAO {
         return -1;
     }
 
+    public int createUser(String userID) {
+
+        String SQL = "SELECT NICKNAME FROM USER WHERE = ?";
+
+        try {
+            pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, userID);
+            rs = pstmt.executeQuery();
+
+
+            while (rs.next()) {
+                nickname = rs.getString(1);
+            }
+            // GameLauncher.getUser() = new MyCharacter(userID, nickname);
+            return 0;   // 생성 성공
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return -1;    // 생성 실패
+    }
+
+
     public int rank(){
 
         String SQL = "SELECT NICKNAME, WIN, LOSE FROM USER ORDER BY WIN DESC LIMIT 5";
@@ -77,7 +110,7 @@ public class UserDAO {
                 if (rs.wasNull()) nickname = "null";
                 String win = rs.getString(2);
                 if (rs.wasNull()) win = "null";
-                String lose = rs.getString(1);
+                String lose = rs.getString(3);
                 if (rs.wasNull()) lose = "null";
                 System.out.println(nickname + "\t" + win + "\t" + lose);    // 출력 부분 수정
             }

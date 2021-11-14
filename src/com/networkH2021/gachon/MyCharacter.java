@@ -7,8 +7,8 @@ public class MyCharacter extends Person{
     private int port = 10001;
     private InetAddress ipAddress;
     private String lastLog;
-    public MyCharacter(String id, String password, String name, String nickname, String email, String sns) throws UnknownHostException {
-        super(id, password, name, nickname, email, sns);
+    public MyCharacter(String id, String nickname) throws UnknownHostException {
+        super(id, nickname);
         setIpAddress(InetAddress.getLocalHost());//테스트로 로컬로 설정함
     }
 

@@ -18,7 +18,7 @@ public class Login extends JFrame{
 
     private String ID_Str;
     private String PW_Str;
-    private MyCharacter user = GameLauncher.getUser();
+    ///   여기서 없음 userdao에서 구현 - private MyCharacter user = GameLauncher.getUser();
 
     public Login() {
         setTitle("RSP Online");
@@ -37,8 +37,24 @@ public class Login extends JFrame{
                 setVisible(false);
                 GameLauncher.MakeMainLobby();
                 GameLauncher.getMainLobby().setVisible(true);
-                //데이터베이스에서 값을 가져와야함
-                //GameLauncher.getUser() = new MyCharacter(asdasdasdasd,asd,asd,asd,a);
+
+                // 데이터 베이스
+                int i;
+                while(true){
+
+                    i = GameLauncher.getUserDAO().login(ID_Str, PW_Str);
+                    if(i == 0) break;   // 로그인 성공
+                    else if(i == 1){    //
+                        JOptionPane.showMessageDialog(null,"ID is wrong!");
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null,"Password is wrong!");
+                    }
+                }
+
+                // 캐릭터 생성
+                if(GameLauncher.getUserDAO().createUser(ID_Str) == 0); // 성공
+                else; // 실패
 
             }
         });
