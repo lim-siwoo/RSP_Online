@@ -1,5 +1,7 @@
 package com.networkH2021.gachon;
 
+import com.networkH2021.gachon.client.ChatClientApp;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,8 +10,7 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 
 public class MainLobby extends JFrame{
-    private JTextField textField1;
-    private JTextField textField2;
+    private JTextField textField;
     private JButton Rankbutton;
     private JButton Sendbutton;
     private JButton INFOButton5;
@@ -26,12 +27,15 @@ public class MainLobby extends JFrame{
     private JButton INVITEButton5;
     private JPanel panelLobby;
     private JList list1;
+    private JTextArea textArea;
 
     private DatagramSocket socket;//User Datagram Protocal
     private DatagramPacket packet;//Data packet
     private InetAddress address;//상대방주소
     private int myPort = 10001;//내 포트
     private int oppPort = 10002;//상대 포트
+    private ChatClientApp LobbyChat;
+
 
     public void Chatting(){
 
@@ -45,6 +49,11 @@ public class MainLobby extends JFrame{
         pack();
         setLocationRelativeTo(null);
         setVisible(false);
+        LobbyChat = new ChatClientApp();
+
+
+
+
         Rankbutton.addActionListener(new ActionListener() {//Rank버튼 눌렀을때 실행됨
             @Override
             public void actionPerformed(ActionEvent e) {

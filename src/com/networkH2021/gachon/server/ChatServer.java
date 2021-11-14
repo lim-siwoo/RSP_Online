@@ -33,7 +33,7 @@ public class ChatServer {
 			
 			serverSocket = new ServerSocket();
 			
-			serverSocket.bind(new InetSocketAddress("192.168.0.176", 9997));
+			serverSocket.bind(new InetSocketAddress("192.168.0.176", 9997));//시우집 내부아이피랑 내부 포트
 			System.out.println("server port : " + PORT);
 			
 			while(true) {
