@@ -2,8 +2,6 @@ package com.networkH2021.gachon;
 
 public class Person {
 
-
-
     private String userID;
     private String userPassword;
     private String userName;
