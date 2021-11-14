@@ -25,12 +25,13 @@ public class MainLobby extends JFrame{
     private JButton INVITEButton4;
     private JButton INVITEButton5;
     private JPanel panelLobby;
+    private JList list1;
 
     private DatagramSocket socket;//User Datagram Protocal
     private DatagramPacket packet;//Data packet
     private InetAddress address;//상대방주소
-    private final int myPort = 10001;//내 포트
-    private final int oppPort = 10002;//상대 포트
+    private int myPort = 10001;//내 포트
+    private int oppPort = 10002;//상대 포트
 
     public void Chatting(){
 

@@ -1,6 +1,6 @@
-package user;
+package com.networkH2021.gachon.user;
 
-public class User {
+public class user {
 
     private String userID;
     private String userPassword;

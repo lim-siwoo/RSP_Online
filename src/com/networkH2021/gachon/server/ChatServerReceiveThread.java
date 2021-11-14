@@ -9,12 +9,11 @@ import java.io.Writer;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketException;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 public class ChatServerReceiveThread extends Thread {
 
-	private final Socket socket;
+	private Socket socket;
 	private String nickname;
 	public List<ChatUser> listWriters;
 	PrintWriter pw = null;
@@ -33,8 +32,8 @@ public class ChatServerReceiveThread extends Thread {
 		System.out.println("[server] 입장 : " + remoteHostAddress + " : " + remotePort);
 
  		try {
- 			br = new BufferedReader(new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8));
- 			pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8), true);
+ 			br = new BufferedReader(new InputStreamReader(socket.getInputStream(), "utf-8"));
+ 			pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), "utf-8"), true);
 
 			while(true) {
 				String data = br.readLine();
@@ -176,7 +175,11 @@ public class ChatServerReceiveThread extends Thread {
 			}
 		}
 
-		return auMaster.equals(checkMaster);
+		if(auMaster.equals(checkMaster)) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 	
 	private void naga(String who, String auMaster) {

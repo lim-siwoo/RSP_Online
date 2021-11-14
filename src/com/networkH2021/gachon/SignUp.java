@@ -23,8 +23,6 @@ public class SignUp extends JFrame{
 
 
     public SignUp() {
-
-
         setTitle("RSP Online");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setContentPane(this.panelSignUp);
