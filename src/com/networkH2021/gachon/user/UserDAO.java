@@ -49,13 +49,15 @@ public class UserDAO {
 
 
     public int join(user user) {
-        String SQL = "INSERT INTO USER VALUES( ?, ?, ?, ?, ?)";
+        String SQL = "INSERT INTO USER VALUES( ?, ?, ?, ?, ?, ?)";
         try {
             pstmt = conn.prepareStatement(SQL);
             pstmt.setString(1, user.getUserID());
             pstmt.setString(2, user.getUserPassword());
             pstmt.setString(3, user.getUserName());
+            pstmt.setString(4, user.getUserNickname());
             pstmt.setString(5, user.getUserEmail());
+            pstmt.setString(6, user.getUserSNS());
             return pstmt.executeUpdate();
         }catch(Exception e){
             e.printStackTrace();
@@ -84,7 +86,7 @@ public class UserDAO {
         }catch(Exception e){
             e.printStackTrace();
         }
-        return -1;
+        return -1;  // 정상적으로 작동하지 않을 경우
     }
 
     public int updateWin(String userID){

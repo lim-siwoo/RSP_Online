@@ -18,8 +18,8 @@ public class SignUp extends JFrame{
     private String name;
     private String id;
     private String email;
-    private char[] password;
-    private char[] password2;
+    private String password;
+    private String password2;
 
 
     public SignUp() {
@@ -35,14 +35,16 @@ public class SignUp extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 name = NameField.getName();
                 id = IDField.getText();
-                password = passwordField.getPassword();
-                password2 = CpasswordField.getPassword();
-                /*if (!password.equals(password2)){
+                password = String.valueOf(passwordField.getPassword());
+                password2 = String.valueOf(CpasswordField.getPassword());
+
+                if (!password.equals(password2)){
                     JOptionPane.showMessageDialog(null,"비밀번호를 다시 입력해주세요");
                 }
                 else{
                     JOptionPane.showMessageDialog(null,"계정이 생성되었습니다.");
-                }*/
+                }
+
                 //User = new Person(name,id,password,email,0);
                 setVisible(false);
                 GameLauncher.getLogin().setVisible(true);

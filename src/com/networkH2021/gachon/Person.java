@@ -9,9 +9,10 @@ public class Person {
     private String userEmail;
     private String userSNS;
 
-    public Person(String id, char[] password, String name, String nickname, String email, String SNS) {
+    public Person(String id, String password, String name, String nickname, String email, String SNS) {
+
         this.userID = id;
-        userPassword = password.toString();
+        this.userPassword = password;
         this.userName = name;
         this.userNickname = nickname;
         this.userEmail = email;
