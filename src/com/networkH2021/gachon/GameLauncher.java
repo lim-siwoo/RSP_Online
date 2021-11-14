@@ -1,10 +1,10 @@
 package com.networkH2021.gachon;
 
 
+import com.networkH2021.gachon.user.MyCharacter;
 import com.networkH2021.gachon.user.UserDAO;
 
 import java.net.UnknownHostException;
-import java.nio.file.attribute.UserPrincipal;
 
 public class GameLauncher {
 

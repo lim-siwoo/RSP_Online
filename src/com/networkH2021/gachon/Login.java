@@ -1,12 +1,10 @@
 package com.networkH2021.gachon;
 
 import javax.swing.*;
-import java.awt.desktop.ScreenSleepListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.net.UnknownHostException;
 
-import com.networkH2021.gachon.GameLauncher;
+import com.networkH2021.gachon.user.MyCharacter;
 
 public class Login extends JFrame{
     private JLabel ID;

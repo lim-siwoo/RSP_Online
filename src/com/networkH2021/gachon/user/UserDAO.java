@@ -1,9 +1,6 @@
 package com.networkH2021.gachon.user;
 
 
-import com.networkH2021.gachon.GameLauncher;
-import com.networkH2021.gachon.MyCharacter;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -15,7 +12,7 @@ import static com.networkH2021.gachon.GameLauncher.*;
 public class UserDAO {
 
 
-    private MyCharacter user = getUser();
+    private MyCharacter user = getUser();   /// 점검
     private Connection conn;
     private PreparedStatement pstmt;
     private ResultSet rs;
@@ -66,7 +63,7 @@ public class UserDAO {
     }
 
 
-    public int join(user user) {
+    public int join(user user) {        ////////////////////////////// 확인
         String SQL = "INSERT INTO USER VALUES( ?, ?, ?, ?, ?, ?)";
         try {
             pstmt = conn.prepareStatement(SQL);

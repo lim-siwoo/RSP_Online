@@ -1,4 +1,4 @@
-package com.networkH2021.gachon;
+package com.networkH2021.gachon.user;
 
 public class Person {
 
