@@ -58,11 +58,11 @@ public class Login extends JFrame{
                     GameLauncher.getUser().setUserID(ID_Str);
                     GameLauncher.getUser().setUserNickname(nick);
                 };
-                // else 실패시 
+                // else 실패시
 
             }
         });
-        SignUpbutton.addActionListener(new ActionListener() {//SignUp버튼 눌렀을때 실행됨
+        SignUpbutton.addActionListener(new ActionListener() { // SignUp버튼 눌렀을때 실행됨
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
