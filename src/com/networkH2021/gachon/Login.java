@@ -18,7 +18,7 @@ public class Login extends JFrame{
 
     private String ID_Str;
     private String PW_Str;
-    private MyCharacter user = GameLauncher.getUser();
+    private final MyCharacter user = GameLauncher.getUser();
 
     public Login() {
         setTitle("RSP Online");

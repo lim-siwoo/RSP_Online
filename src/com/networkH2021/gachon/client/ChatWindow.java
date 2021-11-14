@@ -4,21 +4,22 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 
 public class ChatWindow {
 
-	private Frame frame;
-	private Panel pannel;
-	private Button buttonSend;
-	private TextField textField;
-	private TextArea textArea;
-	private Socket socket;
-	private String name;
+	private final Frame frame;
+	private final Panel pannel;
+	private final Button buttonSend;
+	private final TextField textField;
+	private final TextArea textArea;
+	private final Socket socket;
+	private final String name;
 	
 	private PrintWriter pw;
 	private BufferedReader br;
 	
-	private String totalUser;
+	private final String totalUser;
 	
 	
 	public ChatWindow(String name, Socket socket, String ack) {
@@ -42,7 +43,7 @@ public class ChatWindow {
 		System.exit(0);
 	}
 
-	public void show() throws IOException, UnsupportedEncodingException {
+	public void show() throws IOException {
 		// Button
 		buttonSend.setBackground(Color.GRAY);
 		buttonSend.setForeground(Color.WHITE);
@@ -85,8 +86,8 @@ public class ChatWindow {
 		frame.pack();
 
 		// pw, br
-		pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), "utf-8"), true);
-		br = new BufferedReader(new InputStreamReader(socket.getInputStream(), "utf-8"));
+		pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8), true);
+		br = new BufferedReader(new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8));
 		
 
 		textArea.append("-------------------------------------------------------\n "
@@ -117,9 +118,9 @@ public class ChatWindow {
 		if(message.charAt(0)==('/')) {
 			if(message.length()<3) {
 				textArea.append(notice);
-			}else if(message.substring(0, 4).equals("/귓속말")) {
+			}else if(message.startsWith("/귓속말")) {
 				pw.println("wisper:" + message +":"+name);
-			}else if(message.substring(0, 3).equals("/강퇴")) {
+			}else if(message.startsWith("/강퇴")) {
 				pw.println("NAGA:"+message + ":" + name);
 			}else {
 				textArea.append(notice);
