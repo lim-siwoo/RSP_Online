@@ -18,6 +18,7 @@ public class GameLauncher {
         login = new Login();
         signUp = new SignUp();
         rank = new Rank();
+        database = new UserDAO();
     }
     public static Login getLogin(){
         return login;

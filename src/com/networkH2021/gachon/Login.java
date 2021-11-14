@@ -32,7 +32,7 @@ public class Login extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 String ID_Str = ID_INPUT.getText();
-                char[] PW_Str = PW_INPUT.getPassword();
+                String PW_Str = String.valueOf(PW_INPUT.getPassword());
                 JOptionPane.showMessageDialog(null,"Welcome to RSP Online!!");//다이얼로그 출력
                 setVisible(false);
                 GameLauncher.MakeMainLobby();
