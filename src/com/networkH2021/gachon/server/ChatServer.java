@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ChatServer {
 	
-	private static final int PORT = 9999;
+	private static final int PORT = 9997;
 //	public static List<Writer> listWriters = new ArrayList<Writer>();
 //	public static Map<String, Object> listWriters = new HashMap<>();
 	public static List<ChatUser> listWriters = new ArrayList<ChatUser>();
@@ -33,7 +33,7 @@ public class ChatServer {
 			
 			serverSocket = new ServerSocket();
 			
-			serverSocket.bind(new InetSocketAddress("14.47.251.177", PORT));
+			serverSocket.bind(new InetSocketAddress("14.47.251.177", 9997));
 			System.out.println("server port : " + PORT);
 			
 			while(true) {
