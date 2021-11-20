@@ -41,8 +41,6 @@ public class UserDAO {
     }
 
 
-
-
     public int login(String userID, String userPassword) {
         String SQL = "SELECT PASSWORD FROM USER WHERE ID = ?";
         try {
