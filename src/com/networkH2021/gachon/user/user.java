@@ -11,10 +11,19 @@ public class user {
 
 
     public user(String id,String nickname) {
-
         this.userID = id;
         this.userNickname = nickname;
     }
+
+    public user(String userID, String userPassword, String userName, String userNickname, String userEmail, String userSNS) {
+        this.userID = userID;
+        this.userPassword = userPassword;
+        this.userName = userName;
+        this.userNickname = userNickname;
+        this.userEmail = userEmail;
+        this.userSNS = userSNS;
+    }
+
 
 
     public String getUserID() {

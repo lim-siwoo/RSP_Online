@@ -54,7 +54,7 @@ public class MainLobby extends JFrame{
 
 
 
-        Rankbutton.addActionListener(new ActionListener() {//Rank버튼 눌렀을때 실행됨
+        Rankbutton.addActionListener(new ActionListener() { //Rank버튼 눌렀을때 실행됨
             @Override
             public void actionPerformed(ActionEvent e) {
                 GameLauncher.getRank().setVisible(true);
