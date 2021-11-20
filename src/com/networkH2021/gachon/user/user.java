@@ -9,6 +9,14 @@ public class user {
     private String userEmail;
     private String userSNS;
 
+
+    public user(String id,String nickname) {
+
+        this.userID = id;
+        this.userNickname = nickname;
+    }
+
+
     public String getUserID() {
         return userID;
     }
