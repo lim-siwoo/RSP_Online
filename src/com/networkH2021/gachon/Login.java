@@ -49,7 +49,7 @@ public class Login extends JFrame{
                 }
 
 
-                // 캐릭터 생성
+                // 로그인한 정보로 객체 생성
                 if(GameLauncher.getUserDAO().createUser(ID_Str) == 0) { // 성공
 
                     String nick = GameLauncher.getUserDAO().getNickname();

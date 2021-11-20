@@ -3,7 +3,7 @@ package com.networkH2021.gachon.user;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-public class MyCharacter extends Person{
+public class MyCharacter extends user{
     private int port = 10001;
     private InetAddress ipAddress;
     private String lastLog;
