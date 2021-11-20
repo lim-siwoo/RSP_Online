@@ -33,21 +33,19 @@ public class Login extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 String ID_Str = ID_INPUT.getText();
                 String PW_Str = String.valueOf(PW_INPUT.getPassword());
-                JOptionPane.showMessageDialog(null,"Welcome to RSP Online!!");//다이얼로그 출력
-                setVisible(false);
-                GameLauncher.MakeMainLobby();
-                GameLauncher.getMainLobby().setVisible(true);
 
                 // 데이터 베이스
-                int i = GameLauncher.getUserDAO().login(ID_Str, PW_Str);
-                if(i == 0);  // 로그인 성공
-                else if(i == 1){    //
-                    JOptionPane.showMessageDialog(null,"ID is wrong!");
+                int i = GameLauncher.database.login(ID_Str, PW_Str);
+                System.out.println(i);
+                if(i == 0){
+                    JOptionPane.showMessageDialog(null,"Welcome to RSP Online!!");//다이얼로그 출력
+                    setVisible(false);
+                    GameLauncher.MakeMainLobby();
+                    GameLauncher.getMainLobby().setVisible(true);
+                }  // 로그인 성공
+                else {
+                    JOptionPane.showMessageDialog(null,"아이디와와 비번을 다시 입력해주세요!");
                 }
-                else{
-                    JOptionPane.showMessageDialog(null,"Password is wrong!");
-                }
-
 
                 // 로그인한 정보로 객체 생성
                 if(GameLauncher.getUserDAO().createUser(ID_Str) == 0) { // 성공
