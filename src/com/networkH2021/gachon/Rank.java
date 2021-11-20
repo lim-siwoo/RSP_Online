@@ -11,6 +11,8 @@ public class Rank extends JFrame{
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setContentPane(this.rankPanel);
         pack();
+        GameLauncher.database.rank();
+
         setLocationRelativeTo(null);
         setVisible(false);
     }

@@ -1,6 +1,7 @@
 package com.networkH2021.gachon.user;
 
 
+import javax.swing.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -39,6 +40,9 @@ public class UserDAO {
         }
     }
 
+
+
+
     public int login(String userID, String userPassword) {
         String SQL = "SELECT PASSWORD FROM USER WHERE ID = ?";
         try {
@@ -49,6 +53,7 @@ public class UserDAO {
            rs = pstmt.executeQuery();
             if(rs.next()) {
                 if(rs.getString(1).contentEquals(userPassword)) {
+
                     return 0;   // 로그인 성공
                 }
                 else
@@ -110,14 +115,12 @@ public class UserDAO {
 
     public int createUser(String userID) {
 
-        String SQL = "SELECT NICKNAME FROM USER WHERE = ?";
+        String SQL = "SELECT NICKNAME FROM USER WHERE ID = ?";
 
         try {
             pstmt = conn.prepareStatement(SQL);
             pstmt.setString(1, userID);
             rs = pstmt.executeQuery();
-
-
             while (rs.next()) {
                 setNickname(rs.getString(1));
             }

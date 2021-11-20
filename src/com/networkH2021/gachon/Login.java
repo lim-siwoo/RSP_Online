@@ -36,6 +36,7 @@ public class Login extends JFrame{
 
                 // 데이터 베이스
                 int i = GameLauncher.database.login(ID_Str, PW_Str);
+                System.out.println(i);
                 if(i == 0){
                     JOptionPane.showMessageDialog(null,"Welcome to RSP Online!!");//다이얼로그 출력
                     setVisible(false);
