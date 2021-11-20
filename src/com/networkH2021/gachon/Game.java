@@ -31,7 +31,6 @@ public class Game extends JFrame{
         add(result,"Center");
         add(select, "South");
 
-
         setSize(600,600);
         setVisible(true);
     }
@@ -55,8 +54,7 @@ public class Game extends JFrame{
     class ResultDisplay extends JPanel{
         JLabel userJLabel = new JLabel("user1");
         JLabel comJLabel = new JLabel("user2");
-        JLabel resultJLabel = new JLabel("winner")
-                ;
+        JLabel resultJLabel = new JLabel("winner");
 
         public ResultDisplay() {
             setBackground(Color.white);
