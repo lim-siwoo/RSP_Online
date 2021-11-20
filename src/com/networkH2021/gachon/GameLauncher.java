@@ -1,7 +1,7 @@
 package com.networkH2021.gachon;
 
 
-import com.networkH2021.gachon.user.MyCharacter;
+import com.networkH2021.gachon.user.GameUser;
 import com.networkH2021.gachon.user.UserDAO;
 
 import java.net.UnknownHostException;
@@ -12,7 +12,7 @@ public class GameLauncher {
     private static SignUp signUp;
     private static Login login;
     private static Rank rank;
-    private static MyCharacter user;
+    private static GameUser user;
     private static UserDAO database;
 
     public GameLauncher() throws UnknownHostException {
@@ -20,7 +20,7 @@ public class GameLauncher {
         signUp = new SignUp();
         rank = new Rank();
         database = new UserDAO();
-        user = new MyCharacter("NULL", "NULL");
+        user = new GameUser("NULL", "NULL");
     }
     public static Login getLogin(){
         return login;
@@ -45,7 +45,7 @@ public class GameLauncher {
         return rank;
     }
 
-    public static MyCharacter getUser() {
+    public static GameUser getUser() {
         return user;
     }
 

@@ -9,7 +9,8 @@ public class user {
     private String userEmail;
     private String userSNS;
 
-
+    public user(){
+    }
     public user(String id,String nickname) {
         this.userID = id;
         this.userNickname = nickname;
@@ -24,7 +25,20 @@ public class user {
         this.userSNS = userSNS;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
+        user user = (user) o;
+
+        return userID.equals(user.userID);
+    }
+
+    @Override
+    public int hashCode() {
+        return userID.hashCode();
+    }
 
     public String getUserID() {
         return userID;

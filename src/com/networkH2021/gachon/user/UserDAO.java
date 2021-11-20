@@ -12,7 +12,7 @@ import static com.networkH2021.gachon.GameLauncher.*;
 public class UserDAO {
 
 
-    private MyCharacter user = getUser();   /// 점검
+    private GameUser user = getUser();   /// 점검
     private Connection conn;
     private PreparedStatement pstmt;
     private ResultSet rs;

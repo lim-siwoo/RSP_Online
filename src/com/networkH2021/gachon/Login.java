@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import com.networkH2021.gachon.user.MyCharacter;
+import com.networkH2021.gachon.user.GameUser;
 
 public class Login extends JFrame{
     private JLabel ID;
@@ -18,7 +18,7 @@ public class Login extends JFrame{
 
     private String ID_Str;
     private String PW_Str;
-    private MyCharacter user = GameLauncher.getUser();
+    private GameUser user = GameLauncher.getUser();
 
     public Login() {
         setTitle("RSP Online");
