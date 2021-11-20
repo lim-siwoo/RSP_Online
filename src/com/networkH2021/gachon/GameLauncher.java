@@ -13,7 +13,7 @@ public class GameLauncher {
     private static Login login;
     private static Rank rank;
     private static GameUser user;
-    private static UserDAO database;
+    public static UserDAO database;
 
     public GameLauncher() throws UnknownHostException {
         login = new Login();
