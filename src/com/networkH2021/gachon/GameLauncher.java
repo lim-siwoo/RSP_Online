@@ -8,12 +8,13 @@ import java.net.UnknownHostException;
 
 public class GameLauncher {
 
+    public static UserDAO database;
     private static MainLobby mainLobby;
     private static SignUp signUp;
     private static Login login;
     private static Rank rank;
     private static MyCharacter user;
-    private static UserDAO database;
+
 
     public GameLauncher() throws UnknownHostException {
         login = new Login();
@@ -21,6 +22,7 @@ public class GameLauncher {
         rank = new Rank();
         database = new UserDAO();
         user = new MyCharacter("NULL", "NULL");
+
     }
     public static Login getLogin(){
         return login;

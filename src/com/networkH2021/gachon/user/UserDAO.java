@@ -29,7 +29,7 @@ public class UserDAO {
 
     public UserDAO() {
         try {
-            String dbURL = "jdbc:mysql://localhost/mydb";       // 추후 수정
+            String dbURL = "jdbc:mysql://localhost/network";
             String dbID = "root";
             String dbPassword = "12345";
             Class.forName("com.mysql.jdbc.Driver");
@@ -40,7 +40,7 @@ public class UserDAO {
     }
 
     public int login(String userID, String userPassword) {
-        String SQL = "SELECT userPassword FROM USER WHERE userID = ?";
+        String SQL = "SELECT PASSWORD FROM USER WHERE ID = ?";
         try {
             pstmt = conn.prepareStatement(SQL);
             pstmt.setString(1, userID);
@@ -49,10 +49,10 @@ public class UserDAO {
            rs = pstmt.executeQuery();
             if(rs.next()) {
                 if(rs.getString(1).contentEquals(userPassword)) {
-                    return 1;   // 로그인 성공
+                    return 0;   // 로그인 성공
                 }
                 else
-                    return 0;   // 비밀번호 불일치
+                    return 1;   // 비밀번호 불일치
             }
             return -1;  // ID 불일치
 
@@ -63,21 +63,49 @@ public class UserDAO {
     }
 
 
-    public int join(user user) {        ////////////////////////////// 확인
-        String SQL = "INSERT INTO USER VALUES( ?, ?, ?, ?, ?, ?)";
+    public int checkID(String id){
+
+        String SQL = "SELECT ID FROM USER WHERE id = ?";
         try {
             pstmt = conn.prepareStatement(SQL);
-            pstmt.setString(1, user.getUserID());
-            pstmt.setString(2, user.getUserPassword());
-            pstmt.setString(3, user.getUserName());
-            pstmt.setString(4, user.getUserNickname());
-            pstmt.setString(5, user.getUserEmail());
-            pstmt.setString(6, user.getUserSNS());
-            return pstmt.executeUpdate();
+            pstmt.setString(1, id);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                if (rs.getString(1) != null){
+                    return -1;
+                }
+            }
         }catch(Exception e){
             e.printStackTrace();
         }
-        return -1;
+        return 0;
+    }
+
+
+
+    public int join(String id, String password, String name, String nick, String email, String SNS) {
+
+
+        String SQL = "insert into user value ( ?, ?, ?, ?, ?, ?)";
+
+        if (checkID(id) == -1){ // 아이디 중복
+            return -1;
+        };
+
+        try {
+            pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, id);
+            pstmt.setString(2, password);
+            pstmt.setString(3, name);
+            pstmt.setString(4, nick);
+            pstmt.setString(5, email);
+            pstmt.setString(6, SNS);
+            pstmt.executeUpdate();
+            return 0;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return -2;  // 쿼리 문제
     }
 
     public int createUser(String userID) {
