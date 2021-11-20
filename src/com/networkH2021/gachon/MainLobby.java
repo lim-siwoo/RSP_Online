@@ -49,8 +49,9 @@ public class MainLobby extends JFrame{
         pack();
         setLocationRelativeTo(null);
         setVisible(false);
-        LobbyChat = new ChatClientApp();
 
+
+        LobbyChat = new ChatClientApp();
 
 
 

@@ -20,8 +20,9 @@ public class ChatClientApp {
 			System.out.println("대화명을 입력하세요.");
 			System.out.print(">>> ");
 			//name = GameLauncher.getUser().getUserName();
-			name = "siwoo";
-
+			//name = "siwoo";
+			//name = GameLauncher.getUser().getUserNickname();
+			name = GameLauncher.getUserDAO().getNickname();
 //			System.out.println(ChatServer.checkNickname(name));
 //			if (ChatServer.checkNickname(name)==0) {
 //				break;

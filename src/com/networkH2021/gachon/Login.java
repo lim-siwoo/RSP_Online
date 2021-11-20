@@ -39,6 +39,13 @@ public class Login extends JFrame{
                 if(i == 0){
                     JOptionPane.showMessageDialog(null,"Welcome to RSP Online!!");//다이얼로그 출력
                     setVisible(false);
+                    if(GameLauncher.getUserDAO().createUser(ID_Str) == 0) { // 성공
+
+                        String nick = GameLauncher.getUserDAO().getNickname();
+                        GameLauncher.getUser().setUserID(ID_Str);
+                        GameLauncher.getUser().setUserNickname(nick);
+
+                    };
                     GameLauncher.MakeMainLobby();
                     GameLauncher.getMainLobby().setVisible(true);
                 }  // 로그인 성공
@@ -47,12 +54,7 @@ public class Login extends JFrame{
                 }
 
                 // 로그인한 정보로 객체 생성
-                if(GameLauncher.getUserDAO().createUser(ID_Str) == 0) { // 성공
 
-                    String nick = GameLauncher.getUserDAO().getNickname();
-                    GameLauncher.getUser().setUserID(ID_Str);
-                    GameLauncher.getUser().setUserNickname(nick);
-                };
                 // else 실패시
 
             }
