@@ -51,7 +51,8 @@ public class SignUp extends JFrame{
                     JOptionPane.showMessageDialog(null,"계정이 생성되었습니다.");
                 }
 
-                //User = new Person(name,id,password,email,0);
+
+                // 아래 세 줄을 else 안에 넣어야 함
                 setVisible(false);
                 GameLauncher.getLogin().setVisible(true);
             }
