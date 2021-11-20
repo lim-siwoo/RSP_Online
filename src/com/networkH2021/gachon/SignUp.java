@@ -41,7 +41,7 @@ public class SignUp extends JFrame{
                 id = IDField.getText();
                 password = String.valueOf(passwordField.getPassword());
                 password2 = String.valueOf(CpasswordField.getPassword());
-                SNS = textField1.getText();
+                SNS= textField1.getText();
                 NickName = textField2.getText();
 
                 if (!password.equals(password2)){
