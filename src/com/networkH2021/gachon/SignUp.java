@@ -14,12 +14,16 @@ public class SignUp extends JFrame{
     private JPasswordField passwordField;
     private JPasswordField CpasswordField;
     private JTextField NameField;
+    private JTextField textField1;
+    private JTextField textField2;
 
     private String name;
     private String id;
     private String email;
     private String password;
     private String password2;
+    private String SNS;
+    private String NickName;
 
 
     public SignUp() {
@@ -37,6 +41,8 @@ public class SignUp extends JFrame{
                 id = IDField.getText();
                 password = String.valueOf(passwordField.getPassword());
                 password2 = String.valueOf(CpasswordField.getPassword());
+                SNS = textField1.getText();
+                NickName = textField2.getText();
 
                 if (!password.equals(password2)){
                     JOptionPane.showMessageDialog(null,"비밀번호를 다시 입력해주세요");
