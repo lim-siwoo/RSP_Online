@@ -3,8 +3,8 @@ package com.networkH2021.gachon;
 import javax.swing.*;
 
 public class Rank extends JFrame{
-    private JList list1;
     private JPanel rankPanel;
+    private JTextArea textArea1;
 
     public Rank(){
         setTitle("RSP Online Main Lobby");
@@ -14,4 +14,6 @@ public class Rank extends JFrame{
         setLocationRelativeTo(null);
         setVisible(false);
     }
+
+
 }
