@@ -29,7 +29,7 @@ public class ChatWindow {
 		pannel = new Panel(); // 아래 대화 입력
 		buttonSend = new Button("Send"); // 패널의 자식
 		textField = new TextField(); // 패널의 자석
-		textArea = new TextArea(30, 80); // 대화 뜨는 공간
+		textArea = new TextArea(20, 10); // 대화 뜨는 공간
 	}
 
 	private void finish() {
@@ -44,6 +44,7 @@ public class ChatWindow {
 
 	public void show() throws IOException, UnsupportedEncodingException {
 		// Button
+
 		buttonSend.setBackground(Color.GRAY);
 		buttonSend.setForeground(Color.WHITE);
 		buttonSend.addActionListener(new ActionListener() { // 버튼이 눌려지는지 기다림
@@ -54,7 +55,7 @@ public class ChatWindow {
 		});
 
 		// Textfield
-		textField.setColumns(80);
+		textField.setColumns(30);
 		textField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -76,6 +77,7 @@ public class ChatWindow {
 		frame.add(BorderLayout.CENTER, textArea);
 
 		// Frame
+		frame.setTitle("Main Chatting Room");
 		frame.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				finish();
