@@ -1,5 +1,8 @@
 package com.networkH2021.gachon.client;
 
+import com.networkH2021.gachon.GameLauncher;
+
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
@@ -9,9 +12,9 @@ public class ChatWindow {
 
 	private Frame frame;
 	private Panel pannel;
-	private Button buttonSend;
-	private TextField textField;
-	private TextArea textArea;
+	private JButton buttonSend;
+	private JTextField textField;
+	private JTextArea textArea;
 	private Socket socket;
 	private String name;
 	
@@ -27,9 +30,12 @@ public class ChatWindow {
 		this.totalUser = ack;
 		frame = new Frame(name); // 큰 틀
 		pannel = new Panel(); // 아래 대화 입력
-		buttonSend = new Button("Send"); // 패널의 자식
-		textField = new TextField(); // 패널의 자석
-		textArea = new TextArea(20, 10); // 대화 뜨는 공간
+		buttonSend = GameLauncher.getMainLobby().getSendbutton();
+		//buttonSend = new Button("Send"); // 패널의 자식
+		textField = GameLauncher.getMainLobby().getChatTextField();
+		//textField = new TextField(); // 패널의 자석
+		textArea = GameLauncher.getMainLobby().getChatTextArea();;
+		//textArea = new TextArea(20, 10); // 대화 뜨는 공간
 	}
 
 	private void finish() {
@@ -68,13 +74,13 @@ public class ChatWindow {
 
 		// Pannel
 		pannel.setBackground(Color.LIGHT_GRAY);
-		pannel.add(textField);
-		pannel.add(buttonSend);
+		//pannel.add(textField);
+		//pannel.add(buttonSend);
 		frame.add(BorderLayout.SOUTH, pannel);
 
 		// TextArea
 		textArea.setEditable(false);
-		frame.add(BorderLayout.CENTER, textArea);
+		//frame.add(BorderLayout.CENTER, textArea);
 
 		// Frame
 		frame.setTitle("Main Chatting Room");
@@ -83,7 +89,7 @@ public class ChatWindow {
 				finish();
 			}
 		});
-		frame.setVisible(true);
+		//frame.setVisible(tr
 		frame.pack();
 
 		// pw, br

@@ -8,7 +8,7 @@ import java.net.UnknownHostException;
 
 public class GameLauncher {
 
-    private static MainLobby mainLobby;
+    public static MainLobby mainLobby;
     private static SignUp signUp;
     private static Login login;
     private static Rank rank;
@@ -21,6 +21,7 @@ public class GameLauncher {
         rank = new Rank();
         database = new UserDAO();
         user = new GameUser("NULL", "NULL");
+        mainLobby = new MainLobby();
     }
     public static Login getLogin(){
         return login;
