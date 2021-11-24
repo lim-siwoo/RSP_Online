@@ -30,9 +30,9 @@ public class UserDAO {
 
     public UserDAO() {
         try {
-            String dbURL = "jdbc:mysql://localhost/network";
-            String dbID = "root";
-            String dbPassword = "aa1679";
+            String dbURL = "jdbc:mysql://220.72.39.96/network";
+            String dbID = "network";
+            String dbPassword = "1124";
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(dbURL,dbID,dbPassword);
         }catch (Exception e) {
