@@ -1,10 +1,13 @@
 package com.networkH2021.gachon;
 
 import com.networkH2021.gachon.client.ChatClientApp;
+import com.networkH2021.gachon.client.ChatWindow;
 import com.networkH2021.gachon.user.GameUser;
 import com.networkH2021.gachon.user.UserDAO;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
@@ -20,6 +23,7 @@ public class MainLobby extends JFrame{
     private JList<GameUser> UserList;//유저리스트가 나옴
     DefaultListModel<GameUser> model = new DefaultListModel<>();
     private JTextArea ChatTextArea;//채팅택스트
+    private JScrollPane scrollPane;
 
     public JTextField getChatTextField() {
         return ChatTextField;
@@ -63,6 +67,34 @@ public class MainLobby extends JFrame{
         CCA = new ChatClientApp(this);
     }
 
+    public void showUserInfo(GameUser gameUser){
+        JFrame frame = new JFrame();
+        JPanel panel = new JPanel();
+        frame.setBounds(this.getX()+this.getWidth()/2 - this.getWidth()/4,this.getY()+this.getHeight()/2 - this.getHeight()/4,this.getWidth()/2,this.getHeight()/2);
+        JLabel nicknameLbl = new JLabel(gameUser.getUserNickname());
+        JLabel WinCount = new JLabel("WIN_NULL");
+        JLabel LoseCount = new JLabel("LOSE_NULL");
+        frame.add(panel);
+        panel.add(nicknameLbl);
+        panel.add(WinCount);
+        panel.add(LoseCount);
+        nicknameLbl.setBounds((this.getX()+this.getWidth())/2 - 100/2,(this.getY()+this.getHeight())/2 - 50/2,100,50);
+        frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        frame.setVisible(true);
+    }
+
+
+    private class JListHandler implements ListSelectionListener
+    {
+        // 리스트의 항목이 선택이 되면
+        public void valueChanged(ListSelectionEvent event)
+        {
+            GameUser gameUser = UserList.getSelectedValue();
+            JOptionPane.showMessageDialog(null, gameUser.getUserNickname());
+        }
+    }
+
+
     public MainLobby() {
         final JPopupMenu menu = new JPopupMenu("Menu");//유저리스트에서 오른쪽마우스하면 뜨는 ContextMenu구현임
         UserList.setModel(model);
@@ -76,6 +108,8 @@ public class MainLobby extends JFrame{
         menu.add(invite);
         setVisible(true);
 
+        //ChatTextArea.add(scrollPane);
+        //scrollPane.setVisible(true);
 
         setTitle("RSP Online Main Lobby");//Frame시작
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -99,17 +133,29 @@ public class MainLobby extends JFrame{
                 super.mouseClicked(e);
                 if (SwingUtilities.isRightMouseButton(e) && e.getClickCount()==1){
                     menu.show(UserList, e.getX(), e.getY());
-                    JList<GameUser> selected = (JList<GameUser>) e.getSource();
-                    int index = selected.locationToIndex(e.getPoint());
-                    System.out.println(index);
+                    JList list = (JList)e.getSource();
+                    int row = list.locationToIndex(e.getPoint());
+                    list.setSelectedIndex(row);
+//                    JList<GameUser> selected = (JList<GameUser>) e.getSource();
+//                    int index = selected.locationToIndex(e.getPoint());
+//                    System.out.println(index);
                 }
             }
         });
-        menu.addMouseListener(new MouseAdapter() {//메뉴에서 뭐가 선택됨
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
+        info.addActionListener(new AbstractAction("info") {
+            public void actionPerformed(ActionEvent e) {
+                showUserInfo(UserList.getSelectedValue());
             }
         });
+
+        invite.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "INVITE :"+UserList.getSelectedValue());
+            }
+        });
+
+        //UserList.addListSelectionListener(new JListHandler());
+
     }
 }

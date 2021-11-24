@@ -5,6 +5,7 @@ import com.networkH2021.gachon.GameLauncher;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.ImageObserver;
 import java.io.*;
 import java.net.Socket;
 
@@ -17,7 +18,6 @@ public class ChatWindow {
 	private JTextArea textArea;
 	private Socket socket;
 	private String name;
-	
 	private PrintWriter pw;
 	private BufferedReader br;
 	
@@ -35,7 +35,7 @@ public class ChatWindow {
 		textField = GameLauncher.getMainLobby().getChatTextField();
 		//textField = new TextField(); // 패널의 자석
 		textArea = GameLauncher.getMainLobby().getChatTextArea();;
-		//textArea = new TextArea(20, 10); // 대화 뜨는 공간
+		//textArea = new TextArea(20, 10); // 대화 뜨는 공간;
 	}
 
 	private void finish() {
@@ -80,8 +80,9 @@ public class ChatWindow {
 
 		// TextArea
 		textArea.setEditable(false);
+		//textArea.add(scrollPane);
+		//JScrollPane scrollPane = new JScrollPane(textArea);
 		//frame.add(BorderLayout.CENTER, textArea);
-
 		// Frame
 		frame.setTitle("Main Chatting Room");
 		frame.addWindowListener(new WindowAdapter() {
@@ -101,7 +102,7 @@ public class ChatWindow {
 				+ "\t\t현재 참여 인원 : " + totalUser +"\n"
 				+ "\t /? 를 치시면 사용하실 수 있는 기능이 나옵니다.\n"
 				+ "-------------------------------------------------------\n");
-
+		textArea.setCaretPosition(textArea.getDocument().getLength());
 
 		// Thread 생성
 		new ReceiveThread().start();
@@ -110,6 +111,7 @@ public class ChatWindow {
 	private void updateTextArea(String message) { // thread에서 불러야함
 		textArea.append(message);
 		textArea.append("\n");
+		textArea.setCaretPosition(textArea.getDocument().getLength());
 	}
 
 	
@@ -131,6 +133,7 @@ public class ChatWindow {
 				pw.println("NAGA:"+message + ":" + name);
 			}else {
 				textArea.append(notice);
+				textArea.setCaretPosition(textArea.getDocument().getLength());
 			}
 		}else {
 			pw.println("message:" + message);
