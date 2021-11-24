@@ -48,6 +48,7 @@ public class Login extends JFrame{
                     };
                     GameLauncher.MakeMainLobby();
                     GameLauncher.getMainLobby().setVisible(true);
+                    GameLauncher.getMainLobby().startChatting();
                 }  // 로그인 성공
                 else {
                     JOptionPane.showMessageDialog(null,"아이디와와 비번을 다시 입력해주세요!");
