@@ -4,9 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import com.networkH2021.gachon.client.ChatClientApp;
 import com.networkH2021.gachon.user.GameUser;
-import com.sun.tools.javac.Main;
 
 public class Login extends JFrame{
     private JLabel ID;
@@ -46,12 +44,10 @@ public class Login extends JFrame{
                         String nick = GameLauncher.getUserDAO().getNickname();
                         GameLauncher.getUser().setUserID(ID_Str);
                         GameLauncher.getUser().setUserNickname(nick);
-                        //GameLauncher.MakeMainLobby();
-                        //System.out.println(GameLauncher.getMainLobby());
-                        GameLauncher.getMainLobby().setVisible(true);
-                        GameLauncher.getMainLobby().startChatting();
-                        //ChatClientApp chatClientApp = new ChatClientApp();
+
                     };
+                    GameLauncher.MakeMainLobby();
+                    GameLauncher.getMainLobby().setVisible(true);
                 }  // 로그인 성공
                 else {
                     JOptionPane.showMessageDialog(null,"아이디와와 비번을 다시 입력해주세요!");
