@@ -76,4 +76,9 @@ public class user {
     public void setUserSNS(String userEmail) {
         this.userSNS = userSNS;
     }
+
+    @Override
+    public String toString() {
+        return userNickname;
+    }
 }

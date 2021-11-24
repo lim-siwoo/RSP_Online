@@ -38,7 +38,7 @@ public class GameLauncher {
         GameLauncher.mainLobby = mainLobby;
     }
 
-    public static void MakeMainLobby(){
+    public static void MakeMainLobby() {
         mainLobby = new MainLobby();
     }
 

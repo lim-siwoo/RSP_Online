@@ -15,9 +15,13 @@ public class GameUser extends user{
     public GameUser() {// 아무런 정보가 없는 깡통 유저를 만들 때
         super();
     }
-    public GameUser(String id, String nickname) throws UnknownHostException {
+    public GameUser(String id, String nickname) {
         super(id, nickname);
-        setIpAddress(InetAddress.getLocalHost());//테스트로 로컬로 설정함
+        try {
+            setIpAddress(InetAddress.getLocalHost());//테스트로 로컬로 설정함
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -55,4 +59,6 @@ public class GameUser extends user{
     public void setIpAddress(InetAddress ipAddress) {
         this.ipAddress = ipAddress;
     }
+
+
 }

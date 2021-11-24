@@ -1,12 +1,15 @@
 package com.networkH2021.gachon;
 
 import com.networkH2021.gachon.client.ChatClientApp;
+import com.networkH2021.gachon.user.GameUser;
+import com.networkH2021.gachon.user.UserDAO;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import java.net.Socket;
+import java.net.UnknownHostException;
 
 public class MainLobby extends JFrame{
 
@@ -14,7 +17,8 @@ public class MainLobby extends JFrame{
     private JButton Rankbutton;//랭크버튼임
     private JButton Sendbutton;//채팅 보내기 버튼임
     private JPanel panelLobby;////유저리스트의 상위 파넬
-    private JList UserList;//유저리스트가 나옴
+    private JList<GameUser> UserList;//유저리스트가 나옴
+    DefaultListModel<GameUser> model = new DefaultListModel<>();
     private JTextArea ChatTextArea;//채팅택스트
 
     public JTextField getChatTextField() {
@@ -59,9 +63,12 @@ public class MainLobby extends JFrame{
         CCA = new ChatClientApp(this);
     }
 
-    public MainLobby(){
+    public MainLobby() {
         final JPopupMenu menu = new JPopupMenu("Menu");//유저리스트에서 오른쪽마우스하면 뜨는 ContextMenu구현임
-
+        UserList.setModel(model);
+        model.addElement(new GameUser("test1","홍길동"));
+        model.addElement(new GameUser("test2","최재혁 교수님"));
+        model.addElement(new GameUser("test3","허수아비"));
         JMenuItem info = new JMenuItem("info");
         JMenuItem invite = new JMenuItem("invite");
 
@@ -92,7 +99,16 @@ public class MainLobby extends JFrame{
                 super.mouseClicked(e);
                 if (SwingUtilities.isRightMouseButton(e) && e.getClickCount()==1){
                     menu.show(UserList, e.getX(), e.getY());
+                    JList<GameUser> selected = (JList<GameUser>) e.getSource();
+                    int index = selected.locationToIndex(e.getPoint());
+                    System.out.println(index);
                 }
+            }
+        });
+        menu.addMouseListener(new MouseAdapter() {//메뉴에서 뭐가 선택됨
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
             }
         });
     }
