@@ -122,8 +122,12 @@ public class MainLobby extends JFrame{
         Rankbutton.addActionListener(new ActionListener() { //Rank버튼 눌렀을때 실행됨
             @Override
             public void actionPerformed(ActionEvent e) {
+                GameLauncher.getUserDAO().rank();
+                GameLauncher.getRank().update();
                 GameLauncher.getRank().setVisible(true);
             }
+
+
         });
 
 
