@@ -1,4 +1,4 @@
-package com.networkH2021.gachon.server;
+package com.networkH2021.gachon.ChatServer;
 
 import java.io.Writer;
 

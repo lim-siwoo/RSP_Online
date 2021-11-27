@@ -152,6 +152,8 @@ public class MainLobby extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(null, "INVITE :"+UserList.getSelectedValue());
+                //게임시작 코드를 추가해야함 넘겨주는값
+                //상대방한태 초대받았다고 알려주는 코드 추가해야함
             }
         });
 

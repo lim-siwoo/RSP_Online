@@ -1,15 +1,11 @@
 package com.networkH2021.gachon.client;
 
-import com.networkH2021.gachon.Game;
 import com.networkH2021.gachon.GameLauncher;
 import com.networkH2021.gachon.MainLobby;
-import com.networkH2021.gachon.server.ChatServer;
 
 import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.Socket;
-
-import static com.networkH2021.gachon.GameLauncher.*;
 
 public class ChatClientApp {
 	
