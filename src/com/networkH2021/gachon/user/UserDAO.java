@@ -1,11 +1,16 @@
 package com.networkH2021.gachon.user;
 
 
+import com.networkH2021.gachon.GameLauncher;
+
 import javax.swing.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
 
 import static com.networkH2021.gachon.GameLauncher.*;
 
@@ -18,8 +23,16 @@ public class UserDAO {
     private PreparedStatement pstmt;
     private ResultSet rs;
     private String nickname;
+    private ArrayList<String> rank = new ArrayList<>();
 
 
+    /* Getter and Seteer */
+    public ArrayList<String> getRank() {
+        return rank;
+    }
+    public void setRank(ArrayList<String> rank) {
+        this.rank = rank;
+    }
     public String getNickname() {
         return nickname;
     }
@@ -37,10 +50,65 @@ public class UserDAO {
             conn = DriverManager.getConnection(dbURL,dbID,dbPassword);
         }catch (Exception e) {
             e.printStackTrace();
-            System.out.println("dfdf");
+            System.out.println("데이터베이스 오류 발생"); // 나중에 지워야 함
         }
     }
 
+
+    public int setIP(String userID){
+
+        String SQL = "UPDATE USER SET IP = ? WHERE ID = ?";
+        String ip = GameLauncher.getUser().getIpAddress().toString();
+
+        try {
+            pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, ip);
+            pstmt.setString(2, userID);
+            pstmt.executeUpdate();
+            return 0;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+
+
+
+    public int loginTime(String userID){
+
+        String SQL = "UPDATE USER SET logined_log = ? WHERE ID = ?";
+
+        LocalDate day = LocalDate.now();
+        LocalTime time = LocalTime.now();
+        String date = day.toString() + " " + time.toString().substring(0, 5);
+        try {
+            pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, date);
+            pstmt.setString(2, userID);
+            pstmt.executeUpdate();
+            return 0;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+
+
+    public int loginCount(String userID){
+
+        String SQL = "UPDATE USER SET login_count = login_count +1 WHERE ID = ?";
+        try {
+            pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, userID);
+            pstmt.executeUpdate();
+            return 0;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return -1;
+    }
 
     public int login(String userID, String userPassword) {
         String SQL = "SELECT PASSWORD FROM USER WHERE ID = ?";
@@ -53,6 +121,9 @@ public class UserDAO {
             if(rs.next()) {
                 if(rs.getString(1).contentEquals(userPassword)) {
 
+                    if(loginCount(userID) == -1 || loginTime(userID) == -1 || setIP(userID) == -1) {
+                        return -3;  // 로그인 카운터나 로그인 시간 부분 오류
+                    }
                     return 0;   // 로그인 성공
                 }
                 else
@@ -135,6 +206,8 @@ public class UserDAO {
     public int rank(){
 
         String SQL = "SELECT NICKNAME, WIN, LOSE FROM USER ORDER BY WIN DESC LIMIT 5";
+        rank.clear();
+
         try {
             pstmt = conn.prepareStatement(SQL);
             rs = pstmt.executeQuery();
@@ -146,7 +219,7 @@ public class UserDAO {
                 if (rs.wasNull()) win = "null";
                 String lose = rs.getString(3);
                 if (rs.wasNull()) lose = "null";
-                System.out.println(nickname + "\t" + win + "\t" + lose);    // 출력 부분 수정
+                rank.add(nickname + "\t" + win + "\t" + lose);
             }
             return 0;       // 정상적으로 작동할 경우
 
@@ -158,7 +231,7 @@ public class UserDAO {
 
     public int updateWin(String userID){
 
-        String SQL = "UPDATE USER SET WIN++ WHERE ID = ?";
+        String SQL = "UPDATE USER SET WIN = WIN +1 WHERE ID = ?";
         try {
             pstmt.setString(1, userID);
             return pstmt.executeUpdate();
@@ -170,7 +243,7 @@ public class UserDAO {
 
     public int updateLose(String userID){
 
-        String SQL = "UPDATE USER SET WIN-- WHERE ID = ?";
+        String SQL = "UPDATE USER SET WIN = WIN -1 WHERE ID = ?";
         try {
             pstmt.setString(1, userID);
             return pstmt.executeUpdate();

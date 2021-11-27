@@ -15,5 +15,9 @@ public class Rank extends JFrame{
         setVisible(false);
     }
 
+    public void update(){
+        textArea1.setText(null);
+        for (String rank : GameLauncher.getUserDAO().getRank()) textArea1.append(rank + "\n");
+    }
 
 }
