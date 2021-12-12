@@ -27,6 +27,7 @@ public class Server {
             socket = new DatagramSocket(port);
             online = true;
 
+            receive();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -35,27 +36,30 @@ public class Server {
     public void receive(){
         Thread thread = new Thread(){
             public void run(){
-                try{
-                    byte[] rawData = new byte[1024];
-                    DatagramPacket packet = new DatagramPacket(rawData, rawData.length);
-                    socket.receive(packet);
+                while(online) {
+                    try {
+                        byte[] rawData = new byte[1024];
+                        DatagramPacket packet = new DatagramPacket(rawData, rawData.length);
+                        socket.receive(packet);
 
-                    String message = new String(rawData);
-                    message = message.substring(0,message.indexOf("\\e"));//end of line
-
-                    if(!parseCommand(message, packet)){
-                        lastMessage = message;
+                        String message = new String(rawData);
+                        message = message.substring(0, message.indexOf("\\e"));//end of line
+                        System.out.println("Client:" + message);
+                        if (!parseCommand(message, packet)) {
+                            lastMessage = message;
+                        }
+                        if (message.equalsIgnoreCase("ping")){
+                            send("pong",packet.getAddress().getHostAddress(),packet.getPort());
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
-
-                    lastMessage = message;
-                }catch (Exception e){
-                    e.printStackTrace();
                 }
             }
-        }; thread.run();
+        }; thread.start();
     }
 
-    public void send(String message, String ip, int port){
+    public void send(String message, String ip, int port){//send to specific client
         try {
             message = message + "\\e";
             byte[] data = message.getBytes(StandardCharsets.UTF_8);
@@ -66,7 +70,7 @@ public class Server {
         }
     }
 
-    public void updateClient(String message){
+    public void updateClient(String message){//send to every connected client
         for (int i=0;i<clients.size();i++){
             ClientObject client = clients.get(i);
             send(message, client.getAddress(),client.getPort());
@@ -76,9 +80,11 @@ public class Server {
     public boolean parseCommand(String message, DatagramPacket packet){
         if (message.startsWith("\\c")){//create client parse
             //CONNECT CLIENT TO SERVER
-            ClientObject client = new ClientObject (packet.getAddress().toString(), packet.getPort(), clientID+1);
+            String clientNick = message.substring(2);
+            System.out.println("Nick:"+clientNick);
+            ClientObject client = new ClientObject (packet.getAddress().getHostAddress(), packet.getPort(), clientID+1);
             clients.add(client);
-            send("\\cid:"+client.getId(), client.getAddress(), client.getPort());
+            send("\\cid:"+client.getId()+clientNick, client.getAddress(), client.getPort());
             clientID++;
             return true;
         }else
@@ -93,6 +99,9 @@ public class Server {
 //                client.send("\\d:"+clientID);
                 System.out.println("Server: Error, Client With ID"+id+", was not found!");
                 return true;
+            }else if (message.startsWith("\\l")){//send userlist
+                String userList;
+                //send()
             }
         return false;
     }

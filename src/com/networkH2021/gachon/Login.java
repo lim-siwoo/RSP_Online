@@ -4,7 +4,10 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import com.networkH2021.gachon.Networking.Client;
 import com.networkH2021.gachon.user.GameUser;
+
+import static com.networkH2021.gachon.GameLauncher.getClient;
 
 public class Login extends JFrame{
     private JLabel ID;
@@ -49,6 +52,7 @@ public class Login extends JFrame{
                     GameLauncher.MakeMainLobby();
                     GameLauncher.getMainLobby().setVisible(true);
                     GameLauncher.getMainLobby().startChatting();
+                    GameLauncher.MakeClient();
                 }  // 로그인 성공
                 else {
                     JOptionPane.showMessageDialog(null,"아이디와와 비번을 다시 입력해주세요!");

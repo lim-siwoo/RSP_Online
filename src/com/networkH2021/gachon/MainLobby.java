@@ -23,6 +23,7 @@ public class MainLobby extends JFrame{
     private JList<GameUser> UserList;//유저리스트가 나옴
     DefaultListModel<GameUser> model = new DefaultListModel<>();
     private JTextArea ChatTextArea;//채팅택스트
+    private JButton Refreshbutton;
     private JScrollPane scrollPane;
 
     public JTextField getChatTextField() {
@@ -160,6 +161,17 @@ public class MainLobby extends JFrame{
                 //상대방한태 초대받았다고 알려주는 코드 추가해야함
             }
         });
+        Refreshbutton.addActionListener(new ActionListener() {//버튼을 누르면 유저리스트를 새로고침함
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (GameLauncher.getClient() != null){
+
+                }
+                GameLauncher.getClient().send("ping");
+                GameLauncher.getClient().send("//l");
+            }
+        });
+
 
         //UserList.addListSelectionListener(new JListHandler());
 
