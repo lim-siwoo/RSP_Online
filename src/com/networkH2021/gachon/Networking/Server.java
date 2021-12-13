@@ -110,8 +110,8 @@ public class Server {
                     //send(message, client.getAddress(),client.getPort());
                     userList = userList +client.getNickName()+",";
                 }
-                send(userList, packet.getAddress().getHostAddress(), packet.getPort());
-                System.out.println("send: "+userList);
+//                send(userList, packet.getAddress().getHostAddress(), packet.getPort());
+                updateClient(userList);
                 return true;
             }
             if (message.startsWith("\\i")){

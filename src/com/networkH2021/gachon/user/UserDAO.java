@@ -23,6 +23,7 @@ public class UserDAO {
     private PreparedStatement pstmt;
     private ResultSet rs;
     private String nickname;
+    private String info;
     private ArrayList<String> rank = new ArrayList<>();
 
 
@@ -40,6 +41,13 @@ public class UserDAO {
         this.nickname = nickname;
     }
 
+    public String getInfo(String userNickname) {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
 
     public UserDAO() {
         try {
@@ -201,6 +209,31 @@ public class UserDAO {
         return -1;    // 생성 실패
     }
 
+    public int info(String NICKNAME){
+
+        String SQL = "SELECT NICKNAME, WIN, LOSE FROM USER WHERE NICKNAME = ?";
+
+        try {
+            pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, NICKNAME);
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                String nickname = rs.getString(1);
+                if (rs.wasNull()) nickname = "null";
+                String win = rs.getString(2);
+                if (rs.wasNull()) win = "null";
+                String lose = rs.getString(3);
+                if (rs.wasNull()) lose = "null";
+                info = nickname + "\t" + win + "\t" + lose;
+            }
+            return 0;       // 정상적으로 작동할 경우
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return -1;  // 정상적으로 작동하지 않을 경우
+    }
 
     public int rank(){
 
