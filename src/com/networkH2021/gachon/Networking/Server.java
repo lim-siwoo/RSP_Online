@@ -80,10 +80,10 @@ public class Server {
     public boolean parseCommand(String message, DatagramPacket packet){
         if (message.startsWith("\\c")){//create client parse
             //CONNECT CLIENT TO SERVER
-            String clientNick = message.substring(2);
+            String clientNick = message.substring(2).split(",")[0];
             System.out.println("Nick:"+clientNick);
             String userID = message.split(",")[1];
-            System.out.println(userID);
+            //System.out.println(userID);
             ClientObject client = new ClientObject (packet.getAddress().getHostAddress(), packet.getPort(), clientID+1,clientNick, userID);
             clients.add(client);
             send("\\cid:"+client.getId(), client.getAddress(), client.getPort());

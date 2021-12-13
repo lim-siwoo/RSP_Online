@@ -193,7 +193,6 @@ public class MainLobby extends JFrame{
                 if (GameLauncher.getClient() != null){
 
                 }
-                GameLauncher.getClient().send("ping");
                 GameLauncher.getClient().send("\\l");
             }
         });
