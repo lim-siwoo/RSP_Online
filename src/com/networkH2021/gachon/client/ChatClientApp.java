@@ -9,7 +9,7 @@ import java.net.Socket;
 
 public class ChatClientApp {
 	
-	private static final String SERVER_IP = "192.168.0.176";//시우집 컴퓨터 WAN 아이피랑 외부 포트
+	private static final String SERVER_IP = "14.47.251.177";//시우집 컴퓨터 WAN 아이피랑 외부 포트
 	private static final int SERVER_PORT = 9997;
 	//private MainLobby  mainLobby = new MainLobby();
 	public ChatClientApp(MainLobby mainLobby) {

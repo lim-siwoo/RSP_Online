@@ -43,7 +43,7 @@ public class UserDAO {
 
     public UserDAO() {
         try {
-            String dbURL = "jdbc:mysql://220.72.39.158/network";
+            String dbURL = "jdbc:mysql://220.116.200.107/network";
             String dbID = "network";
             String dbPassword = "1124";
             Class.forName("com.mysql.cj.jdbc.Driver");
