@@ -11,8 +11,8 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
-import java.net.Socket;
-import java.net.UnknownHostException;
+import java.net.*;
+import java.nio.charset.StandardCharsets;
 
 public class MainLobby extends JFrame{
 
@@ -58,7 +58,7 @@ public class MainLobby extends JFrame{
     private String totalUser;
     private static ChatClientApp CCA;
 
-    //private DatagramSocket socket;//User Datagram Protocal
+    //private DatagramSocket socket;//User Datagram Protocol
     //private DatagramPacket packet;//Data packet
     //private InetAddress address;//상대방주소
     private int myPort = 10001;//내 포트
@@ -142,8 +142,6 @@ public class MainLobby extends JFrame{
                 GameLauncher.getRank().update();
                 GameLauncher.getRank().setVisible(true);
             }
-
-
         });
 
 
@@ -168,14 +166,24 @@ public class MainLobby extends JFrame{
             }
         });
 
+
         invite.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(null, "INVITE :"+UserList.getSelectedValue());
+
+                String username= String.valueOf(UserList.getSelectedValue());
+
+                GameLauncher.getClient().send("\\n");
+                GameLauncher.getClient().send(username);    //invited user
+
+               // GameLauncher.getClient().send((GameLauncher.getClient().getClient()));  //request user
+
                 //게임시작 코드를 추가해야함 넘겨주는값
                 //상대방한태 초대받았다고 알려주는 코드 추가해야함
             }
         });
+
         Refreshbutton.addActionListener(new ActionListener() {//버튼을 누르면 유저리스트를 새로고침함
             @Override
             public void actionPerformed(ActionEvent e) {

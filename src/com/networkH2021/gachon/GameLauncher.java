@@ -18,6 +18,8 @@ public class GameLauncher {
     public static UserDAO database;
     public static Client client;
     public static Server server;
+    //public static Game game;
+
 
     public GameLauncher() throws UnknownHostException {
         login = new Login();
@@ -26,7 +28,10 @@ public class GameLauncher {
         database = new UserDAO();
         user = new GameUser("NULL", "NULL");
         mainLobby = new MainLobby();
+        //game = new Game();
+
     }
+
     public static Login getLogin(){
         return login;
     }
@@ -48,6 +53,10 @@ public class GameLauncher {
     public static void MakeClient(){
         client = new Client("14.47.251.177",5284);
     }
+
+    /*public static Game getGame(){
+        return game;
+    }*/
 
     public static Rank getRank(){
         return rank;

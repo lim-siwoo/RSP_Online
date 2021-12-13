@@ -51,6 +51,7 @@ public class Server {
                         if (message.equalsIgnoreCase("ping")){
                             send("pong",packet.getAddress().getHostAddress(),packet.getPort());
                         }
+
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -77,43 +78,59 @@ public class Server {
         }
     }
 
-    public boolean parseCommand(String message, DatagramPacket packet){
-        if (message.startsWith("\\c")){//create client parse
+    public boolean parseCommand(String message, DatagramPacket packet) {
+        if (message.startsWith("\\c")) {//create client parse
             //CONNECT CLIENT TO SERVER
             String clientNick = message.substring(2);
-            System.out.println("Nick:"+clientNick);
-            ClientObject client = new ClientObject (packet.getAddress().getHostAddress(), packet.getPort(), clientID+1,clientNick);
+            System.out.println("Nick:" + clientNick);
+            ClientObject client = new ClientObject(packet.getAddress().getHostAddress(), packet.getPort(), clientID + 1, clientNick);
             clients.add(client);
-            send("\\cid:"+client.getId(), client.getAddress(), client.getPort());
+            send("\\cid:" + client.getId(), client.getAddress(), client.getPort());
             clientID++;
             return true;
-        }else
-            if (message.startsWith("\\d")){//delete client parse
-                int id = Integer.parseInt(message.substring(2));
-                String nickname = message.substring(2);
-                for (int i =0; i <clients.size();i++){
-                    if (clients.get(i).getId() == id){
-                        clients.remove(clients.get(i));
-                        return true;
-                    }
+        } else if (message.startsWith("\\d")) {//delete client parse
+            int id = Integer.parseInt(message.substring(2));
+            String nickname = message.substring(2);
+            for (int i = 0; i < clients.size(); i++) {
+                if (clients.get(i).getId() == id) {
+                    clients.remove(clients.get(i));
+                    return true;
                 }
+            }
 //                client.send("\\d:"+clientID);
-                System.out.println("Server: Error, Client With ID"+id+", was not found!");
-                return true;
+            System.out.println("Server: Error, Client With ID" + id + ", was not found!");
+            return true;
+        }
+        if (message.startsWith("\\l")) {//send userlist
+            String userList = "\\l";
+            for (int i = 0; i < clients.size(); i++) {
+                ClientObject client = clients.get(i);
+                //send(message, client.getAddress(),client.getPort());
+                userList = userList + client.getNickName() + ",";
             }
-            if (message.startsWith("\\l")){//send userlist
-                String userList = "\\l";
-                for (int i=0;i<clients.size();i++){
-                    ClientObject client = clients.get(i);
-                    //send(message, client.getAddress(),client.getPort());
-                    userList = userList +client.getNickName()+",";
+            send(userList, packet.getAddress().getHostAddress(), packet.getPort());
+            System.out.println("send: " + userList);
+            return true;
+        }
+
+        if (message.startsWith("\\n")) {
+
+            String user = message.substring(2);
+            for (int i = 0; i < clients.size(); i++) {
+                if (clients.get(i).getNickName() == user) {
+                    send("invited", packet.getAddress().getHostAddress(), packet.getPort());
                 }
-                send(userList, packet.getAddress().getHostAddress(), packet.getPort());
-                System.out.println("send: "+userList);
+
+            /*int idx=message.indexOf("+");
+            String user1 = message.substring(2,idx);
+            String user2 = message.substring(idx+1);
+            */
                 return true;
             }
+        }
         return false;
     }
+
 
     public int getPort() {
         return port;
