@@ -46,7 +46,7 @@ public class GameLauncher {
         mainLobby = new MainLobby();
     }
     public static void MakeClient(){
-        client = new Client("localhost",5284);
+        client = new Client("14.47.251.177",5284);
     }
 
     public static Rank getRank(){
