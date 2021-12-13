@@ -200,6 +200,7 @@ public class MainLobby extends JFrame{
         Refreshbutton.addActionListener(new ActionListener() {//버튼을 누르면 유저리스트를 새로고침함
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 if (GameLauncher.getClient() != null){
 
                 }
