@@ -11,22 +11,16 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.nio.charset.StandardCharsets;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 public class Game extends JFrame{
-    private DatagramSocket socket;
-    private InetAddress serverAddress;
-    private int port;
-    private boolean online;
-    private int clientID;
-    private String lastMessage;
-    private String opp;
+    private boolean SendCheck;
+    private boolean ReceiveCheck;
+    private int myValue;
+    private String myNick;
+    private int oppG;
     private String oppNick;
+
 
     ImageIcon[] imgIcons = {
             new ImageIcon("IMG/kawi.jpg"),
@@ -39,7 +33,12 @@ public class Game extends JFrame{
     ResultDisplay result = new ResultDisplay();
 
     public Game() {
+
         super("RSC");
+        SendCheck=false;
+        ReceiveCheck=false;
+        receive();
+
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         add(result,"Center");
@@ -86,23 +85,44 @@ public class Game extends JFrame{
         }
     }
 
-    public void send(String message){
-        try {
-            message = message + "\\e";
-            byte[] data = message.getBytes(StandardCharsets.UTF_8);
-            DatagramPacket packet = new DatagramPacket(data, data.length,serverAddress, port);
-            socket.send(packet);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-
     public String getOppNick() {
         return oppNick;
     }
 
-    public void receive(String myNick,String oppNick,int oppG){
+    public void receive() {
+        Thread thread = new Thread() {
+            public void run() {
+                while (true) {
+                    String res = "";
+//                    System.out.println("OnThread");
+                    System.out.println("sendCheck:"+SendCheck);
+                    System.out.println("receiveCheck"+ReceiveCheck);
+                    if ((SendCheck == true) && (ReceiveCheck == true)) {
+                        System.out.println("Both are true!!");
+                        if (myValue == 0 && oppG == 2 ||
+                                myValue == 1 && oppG == 0 ||
+                                myValue == 2 && oppG == 1) {
+                            res = "YOU WIN!";
+                            GameLauncher.getUserDAO().updateWin(GameLauncher.getUser().getUserID());
+                        }
+                        else if (myValue == 0 && oppG == 0 ||
+                                myValue == 1 && oppG == 1 ||
+                                myValue == 2 && oppG == 2)
+                            res = "DRAW!";
+                        else {
+                            res = "YOU LOSE";
+                            GameLauncher.getUserDAO().updateLose(GameLauncher.getUser().getUserID());
+                        }
 
+                        //result.output(btnSrc.getIcon(), imgIcons[Integer.parseInt(opp)], res);
+                        SendCheck=false;
+                        ReceiveCheck=false;
+                        JOptionPane.showMessageDialog(null,res);
+                        System.out.println("success");
+                    }
+                }
+            }
+        }; thread.start();
 
     }
 
@@ -110,35 +130,66 @@ public class Game extends JFrame{
         @Override
         public void actionPerformed(ActionEvent e) {
             //getSource가 Object 타입임으로 타입변환을 해야한다.
-            JButton btnSrc = (JButton)e.getSource();
             String a;
+            JButton btnSrc = (JButton)e.getSource();
+
             String res = "";
+            SendCheck= true;
 
             if(btnSrc.getIcon() == imgIcons[0]){
+                myValue=0;
                 a="0";
-                GameLauncher.getClient().send("\\G"+GameLauncher.getUserDAO().getNickname()+","+oppNick+","+a);
+                GameLauncher.getClient().send("\\G"+GameLauncher.getUserDAO().getNickname()+","+GameLauncher.getInvitation().getOppNick()+","+a);
             }
             else if(btnSrc.getIcon() == imgIcons[1]){
+                myValue=1;
                 a="1";
-                GameLauncher.getClient().send("\\G"+GameLauncher.getUserDAO().getNickname()+","+oppNick+","+a);
+                GameLauncher.getClient().send("\\G"+GameLauncher.getUserDAO().getNickname()+","+GameLauncher.getInvitation().getOppNick()+","+a);
             }
             else if(btnSrc.getIcon() == imgIcons[2]){
+                myValue=2;
                 a="2";
-                GameLauncher.getClient().send("\\G"+GameLauncher.getUserDAO().getNickname()+","+oppNick+","+a);
+                GameLauncher.getClient().send("\\G"+GameLauncher.getUserDAO().getNickname()+","+GameLauncher.getInvitation().getOppNick()+","+a);
             }
 
-            if(btnSrc.getIcon() == imgIcons[0] && Integer.parseInt(opp) == 2 ||
-                    btnSrc.getIcon() == imgIcons[1] && Integer.parseInt(opp) == 0 ||
-                    btnSrc.getIcon() == imgIcons[2] && Integer.parseInt(opp) == 1 )
-                res = "YOU WIN!";
-            else if(btnSrc.getIcon() == imgIcons[0] && Integer.parseInt(opp) == 0 ||
-                    btnSrc.getIcon() == imgIcons[1] && Integer.parseInt(opp) == 1 ||
-                    btnSrc.getIcon() == imgIcons[2] && Integer.parseInt(opp) == 2 )
-                res = "DRAW!!";
-            else
-                res = "YOU LOSE";
-            result.output(btnSrc.getIcon(), imgIcons[Integer.parseInt(opp)], res);
         }
 
     }
+
+    public boolean isSendCheck() {
+        return SendCheck;
+    }
+
+    public void setSendCheck(boolean sendCheck) {
+        SendCheck = sendCheck;
+    }
+
+    public boolean isReceiveCheck() {
+        return ReceiveCheck;
+    }
+
+    public void setReceiveCheck(boolean receiveCheck) {
+        ReceiveCheck = receiveCheck;
+    }
+
+    public String getMyNick() {
+        return myNick;
+    }
+
+    public void setMyNick(String myNick) {
+        this.myNick = myNick;
+    }
+
+    public int getOppG() {
+        return oppG;
+    }
+
+    public void setOppG(int oppG) {
+        this.oppG = oppG;
+    }
+
+    public void setOppNick(String oppNick) {
+        this.oppNick = oppNick;
+    }
+
 }

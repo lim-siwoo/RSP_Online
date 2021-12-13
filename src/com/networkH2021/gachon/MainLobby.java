@@ -137,8 +137,8 @@ public class MainLobby extends JFrame{
             @Override
             public void windowClosing(WindowEvent e) {
                 super.windowClosing(e);
-                GameLauncher.getClient().send("\\l");
                 GameLauncher.getClient().send("\\d"+GameLauncher.getClient().getClientID());
+                GameLauncher.getClient().send("\\l");
                 System.exit(0);
             }
         });

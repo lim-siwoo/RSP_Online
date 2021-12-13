@@ -120,6 +120,11 @@ public class Client {
             myNick = message.split(",")[0];
             oppoNick = message.split(",")[1];
             opp = Integer.parseInt(message.split(",")[2]);
+            GameLauncher.getGame().setMyNick(myNick);
+            GameLauncher.getGame().setOppNick(oppoNick);
+            GameLauncher.getGame().setOppG(opp);
+            GameLauncher.getGame().setReceiveCheck(true);
+            System.out.println("Received");
             return true;
         }
 
