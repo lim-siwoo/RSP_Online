@@ -163,7 +163,7 @@ public class Server {
                         opponent = clients.get(i);
                     }
                 }
-                send("\\n"+oppoNick,opponent.getAddress(),opponent.getPort());
+                send("\\n"+myNick+","+oppoNick,opponent.getAddress(),opponent.getPort());
                 return true;
             }
 
