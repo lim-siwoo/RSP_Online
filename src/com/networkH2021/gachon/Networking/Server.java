@@ -114,6 +114,21 @@ public class Server {
                 System.out.println("send: "+userList);
                 return true;
             }
+            if (message.startsWith("\\i")){
+                String myNick;
+                String oppoNick;
+                ClientObject opponent = null;
+                message = message.substring(2);
+                myNick = message.split(",")[0];
+                oppoNick = message.split(",")[0];
+                for (int i=0;i<clients.size();i++){
+                    if (clients.get(i).getNickName().equalsIgnoreCase(oppoNick)){
+                        opponent = clients.get(i);
+                    }
+                }
+                send("\\i"+myNick,opponent.getAddress(),opponent.getPort());
+                return true;
+            }
         return false;
     }
 

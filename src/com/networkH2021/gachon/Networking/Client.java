@@ -4,6 +4,7 @@ import com.networkH2021.gachon.Game;
 import com.networkH2021.gachon.GameLauncher;
 
 import javax.management.remote.JMXServerErrorException;
+import javax.swing.*;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -79,6 +80,13 @@ public class Client {
         if (message.startsWith("\\l")){
             String[] userList = message.substring(2).split(",");
             GameLauncher.getMainLobby().refreshList(userList);
+            return true;
+        }
+        if (message.startsWith("\\i")){
+            String myNick = GameLauncher.getUserDAO().getNickname();
+            String oppoNick = message.substring(2);
+            JOptionPane.showMessageDialog(null, oppoNick+"이(가) 대전을 요청했습니다.");
+//            send("\\i"+myNick,opponent.getAddress(),opponent.getPort());
             return true;
         }
         return false;
