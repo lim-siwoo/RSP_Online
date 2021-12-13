@@ -96,8 +96,8 @@ public class Client {
             GameLauncher.getMainLobby().showGameRoom();
             return true;
         }
-    
-        
+
+
         // 거절 했다고 했을 때
         if (message.startsWith("\\n")){
             String myNick;
@@ -110,6 +110,19 @@ public class Client {
             GameLauncher.getInvitation().setVisible(false);
             return true;
         }
+
+        if (message.startsWith("\\g")){
+            int opp;
+            String myNick;
+            String oppoNick;
+            ClientObject opponent = null;
+            message = message.substring(2);
+            myNick = message.split(",")[0];
+            oppoNick = message.split(",")[1];
+            opp = Integer.parseInt(message.split(",")[2]);
+            return true;
+        }
+
         return false;
     }
 

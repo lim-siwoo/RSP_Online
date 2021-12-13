@@ -1,9 +1,15 @@
 package com.networkH2021.gachon;
 
+import com.networkH2021.gachon.Networking.ClientObject;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.nio.charset.StandardCharsets;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -13,6 +19,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Game extends JFrame{
+    private DatagramSocket socket;
+    private InetAddress serverAddress;
+    private int port;
+    private boolean online;
+    private int clientID;
+    private String lastMessage;
+    private String opp;
+    private String oppNick;
 
     ImageIcon[] imgIcons = {
             new ImageIcon("IMG/kawi.jpg"),
@@ -72,26 +86,58 @@ public class Game extends JFrame{
         }
     }
 
+    public void send(String message){
+        try {
+            message = message + "\\e";
+            byte[] data = message.getBytes(StandardCharsets.UTF_8);
+            DatagramPacket packet = new DatagramPacket(data, data.length,serverAddress, port);
+            socket.send(packet);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public String getOppNick() {
+        return oppNick;
+    }
+
+    public void receive(String myNick,String oppNick,int oppG){
+
+
+    }
+
     class EventHandler implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
             //getSource가 Object 타입임으로 타입변환을 해야한다.
             JButton btnSrc = (JButton)e.getSource();
-            int selCom = (int)(Math.random()*3); // 0:가위  1:바위, 2:보
+            String a;
             String res = "";
 
-            //유저가 이기는 경우
-            if(btnSrc.getIcon() == imgIcons[0] && selCom == 2 ||
-                    btnSrc.getIcon() == imgIcons[1] && selCom == 0 ||
-                    btnSrc.getIcon() == imgIcons[2] && selCom == 1 )
-                res = "USER1 WIN!";
-            else if(btnSrc.getIcon() == imgIcons[0] && selCom == 0 ||
-                    btnSrc.getIcon() == imgIcons[1] && selCom == 1 ||
-                    btnSrc.getIcon() == imgIcons[2] && selCom == 2 )
+            if(btnSrc.getIcon() == imgIcons[0]){
+                a="0";
+                GameLauncher.getClient().send("\\G"+GameLauncher.getUserDAO().getNickname()+","+oppNick+","+a);
+            }
+            else if(btnSrc.getIcon() == imgIcons[1]){
+                a="1";
+                GameLauncher.getClient().send("\\G"+GameLauncher.getUserDAO().getNickname()+","+oppNick+","+a);
+            }
+            else if(btnSrc.getIcon() == imgIcons[2]){
+                a="2";
+                GameLauncher.getClient().send("\\G"+GameLauncher.getUserDAO().getNickname()+","+oppNick+","+a);
+            }
+
+            if(btnSrc.getIcon() == imgIcons[0] && Integer.parseInt(opp) == 2 ||
+                    btnSrc.getIcon() == imgIcons[1] && Integer.parseInt(opp) == 0 ||
+                    btnSrc.getIcon() == imgIcons[2] && Integer.parseInt(opp) == 1 )
+                res = "YOU WIN!";
+            else if(btnSrc.getIcon() == imgIcons[0] && Integer.parseInt(opp) == 0 ||
+                    btnSrc.getIcon() == imgIcons[1] && Integer.parseInt(opp) == 1 ||
+                    btnSrc.getIcon() == imgIcons[2] && Integer.parseInt(opp) == 2 )
                 res = "DRAW!!";
             else
-                res = "USER1 LOSE";
-            result.output(btnSrc.getIcon(), imgIcons[selCom], res);
+                res = "YOU LOSE";
+            result.output(btnSrc.getIcon(), imgIcons[Integer.parseInt(opp)], res);
         }
 
     }

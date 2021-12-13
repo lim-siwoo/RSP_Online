@@ -166,6 +166,26 @@ public class Server {
                 send("\\n"+myNick+","+oppoNick,opponent.getAddress(),opponent.getPort());
                 return true;
             }
+        //각 유저에게 선택값 전달받고 그 값을 상대에게 전달
+        if (message.startsWith("\\G")){
+            String myNick;
+            String oppoNick;
+            String oppG;
+
+            ClientObject opponent = null;
+            message = message.substring(2);
+            myNick = message.split(",")[0];
+            oppoNick = message.split(",")[1];
+            oppG = message.split(",")[2];
+
+            for (int i=0;i<clients.size();i++){
+                if (clients.get(i).getNickName().equalsIgnoreCase(oppoNick)){
+                    opponent = clients.get(i);
+                }
+            }
+            send("\\g"+myNick+","+oppoNick+","+oppG,opponent.getAddress(),opponent.getPort());
+            return true;
+        }
 
 
         return false;
