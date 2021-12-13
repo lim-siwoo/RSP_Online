@@ -1,13 +1,16 @@
 package com.networkH2021.gachon;
 
-import com.networkH2021.gachon.client.ChatClientApp;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.*;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class Game extends JFrame{
 
@@ -15,11 +18,11 @@ public class Game extends JFrame{
             new ImageIcon("IMG/kawi.jpg"),
             new ImageIcon("IMG/bawi.jpg"),
             new ImageIcon("IMG/bo.jpg")
+
     };
 
     SelectPanel select = new SelectPanel();
     ResultDisplay result = new ResultDisplay();
-    ChatPanel chat = new ChatPanel();
 
     public Game() {
         super("RSC");
@@ -27,11 +30,11 @@ public class Game extends JFrame{
 
         add(result,"Center");
         add(select, "South");
-        add(chat, "East");
 
-        setSize(900,600);
-        setVisible(true);
+        setSize(600,600);
+        setVisible(false);
     }
+
 
     class SelectPanel extends JPanel{
         JButton[] btnButtons = new JButton[3];
@@ -69,21 +72,15 @@ public class Game extends JFrame{
         }
     }
 
-    class ChatPanel extends JPanel {
-
-        public ChatPanel() {
-
-        }
-    }
-
-        class EventHandler implements ActionListener{
+    class EventHandler implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-            // Object 타입임으로 타입변환을 해야한다.
+            //getSource가 Object 타입임으로 타입변환을 해야한다.
             JButton btnSrc = (JButton)e.getSource();
             int selCom = (int)(Math.random()*3); // 0:가위  1:바위, 2:보
             String res = "";
 
+            //유저가 이기는 경우
             if(btnSrc.getIcon() == imgIcons[0] && selCom == 2 ||
                     btnSrc.getIcon() == imgIcons[1] && selCom == 0 ||
                     btnSrc.getIcon() == imgIcons[2] && selCom == 1 )
@@ -98,6 +95,4 @@ public class Game extends JFrame{
         }
 
     }
-
-
 }

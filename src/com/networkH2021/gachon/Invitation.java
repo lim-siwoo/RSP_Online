@@ -11,6 +11,7 @@ public class Invitation extends JFrame{
     private JButton 승락Button;
     private JButton 거절Button;
     private JLabel inviteLabel;
+    private String oppNick;
 
     public Invitation(){
         setTitle("RSP Online Main Lobby");
@@ -23,7 +24,10 @@ public class Invitation extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 //여기추가
-                GameLauncher.getClient().send("\\y"+GameLauncher.getUserDAO().getNickname());
+
+                GameLauncher.getClient().send("\\y"+GameLauncher.getUserDAO().getNickname()+","+oppNick);
+                GameLauncher.getMainLobby().showGameRoom();
+                setVisible(false);
             }
         });
         거절Button.addActionListener(new ActionListener() {//거절했을때!
@@ -31,11 +35,19 @@ public class Invitation extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 //여기추가
                 GameLauncher.getClient().send("\\n"+GameLauncher.getUserDAO().getNickname());
+                setVisible(false);
             }
         });
     }
 
 
+    public String getOppNick() {
+        return oppNick;
+    }
+
+    public void setOppNick(String oppNick) {
+        this.oppNick = oppNick;
+    }
 
     public JLabel getInviteLabel() {
         return inviteLabel;
