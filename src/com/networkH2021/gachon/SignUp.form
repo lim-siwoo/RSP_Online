@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.networkH2021.gachon.SignUp">
   <grid id="27dc6" binding="panelSignUp" layout-manager="GridLayoutManager" row-count="9" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-    <margin top="0" left="0" bottom="0" right="0"/>
+    <margin top="10" left="10" bottom="10" right="10"/>
     <constraints>
-      <xy x="306" y="160" width="727" height="308"/>
+      <xy x="306" y="160" width="727" height="324"/>
     </constraints>
-    <properties/>
+    <properties>
+      <preferredSize width="450" height="250"/>
+    </properties>
     <border type="none"/>
     <children>
       <component id="65933" class="javax.swing.JTextField" binding="EmailField">
@@ -132,7 +134,7 @@
       </component>
       <component id="f9805" class="javax.swing.JLabel">
         <constraints>
-          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Create"/>
