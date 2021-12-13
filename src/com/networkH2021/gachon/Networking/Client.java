@@ -100,9 +100,13 @@ public class Client {
         
         // 거절 했다고 했을 때
         if (message.startsWith("\\n")){
-            String myNick = GameLauncher.getUserDAO().getNickname();
-            String oppoNick = message.substring(2);
-            JOptionPane.showMessageDialog(null, oppoNick+"이(가) 대전을 거절했습니다.");
+            String myNick;
+            String oppoNick;
+            ClientObject opponent = null;
+            message = message.substring(2);
+            myNick = message.split(",")[0];
+            oppoNick = message.split(",")[1];
+            JOptionPane.showMessageDialog(null, myNick+"이(가) 대전을 거절했습니다.");
             GameLauncher.getInvitation().setVisible(false);
             return true;
         }
