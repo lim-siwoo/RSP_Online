@@ -133,17 +133,17 @@ public class Game extends JFrame{
             if(btnSrc.getIcon() == imgIcons[0]){
                 myValue=0;
                 a="0";
-                GameLauncher.getClient().send("\\G"+GameLauncher.getUserDAO().getNickname()+","+oppNick+","+a);
+                GameLauncher.getClient().send("\\G"+GameLauncher.getUserDAO().getNickname()+","+GameLauncher.getInvitation().getOppNick()+","+a);
             }
             else if(btnSrc.getIcon() == imgIcons[1]){
                 myValue=1;
                 a="1";
-                GameLauncher.getClient().send("\\G"+GameLauncher.getUserDAO().getNickname()+","+oppNick+","+a);
+                GameLauncher.getClient().send("\\G"+GameLauncher.getUserDAO().getNickname()+","+GameLauncher.getInvitation().getOppNick()+","+a);
             }
             else if(btnSrc.getIcon() == imgIcons[2]){
                 myValue=2;
                 a="2";
-                GameLauncher.getClient().send("\\G"+GameLauncher.getUserDAO().getNickname()+","+oppNick+","+a);
+                GameLauncher.getClient().send("\\G"+GameLauncher.getUserDAO().getNickname()+","+GameLauncher.getInvitation().getOppNick()+","+a);
             }
 
         }
