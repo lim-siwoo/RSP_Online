@@ -96,6 +96,13 @@ public class MainLobby extends JFrame{
     }
 
 
+    public void refreshList(String[] userList){
+        model.clear();
+        for (int i =0; i < userList.length; i++){
+            model.addElement(new GameUser("test1",userList[i]));
+        }
+    }
+
     public MainLobby() {
         final JPopupMenu menu = new JPopupMenu("Menu");//유저리스트에서 오른쪽마우스하면 뜨는 ContextMenu구현임
         UserList.setModel(model);
@@ -168,7 +175,7 @@ public class MainLobby extends JFrame{
 
                 }
                 GameLauncher.getClient().send("ping");
-                GameLauncher.getClient().send("//l");
+                GameLauncher.getClient().send("\\l");
             }
         });
 

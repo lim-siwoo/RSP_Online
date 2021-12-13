@@ -1,5 +1,6 @@
 package com.networkH2021.gachon.Networking;
 
+import com.networkH2021.gachon.Game;
 import com.networkH2021.gachon.GameLauncher;
 
 import javax.management.remote.JMXServerErrorException;
@@ -72,6 +73,11 @@ public class Client {
     public boolean parseCommand(String message){
         if(message.startsWith("\\cid:")){
             this.clientID = Integer.parseInt(message.substring(5));
+            return true;
+        }
+        if (message.startsWith("\\l")){
+            String[] userList = message.substring(2).split(",");
+            GameLauncher.getMainLobby().refreshList(userList);
             return true;
         }
         return false;
