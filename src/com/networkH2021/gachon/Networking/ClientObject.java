@@ -8,11 +8,15 @@ public class ClientObject {
     private String nickName;
 
 
-    public ClientObject(String address, int port, int id, String clientNick){
+    private String userID;
+
+
+    public ClientObject(String address, int port, int id, String clientNick, String userID){
         this.address = address;
         this.port = port;
         this.id = id;
         this.nickName = clientNick;
+        this.userID = userID;
     }
 
     public void setNickName(String nickName) {
@@ -33,5 +37,13 @@ public class ClientObject {
 
     public String getNickName() {
         return nickName;
+    }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
     }
 }
