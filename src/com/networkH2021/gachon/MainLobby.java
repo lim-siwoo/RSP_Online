@@ -84,6 +84,14 @@ public class MainLobby extends JFrame{
         frame.setVisible(true);
     }
 
+    public void showGameInvite(String opponent){
+        GameLauncher.getInvitation().getInviteLabel().setText(opponent+"이(가) 대전을 요청했습니다!");
+        GameLauncher.getInvitation().setVisible(true);
+    }
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
+    }
+
 
     private class JListHandler implements ListSelectionListener
     {
@@ -171,13 +179,12 @@ public class MainLobby extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(null, "INVITE :"+UserList.getSelectedValue());
-
                 String username= String.valueOf(UserList.getSelectedValue());
+                GameLauncher.getClient().send(username);
 
+                GameLauncher.getClient().send(username);
                 GameLauncher.getClient().send("\\n");
-                GameLauncher.getClient().send(username);    //invited user
-
-               // GameLauncher.getClient().send((GameLauncher.getClient().getClient()));  //request user
+                GameLauncher.getClient().send("\\i"+GameLauncher.getUserDAO().getNickname()+","+username);
 
                 //게임시작 코드를 추가해야함 넘겨주는값
                 //상대방한태 초대받았다고 알려주는 코드 추가해야함
@@ -190,7 +197,6 @@ public class MainLobby extends JFrame{
                 if (GameLauncher.getClient() != null){
 
                 }
-                GameLauncher.getClient().send("ping");
                 GameLauncher.getClient().send("\\l");
             }
         });

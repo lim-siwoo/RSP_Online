@@ -18,8 +18,7 @@ public class GameLauncher {
     public static UserDAO database;
     public static Client client;
     public static Server server;
-    //public static Game game;
-
+    private static Invitation invitation;
 
     public GameLauncher() throws UnknownHostException {
         login = new Login();
@@ -28,10 +27,8 @@ public class GameLauncher {
         database = new UserDAO();
         user = new GameUser("NULL", "NULL");
         mainLobby = new MainLobby();
-        //game = new Game();
-
+        invitation = new Invitation();
     }
-
     public static Login getLogin(){
         return login;
     }
@@ -53,10 +50,6 @@ public class GameLauncher {
     public static void MakeClient(){
         client = new Client("14.47.251.177",5284);
     }
-
-    /*public static Game getGame(){
-        return game;
-    }*/
 
     public static Rank getRank(){
         return rank;
@@ -80,6 +73,14 @@ public class GameLauncher {
 
     public static void setServer(Server server) {
         GameLauncher.server = server;
+    }
+
+    public static Invitation getInvitation() {
+        return invitation;
+    }
+
+    public static void setInvitation(Invitation invitation) {
+        GameLauncher.invitation = invitation;
     }
 
     public static void main(String[] args) throws UnknownHostException {

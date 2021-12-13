@@ -51,7 +51,6 @@ public class Server {
                         if (message.equalsIgnoreCase("ping")){
                             send("pong",packet.getAddress().getHostAddress(),packet.getPort());
                         }
-
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -78,59 +77,60 @@ public class Server {
         }
     }
 
-    public boolean parseCommand(String message, DatagramPacket packet) {
-        if (message.startsWith("\\c")) {//create client parse
+    public boolean parseCommand(String message, DatagramPacket packet){
+        if (message.startsWith("\\c")){//create client parse
             //CONNECT CLIENT TO SERVER
-            String clientNick = message.substring(2);
-            System.out.println("Nick:" + clientNick);
-            ClientObject client = new ClientObject(packet.getAddress().getHostAddress(), packet.getPort(), clientID + 1, clientNick);
+            String clientNick = message.substring(2).split(",")[0];
+            System.out.println("Nick:"+clientNick);
+            String userID = message.split(",")[1];
+            //System.out.println(userID);
+            ClientObject client = new ClientObject (packet.getAddress().getHostAddress(), packet.getPort(), clientID+1,clientNick, userID);
             clients.add(client);
-            send("\\cid:" + client.getId(), client.getAddress(), client.getPort());
+            send("\\cid:"+client.getId(), client.getAddress(), client.getPort());
             clientID++;
             return true;
-        } else if (message.startsWith("\\d")) {//delete client parse
-            int id = Integer.parseInt(message.substring(2));
-            String nickname = message.substring(2);
-            for (int i = 0; i < clients.size(); i++) {
-                if (clients.get(i).getId() == id) {
-                    clients.remove(clients.get(i));
-                    return true;
+        }else
+            if (message.startsWith("\\d")){//delete client parse
+                int id = Integer.parseInt(message.substring(2));
+                String nickname = message.substring(2);
+                for (int i =0; i <clients.size();i++){
+                    if (clients.get(i).getId() == id){
+                        clients.remove(clients.get(i));
+                        return true;
+                    }
                 }
-            }
 //                client.send("\\d:"+clientID);
-            System.out.println("Server: Error, Client With ID" + id + ", was not found!");
-            return true;
-        }
-        if (message.startsWith("\\l")) {//send userlist
-            String userList = "\\l";
-            for (int i = 0; i < clients.size(); i++) {
-                ClientObject client = clients.get(i);
-                //send(message, client.getAddress(),client.getPort());
-                userList = userList + client.getNickName() + ",";
-            }
-            send(userList, packet.getAddress().getHostAddress(), packet.getPort());
-            System.out.println("send: " + userList);
-            return true;
-        }
-
-        if (message.startsWith("\\n")) {
-
-            String user = message.substring(2);
-            for (int i = 0; i < clients.size(); i++) {
-                if (clients.get(i).getNickName() == user) {
-                    send("invited", packet.getAddress().getHostAddress(), packet.getPort());
-                }
-
-            /*int idx=message.indexOf("+");
-            String user1 = message.substring(2,idx);
-            String user2 = message.substring(idx+1);
-            */
+                System.out.println("Server: Error, Client With ID"+id+", was not found!");
                 return true;
             }
-        }
+            if (message.startsWith("\\l")){//send userlist
+                String userList = "\\l";
+                for (int i=0;i<clients.size();i++){
+                    ClientObject client = clients.get(i);
+                    //send(message, client.getAddress(),client.getPort());
+                    userList = userList +client.getNickName()+",";
+                }
+                send(userList, packet.getAddress().getHostAddress(), packet.getPort());
+                System.out.println("send: "+userList);
+                return true;
+            }
+            if (message.startsWith("\\i")){
+                String myNick;
+                String oppoNick;
+                ClientObject opponent = null;
+                message = message.substring(2);
+                myNick = message.split(",")[0];
+                oppoNick = message.split(",")[1];
+                for (int i=0;i<clients.size();i++){
+                    if (clients.get(i).getNickName().equalsIgnoreCase(oppoNick)){
+                        opponent = clients.get(i);
+                    }
+                }
+                send("\\i"+myNick,opponent.getAddress(),opponent.getPort());
+                return true;
+            }
         return false;
     }
-
 
     public int getPort() {
         return port;
