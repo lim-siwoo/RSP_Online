@@ -73,8 +73,6 @@ public class UserDAO {
     }
 
 
-
-
     public int loginTime(String userID){
 
         String SQL = "UPDATE USER SET logined_log = ? WHERE ID = ?";
@@ -111,15 +109,16 @@ public class UserDAO {
     }
 
     public int login(String userID, String userPassword) {
-        String SQL = "SELECT PASSWORD FROM USER WHERE ID = ?";
+
+        String SQL = "SELECT ID FROM USER WHERE PASSWORD = SHA2(?, 512)";
         try {
             pstmt = conn.prepareStatement(SQL);
-            pstmt.setString(1, userID);
+            pstmt.setString(1, userPassword);
 
             // 인젝션 해킹 등을 방지하기 위한 기법으로 ?에 ID 값을 받은 후 사용용
            rs = pstmt.executeQuery();
             if(rs.next()) {
-                if(rs.getString(1).contentEquals(userPassword)) {
+                if(rs.getString(1).contentEquals(userID)) {
 
                     if(loginCount(userID) == -1 || loginTime(userID) == -1 || setIP(userID) == -1) {
                         return -3;  // 로그인 카운터나 로그인 시간 부분 오류
@@ -161,7 +160,7 @@ public class UserDAO {
     public int join(String id, String password, String name, String nick, String email, String SNS) {
 
 
-        String SQL = "insert into user value ( ?, ?, ?, ?, ?, ?)";
+        String SQL = "insert into user value ( ?, SHA2(?, 512), ?, ?, ?, ?, NULL, NULL, 0, 0, 0)";
 
         if (checkID(id) == -1){ // 아이디 중복
             return -1;

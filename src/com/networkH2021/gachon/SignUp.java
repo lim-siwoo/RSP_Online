@@ -51,12 +51,16 @@ public class SignUp extends JFrame{
                 }
                 else {  // 비밀번호는 맞음
                     int i = GameLauncher.database.join(id, password, name, NickName, email, SNS);
-                    if (i == 1) {   // 계정 정상 생성
+                    System.out.println(i);
+                    if (i == 0) {   // 계정 정상 생성
                         setVisible(false);
                         JOptionPane.showMessageDialog(null, "계정이 생성되었습니다.");
                         GameLauncher.getLogin().setVisible(true);
                     }else if(i == -1){  // ID 같은지 확인해야 함
                         JOptionPane.showMessageDialog(null, "중복된 아이디 입니다. 다른 아이디를 입력해주세요!");
+                    }
+                    else {  // i == 2
+                        System.out.println("Error: Database Error");
                     }
                 }
             }
