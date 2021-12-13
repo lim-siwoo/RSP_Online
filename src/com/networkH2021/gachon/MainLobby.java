@@ -88,10 +88,20 @@ public class MainLobby extends JFrame{
         GameLauncher.getInvitation().getInviteLabel().setText(opponent+"이(가) 대전을 요청했습니다!");
         GameLauncher.getInvitation().setVisible(true);
     }
+    
+    // 게임방
+    public void showGameRoom(){
+
+        GameLauncher.getMainLobby().setVisible(false);
+        GameLauncher.getGame().setVisible(true);  // 게임방으로 만들 거임
+    }
+
+    //////// 나중에 확인
+    /*
     private void createUIComponents() {
         // TODO: place custom component creation code here
     }
-
+    */
 
     private class JListHandler implements ListSelectionListener
     {
@@ -182,6 +192,7 @@ public class MainLobby extends JFrame{
                 String username= String.valueOf(UserList.getSelectedValue());
                 GameLauncher.getClient().send(username);
 
+                GameLauncher.getInvitation().setOppNick(username);
                 GameLauncher.getClient().send(username);
                 GameLauncher.getClient().send("\\n");
                 GameLauncher.getClient().send("\\i"+GameLauncher.getUserDAO().getNickname()+","+username);

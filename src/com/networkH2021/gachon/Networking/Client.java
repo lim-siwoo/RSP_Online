@@ -85,6 +85,26 @@ public class Client {
         if (message.startsWith("\\i")){
             String myNick = GameLauncher.getUserDAO().getNickname();
             String oppoNick = message.substring(2);
+
+            System.out.println(myNick);
+            System.out.println(oppoNick);
+
+            GameLauncher.getInvitation().setOppNick(oppoNick);
+            GameLauncher.getMainLobby().showGameInvite(oppoNick);
+            return true;
+        }
+
+        // 승락 했다고 했을 때
+        if (message.startsWith("\\y")){
+            GameLauncher.getMainLobby().showGameRoom();
+            return true;
+        }
+    
+        
+        // 거절 했다고 했을 때
+        if (message.startsWith("\\n")){
+            String myNick = GameLauncher.getUserDAO().getNickname();
+            String oppoNick = message.substring(2);
             //JOptionPane.showMessageDialog(null, oppoNick+"이(가) 대전을 요청했습니다.");
             GameLauncher.getMainLobby().showGameInvite(oppoNick);
 //            send("\\i"+myNick,opponent.getAddress(),opponent.getPort());

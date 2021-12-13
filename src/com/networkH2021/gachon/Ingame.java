@@ -9,7 +9,11 @@ public class Ingame{
         private JTextField textField2;
         private JButton SENDButton;
         private JTextPane textPane1;
-    private JPanel panelIngame;
+        private JPanel panelIngame;
+        private JButton button1;
+        private JTextArea textArea1;
+        private JTextField textField1;
+        private JButton button2;
 
 
 }

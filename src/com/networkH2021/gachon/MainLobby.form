@@ -83,7 +83,9 @@
             <preferred-size width="300" height="300"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <text value=""/>
+        </properties>
       </component>
     </children>
   </grid>

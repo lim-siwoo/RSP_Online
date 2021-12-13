@@ -129,6 +129,55 @@ public class Server {
                 send("\\i"+myNick,opponent.getAddress(),opponent.getPort());
                 return true;
             }
+
+            // 승락 했을 때
+            if (message.startsWith("\\y")){
+
+                String myNick;
+                String oppoNick;
+                ClientObject opponent = null;
+                message = message.substring(2);
+                myNick = message.split(",")[0];
+                oppoNick = message.split(",")[1];
+
+                System.out.println(oppoNick);   /////////////
+                System.out.println(myNick);
+
+
+                for (int i=0;i<clients.size();i++){
+                    if (clients.get(i).getNickName().equalsIgnoreCase(oppoNick)){
+                        opponent = clients.get(i);
+                    }
+                }
+                send("\\y"+oppoNick,opponent.getAddress(),opponent.getPort());
+                return true;
+            }
+
+            // 거절 했을 때
+            if (message.startsWith("\\n")){
+                String myNick;
+                String oppoNick;
+                ClientObject opponent = null;
+                message = message.substring(2);
+                myNick = message.split(",")[0];
+                oppoNick = message.split(",")[1];
+                for (int i=0;i<clients.size();i++){
+                    if (clients.get(i).getNickName().equalsIgnoreCase(oppoNick)){
+                        opponent = clients.get(i);
+                    }
+                }
+                send("\\n"+myNick,opponent.getAddress(),opponent.getPort());
+                return true;
+
+            }
+
+
+
+
+
+
+
+
         return false;
     }
 
