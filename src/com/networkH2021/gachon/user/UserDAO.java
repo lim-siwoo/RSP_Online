@@ -265,19 +265,25 @@ public class UserDAO {
 
         String SQL = "UPDATE USER SET WIN = WIN +1 WHERE ID = ?";
         try {
+            pstmt = conn.prepareStatement(SQL);
             pstmt.setString(1, userID);
-            return pstmt.executeUpdate();
+            rs = pstmt.executeQuery();
+            return 0;
         }catch(Exception e){
             e.printStackTrace();
         }
         return -1;
     }
 
+
+
     public int updateLose(String userID){
 
         String SQL = "UPDATE USER SET WIN = WIN -1 WHERE ID = ?";
         try {
+            pstmt = conn.prepareStatement(SQL);
             pstmt.setString(1, userID);
+            rs = pstmt.executeQuery();
             return pstmt.executeUpdate();
         }catch(Exception e){
             e.printStackTrace();
