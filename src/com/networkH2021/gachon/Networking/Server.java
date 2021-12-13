@@ -82,7 +82,7 @@ public class Server {
             //CONNECT CLIENT TO SERVER
             String clientNick = message.substring(2);
             System.out.println("Nick:"+clientNick);
-            String userID = message.split(",")[1]; ////////////////////////
+            String userID = message.split(",")[1];
             System.out.println(userID);
             ClientObject client = new ClientObject (packet.getAddress().getHostAddress(), packet.getPort(), clientID+1,clientNick, userID);
             clients.add(client);
