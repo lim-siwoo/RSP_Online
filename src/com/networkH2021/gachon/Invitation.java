@@ -23,8 +23,6 @@ public class Invitation extends JFrame{
         승락Button.addActionListener(new ActionListener() {//승낙했을때!
             @Override
             public void actionPerformed(ActionEvent e) {
-                //여기추가
-
                 GameLauncher.getClient().send("\\y"+GameLauncher.getUserDAO().getNickname()+","+oppNick);
                 GameLauncher.getMainLobby().showGameRoom();
                 setVisible(false);
