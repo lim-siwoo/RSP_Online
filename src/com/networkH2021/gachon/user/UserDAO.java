@@ -267,7 +267,7 @@ public class UserDAO {
         try {
             pstmt = conn.prepareStatement(SQL);
             pstmt.setString(1, userID);
-            rs = pstmt.executeQuery();
+            pstmt.executeQuery();
             return 0;
         }catch(Exception e){
             e.printStackTrace();
@@ -283,8 +283,8 @@ public class UserDAO {
         try {
             pstmt = conn.prepareStatement(SQL);
             pstmt.setString(1, userID);
-            rs = pstmt.executeQuery();
-            return pstmt.executeUpdate();
+            pstmt.executeQuery();
+            return 0;
         }catch(Exception e){
             e.printStackTrace();
         }
