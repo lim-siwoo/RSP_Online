@@ -72,16 +72,11 @@ public class MainLobby extends JFrame{
 
         GameLauncher.getUserDAO().info(gameUser.getUserNickname());
         String info = GameLauncher.getUserDAO().getInfo();
-        JLabel nicknameLbl = new JLabel(info);
-
-        JLabel WinCount = new JLabel("WIN");
-        JLabel LoseCount = new JLabel("LOSE");
-
+        JLabel userinfo = new JLabel(info);
         frame.add(panel);
-        panel.add(nicknameLbl);
-        panel.add(WinCount);
-        panel.add(LoseCount);
-        nicknameLbl.setBounds((this.getX()+this.getWidth())/2 - 100/2,(this.getY()+this.getHeight())/2 - 50/2,100,50);
+        panel.add(userinfo);
+
+        userinfo .setBounds((this.getX()+this.getWidth())/2 - 100/2,(this.getY()+this.getHeight())/2 - 50/2,100,50);
         frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         frame.setVisible(true);
     }

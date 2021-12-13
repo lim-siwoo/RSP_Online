@@ -33,14 +33,18 @@
       </component>
       <component id="59973" class="javax.swing.JButton" binding="Sendbutton">
         <constraints>
-          <grid row="2" column="1" row-span="2" col-span="1" vsize-policy="0" hsize-policy="5" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="1" row-span="2" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <alignmentY value="0.5"/>
           <horizontalTextPosition value="4"/>
+          <iconTextGap value="0"/>
           <margin top="5" left="5" bottom="5" right="15"/>
           <multiClickThreshhold value="5"/>
           <text value="SEND"/>
+          <verifyInputWhenFocusTarget value="true"/>
+          <verticalAlignment value="0"/>
+          <visible value="true"/>
         </properties>
       </component>
       <grid id="b2aa0" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
@@ -79,7 +83,7 @@
       </grid>
       <component id="9c272" class="javax.swing.JTextArea" binding="ChatTextArea">
         <constraints>
-          <grid row="0" column="0" row-span="2" col-span="2" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+          <grid row="0" column="0" row-span="2" col-span="2" vsize-policy="0" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <preferred-size width="300" height="300"/>
           </grid>
         </constraints>
