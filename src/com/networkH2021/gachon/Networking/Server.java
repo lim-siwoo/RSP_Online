@@ -38,7 +38,7 @@ public class Server {
             public void run(){
                 while(online) {
                     try {
-                        byte[] rawData = new byte[1024];
+                        byte[] rawData = new byte[2048];
                         DatagramPacket packet = new DatagramPacket(rawData, rawData.length);
                         socket.receive(packet);
 
@@ -82,7 +82,7 @@ public class Server {
             //CONNECT CLIENT TO SERVER
             String clientNick = message.substring(2);
             System.out.println("Nick:"+clientNick);
-            ClientObject client = new ClientObject (packet.getAddress().getHostAddress(), packet.getPort(), clientID+1);
+            ClientObject client = new ClientObject (packet.getAddress().getHostAddress(), packet.getPort(), clientID+1,clientNick);
             clients.add(client);
             send("\\cid:"+client.getId()+clientNick, client.getAddress(), client.getPort());
             clientID++;
@@ -99,9 +99,17 @@ public class Server {
 //                client.send("\\d:"+clientID);
                 System.out.println("Server: Error, Client With ID"+id+", was not found!");
                 return true;
-            }else if (message.startsWith("\\l")){//send userlist
-                String userList;
-                //send()
+            }
+            if (message.startsWith("\\l")){//send userlist
+                String userList = "\\l";
+                for (int i=0;i<clients.size();i++){
+                    ClientObject client = clients.get(i);
+                    //send(message, client.getAddress(),client.getPort());
+                    userList = userList +client.getNickName()+",";
+                }
+                send(userList, packet.getAddress().getHostAddress(), packet.getPort());
+                System.out.println("send: "+userList);
+                return true;
             }
         return false;
     }
