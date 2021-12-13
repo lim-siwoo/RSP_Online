@@ -84,14 +84,15 @@ public class Server {
             System.out.println("Nick:"+clientNick);
             ClientObject client = new ClientObject (packet.getAddress().getHostAddress(), packet.getPort(), clientID+1,clientNick);
             clients.add(client);
-            send("\\cid:"+client.getId()+clientNick, client.getAddress(), client.getPort());
+            send("\\cid:"+client.getId(), client.getAddress(), client.getPort());
             clientID++;
             return true;
         }else
             if (message.startsWith("\\d")){//delete client parse
-                int id = Integer.parseInt(message.substring(3));
+                int id = Integer.parseInt(message.substring(2));
+                String nickname = message.substring(2);
                 for (int i =0; i <clients.size();i++){
-                    if (clients.get(i).getId() == i){
+                    if (clients.get(i).getId() == id){
                         clients.remove(clients.get(i));
                         return true;
                     }

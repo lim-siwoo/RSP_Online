@@ -120,7 +120,15 @@ public class MainLobby extends JFrame{
         //scrollPane.setVisible(true);
 
         setTitle("RSP Online Main Lobby");//Frame시작
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                super.windowClosing(e);
+                GameLauncher.getClient().send("\\d"+GameLauncher.getClient().getClientID());
+                System.exit(0);
+            }
+        });
         setContentPane(this.panelLobby);
         pack();
         setLocationRelativeTo(null);
@@ -178,7 +186,6 @@ public class MainLobby extends JFrame{
                 GameLauncher.getClient().send("\\l");
             }
         });
-
 
         //UserList.addListSelectionListener(new JListHandler());
 
