@@ -37,6 +37,8 @@ public class Game extends JFrame{
         super("RSC");
         SendCheck=false;
         ReceiveCheck=false;
+        receive();
+
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         add(result,"Center");
