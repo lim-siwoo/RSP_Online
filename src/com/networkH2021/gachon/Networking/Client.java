@@ -25,7 +25,8 @@ public class Client {
             socket = new DatagramSocket();
 
             online = true;
-            send("\\c"+ GameLauncher.getUserDAO().getNickname());
+            send("\\c"+ GameLauncher.getUserDAO().getNickname() + "," + GameLauncher.getUser().getUserID());
+            System.out.println(GameLauncher.getUser().getUserID());  ////////////////////// 확인
             receive();
         }catch(Exception e){
             e.printStackTrace();

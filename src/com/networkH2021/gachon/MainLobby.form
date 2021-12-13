@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.networkH2021.gachon.MainLobby">
   <grid id="27dc6" binding="panelLobby" layout-manager="GridLayoutManager" row-count="4" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-    <margin top="0" left="0" bottom="0" right="0"/>
+    <margin top="5" left="5" bottom="5" right="5"/>
     <constraints>
-      <xy x="16" y="20" width="793" height="387"/>
+      <xy x="16" y="20" width="1300" height="1000"/>
     </constraints>
-    <properties/>
+    <properties>
+      <minimumSize width="800" height="500"/>
+      <preferredSize width="800" height="500"/>
+    </properties>
     <border type="none"/>
     <children>
       <component id="ea9f8" class="javax.swing.JTextField" binding="ChatTextField">
@@ -15,7 +18,9 @@
           </grid>
         </constraints>
         <properties>
+          <margin top="2" left="6" bottom="2" right="6"/>
           <text value=""/>
+          <visible value="true"/>
         </properties>
       </component>
       <component id="39baa" class="javax.swing.JButton" binding="Rankbutton">
@@ -28,9 +33,13 @@
       </component>
       <component id="59973" class="javax.swing.JButton" binding="Sendbutton">
         <constraints>
-          <grid row="2" column="1" row-span="2" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="1" row-span="2" col-span="1" vsize-policy="0" hsize-policy="5" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <alignmentY value="0.5"/>
+          <horizontalTextPosition value="4"/>
+          <margin top="5" left="5" bottom="5" right="15"/>
+          <multiClickThreshhold value="5"/>
           <text value="SEND"/>
         </properties>
       </component>

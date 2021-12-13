@@ -11,8 +11,8 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
-import java.net.Socket;
-import java.net.UnknownHostException;
+import java.net.*;
+import java.nio.charset.StandardCharsets;
 
 public class MainLobby extends JFrame{
 
@@ -58,7 +58,7 @@ public class MainLobby extends JFrame{
     private String totalUser;
     private static ChatClientApp CCA;
 
-    //private DatagramSocket socket;//User Datagram Protocal
+    //private DatagramSocket socket;//User Datagram Protocol
     //private DatagramPacket packet;//Data packet
     //private InetAddress address;//상대방주소
     private int myPort = 10001;//내 포트
@@ -82,6 +82,10 @@ public class MainLobby extends JFrame{
         nicknameLbl.setBounds((this.getX()+this.getWidth())/2 - 100/2,(this.getY()+this.getHeight())/2 - 50/2,100,50);
         frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         frame.setVisible(true);
+    }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
     }
 
 
@@ -120,7 +124,15 @@ public class MainLobby extends JFrame{
         //scrollPane.setVisible(true);
 
         setTitle("RSP Online Main Lobby");//Frame시작
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                super.windowClosing(e);
+                GameLauncher.getClient().send("\\d"+GameLauncher.getClient().getClientID());
+                System.exit(0);
+            }
+        });
         setContentPane(this.panelLobby);
         pack();
         setLocationRelativeTo(null);
@@ -134,8 +146,6 @@ public class MainLobby extends JFrame{
                 GameLauncher.getRank().update();
                 GameLauncher.getRank().setVisible(true);
             }
-
-
         });
 
 
@@ -160,14 +170,23 @@ public class MainLobby extends JFrame{
             }
         });
 
+
         invite.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(null, "INVITE :"+UserList.getSelectedValue());
+                String username= String.valueOf(UserList.getSelectedValue());
+                GameLauncher.getClient().send(username);
+
+                GameLauncher.getClient().send(username);
+                GameLauncher.getClient().send("\\n");
+                GameLauncher.getClient().send("");
+
                 //게임시작 코드를 추가해야함 넘겨주는값
                 //상대방한태 초대받았다고 알려주는 코드 추가해야함
             }
         });
+
         Refreshbutton.addActionListener(new ActionListener() {//버튼을 누르면 유저리스트를 새로고침함
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -178,7 +197,6 @@ public class MainLobby extends JFrame{
                 GameLauncher.getClient().send("\\l");
             }
         });
-
 
         //UserList.addListSelectionListener(new JListHandler());
 
