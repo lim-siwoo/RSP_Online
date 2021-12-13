@@ -87,7 +87,7 @@ public class MainLobby extends JFrame{
     public void showGameInvite(String opponent){
         JFrame frame = new JFrame("대전초대");
         JPanel panel = new JPanel();
-        frame.setBounds(this.getX()+this.getWidth()/2 - this.getWidth()/4,this.getY()+this.getHeight()/2 - this.getHeight()/4,this.getWidth()/4,this.getHeight()/4);
+        frame.setBounds(this.getX()+this.getWidth()/2 - this.getWidth()/4,this.getY()+this.getHeight()/2 - this.getHeight()/4,this.getWidth()/3,this.getHeight()/5);
         JLabel dialog = new JLabel(opponent+"이(가) 대전을 요청했습니다!");
         JButton btn1 = new JButton("승락");
         JButton btn2 = new JButton("거절");
