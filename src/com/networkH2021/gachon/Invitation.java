@@ -32,7 +32,7 @@ public class Invitation extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 //여기추가
-                GameLauncher.getClient().send("\\n"+GameLauncher.getUserDAO().getNickname());
+                GameLauncher.getClient().send("\\n"+GameLauncher.getUserDAO().getNickname()+","+oppNick);
                 setVisible(false);
             }
         });
