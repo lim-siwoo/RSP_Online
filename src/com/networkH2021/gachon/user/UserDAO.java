@@ -264,10 +264,11 @@ public class UserDAO {
     public int updateWin(String userID){
 
         String SQL = "UPDATE USER SET WIN = WIN +1 WHERE ID = ?";
+
         try {
             pstmt = conn.prepareStatement(SQL);
             pstmt.setString(1, userID);
-            pstmt.executeQuery();
+            pstmt.executeUpdate();
             return 0;
         }catch(Exception e){
             e.printStackTrace();
@@ -280,10 +281,11 @@ public class UserDAO {
     public int updateLose(String userID){
 
         String SQL = "UPDATE USER SET WIN = WIN -1 WHERE ID = ?";
+
         try {
             pstmt = conn.prepareStatement(SQL);
             pstmt.setString(1, userID);
-            pstmt.executeQuery();
+            pstmt.executeUpdate();
             return 0;
         }catch(Exception e){
             e.printStackTrace();
