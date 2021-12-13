@@ -94,7 +94,8 @@ public class Game extends JFrame{
             public void run() {
                 while (true) {
                     String res = "";
-                    if (SendCheck == true && ReceiveCheck == true) {
+//                    System.out.println("OnThread");
+                    if ((SendCheck == true) && (ReceiveCheck == true)) {
                         System.out.println("Both are true!!");
                         if (myValue == 0 && oppG == 2 ||
                                 myValue == 1 && oppG == 0 ||
@@ -115,6 +116,7 @@ public class Game extends JFrame{
                         SendCheck=false;
                         ReceiveCheck=false;
                         JOptionPane.showMessageDialog(null,res);
+                        System.out.println("success");
                     }
                 }
             }
