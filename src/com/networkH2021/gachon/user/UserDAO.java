@@ -280,7 +280,7 @@ public class UserDAO {
 
     public int updateLose(String userID){
 
-        String SQL = "UPDATE USER SET WIN = WIN -1 WHERE ID = ?";
+        String SQL = "UPDATE USER SET LOSE = LOSE +1 WHERE ID = ?";
 
         try {
             pstmt = conn.prepareStatement(SQL);
