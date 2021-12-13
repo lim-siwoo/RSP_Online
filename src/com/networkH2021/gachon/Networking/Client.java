@@ -85,7 +85,8 @@ public class Client {
         if (message.startsWith("\\i")){
             String myNick = GameLauncher.getUserDAO().getNickname();
             String oppoNick = message.substring(2);
-            JOptionPane.showMessageDialog(null, oppoNick+"이(가) 대전을 요청했습니다.");
+            //JOptionPane.showMessageDialog(null, oppoNick+"이(가) 대전을 요청했습니다.");
+            GameLauncher.getMainLobby().showGameInvite(oppoNick);
 //            send("\\i"+myNick,opponent.getAddress(),opponent.getPort());
             return true;
         }

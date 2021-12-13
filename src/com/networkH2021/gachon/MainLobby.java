@@ -84,6 +84,23 @@ public class MainLobby extends JFrame{
         frame.setVisible(true);
     }
 
+    public void showGameInvite(String opponent){
+        JFrame frame = new JFrame("대전초대");
+        JPanel panel = new JPanel();
+        frame.setBounds(this.getX()+this.getWidth()/2 - this.getWidth()/4,this.getY()+this.getHeight()/2 - this.getHeight()/4,this.getWidth()/2,this.getHeight()/2);
+        JLabel dialog = new JLabel(opponent+"이(가) 대전을 요청했습니다!");
+        JButton btn1 = new JButton("승락");
+        JButton btn2 = new JButton("거절");
+        btn1.setBounds(this.getX()+this.getWidth()/2 - 200, (this.getY()+this.getHeight())/2 - 100/2, 100, 50);
+        btn2.setBounds(this.getX()+this.getWidth()/2 - 200, (this.getY()+this.getHeight())/2 - 150/2, 100, 50);
+        frame.add(panel);
+        panel.add(dialog);
+        panel.add(btn1);
+        panel.add(btn2);
+        dialog.setBounds((this.getX()+this.getWidth())/2 - 100/2,(this.getY()+this.getHeight())/2 - 50/2,100,50);
+        frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        frame.setVisible(true);
+    }
     private void createUIComponents() {
         // TODO: place custom component creation code here
     }
