@@ -1,18 +1,15 @@
 package com.networkH2021.gachon;
 
 import com.networkH2021.gachon.client.ChatClientApp;
-import com.networkH2021.gachon.client.ChatWindow;
 import com.networkH2021.gachon.user.GameUser;
-import com.networkH2021.gachon.user.UserDAO;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import java.net.*;
-import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 
 public class MainLobby extends JFrame{
 
@@ -72,9 +69,16 @@ public class MainLobby extends JFrame{
         JFrame frame = new JFrame();
         JPanel panel = new JPanel();
         frame.setBounds(this.getX()+this.getWidth()/2 - this.getWidth()/4,this.getY()+this.getHeight()/2 - this.getHeight()/4,this.getWidth()/2,this.getHeight()/2);
-        JLabel nicknameLbl = new JLabel(gameUser.getUserNickname());
-        JLabel WinCount = new JLabel("WIN_NULL");
-        JLabel LoseCount = new JLabel("LOSE_NULL");
+
+
+
+        String info = GameLauncher.getUserDAO().getInfo(gameUser.getUserNickname());
+
+        JLabel nicknameLbl = new JLabel(info);
+
+        JLabel WinCount = new JLabel("WIN");
+        JLabel LoseCount = new JLabel("LOSE");
+
         frame.add(panel);
         panel.add(nicknameLbl);
         panel.add(WinCount);
