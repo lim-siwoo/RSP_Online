@@ -23,12 +23,14 @@ public class Invitation extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 //여기추가
+                GameLauncher.getClient().send("\\y"+GameLauncher.getUserDAO().getNickname());
             }
         });
         거절Button.addActionListener(new ActionListener() {//거절했을때!
             @Override
             public void actionPerformed(ActionEvent e) {
                 //여기추가
+                GameLauncher.getClient().send("\\n"+GameLauncher.getUserDAO().getNickname());
             }
         });
     }

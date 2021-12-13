@@ -5,7 +5,10 @@
     <constraints>
       <xy x="20" y="20" width="500" height="400"/>
     </constraints>
-    <properties/>
+    <properties>
+      <minimumSize width="200" height="100"/>
+      <preferredSize width="200" height="100"/>
+    </properties>
     <border type="none"/>
     <children>
       <component id="805d2" class="javax.swing.JButton" binding="승락Button" default-binding="true">
