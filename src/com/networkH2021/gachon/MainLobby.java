@@ -70,10 +70,8 @@ public class MainLobby extends JFrame{
         JPanel panel = new JPanel();
         frame.setBounds(this.getX()+this.getWidth()/2 - this.getWidth()/4,this.getY()+this.getHeight()/2 - this.getHeight()/4,this.getWidth()/2,this.getHeight()/2);
 
-
-
-        String info = GameLauncher.getUserDAO().getInfo(gameUser.getUserNickname());
-
+        GameLauncher.getUserDAO().info(gameUser.getUserNickname());
+        String info = GameLauncher.getUserDAO().getInfo();
         JLabel nicknameLbl = new JLabel(info);
 
         JLabel WinCount = new JLabel("WIN");

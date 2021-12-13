@@ -41,7 +41,7 @@ public class UserDAO {
         this.nickname = nickname;
     }
 
-    public String getInfo(String userNickname) {
+    public String getInfo() {
         return info;
     }
 
