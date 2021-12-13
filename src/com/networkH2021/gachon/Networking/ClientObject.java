@@ -8,10 +8,11 @@ public class ClientObject {
     private String nickName;
 
 
-    public ClientObject(String address,int port,int id){
+    public ClientObject(String address, int port, int id, String clientNick){
         this.address = address;
         this.port = port;
         this.id = id;
+        this.nickName = clientNick;
     }
 
     public void setNickName(String nickName) {
