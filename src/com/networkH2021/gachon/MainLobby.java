@@ -128,9 +128,6 @@ public class MainLobby extends JFrame{
     public MainLobby() {
         final JPopupMenu menu = new JPopupMenu("Menu");//유저리스트에서 오른쪽마우스하면 뜨는 ContextMenu구현임
         UserList.setModel(model);
-        model.addElement(new GameUser("test1","홍길동"));
-        model.addElement(new GameUser("test2","최재혁 교수님"));
-        model.addElement(new GameUser("test3","허수아비"));
         JMenuItem info = new JMenuItem("info");
         JMenuItem invite = new JMenuItem("invite");
 
@@ -147,6 +144,7 @@ public class MainLobby extends JFrame{
             @Override
             public void windowClosing(WindowEvent e) {
                 super.windowClosing(e);
+                GameLauncher.getClient().send("\\l");
                 GameLauncher.getClient().send("\\d"+GameLauncher.getClient().getClientID());
                 System.exit(0);
             }
