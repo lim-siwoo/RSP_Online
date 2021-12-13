@@ -94,8 +94,8 @@ public class Game extends JFrame{
             public void run() {
                 while (true) {
                     String res = "";
-
                     if (SendCheck == true && ReceiveCheck == true) {
+                        System.out.println("Both are true!!");
                         if (myValue == 0 && oppG == 2 ||
                                 myValue == 1 && oppG == 0 ||
                                 myValue == 2 && oppG == 1) {

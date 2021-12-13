@@ -124,7 +124,7 @@ public class Client {
             GameLauncher.getGame().setOppNick(oppoNick);
             GameLauncher.getGame().setOppG(opp);
             GameLauncher.getGame().setReceiveCheck(true);
-
+            System.out.println("Received");
             return true;
         }
 

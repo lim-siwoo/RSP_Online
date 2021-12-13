@@ -7,6 +7,9 @@ public class ClientObject {
     private int id;
     private String nickName;
 
+    private boolean reponsive;
+    private double checkTime;
+    private int timeSinceCheck;
 
     private String userID;
 
@@ -45,5 +48,29 @@ public class ClientObject {
 
     public void setUserID(String userID) {
         this.userID = userID;
+    }
+
+    public boolean isReponsive() {
+        return reponsive;
+    }
+
+    public void setReponsive(boolean reponsive) {
+        this.reponsive = reponsive;
+    }
+
+    public double getCheckTime() {
+        return checkTime;
+    }
+
+    public void setCheckTime(double checkTime) {
+        this.checkTime = checkTime;
+    }
+
+    public int getTimeSinceCheck() {
+        return timeSinceCheck;
+    }
+
+    public void setTimeSinceCheck(int timeSinceCheck) {
+        this.timeSinceCheck = timeSinceCheck;
     }
 }
