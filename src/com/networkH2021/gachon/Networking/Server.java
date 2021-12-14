@@ -28,6 +28,7 @@ public class Server {
             online = true;
 
             receive();
+            checkConnection();
         }catch (Exception e){
             e.printStackTrace();
         }

@@ -113,6 +113,7 @@ public class MainLobby extends JFrame{
     }
 
 
+
     private class JListHandler implements ListSelectionListener
     {
         // 리스트의 항목이 선택이 되면
@@ -128,6 +129,7 @@ public class MainLobby extends JFrame{
         model.clear();
         for (int i =0; i < userList.length; i++){
             model.addElement(new GameUser("test1",userList[i]));
+            ChatTextArea.setCaretPosition(ChatTextArea.getDocument().getLength());
         }
     }
 
@@ -168,6 +170,7 @@ public class MainLobby extends JFrame{
                 GameLauncher.getUserDAO().rank();
                 GameLauncher.getRank().update();
                 GameLauncher.getRank().setVisible(true);
+                ChatTextArea.setCaretPosition(ChatTextArea.getDocument().getLength());
             }
         });
 
