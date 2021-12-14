@@ -17,7 +17,7 @@ public class Server {
     private boolean online;
 
 
-    private ArrayList<ClientObject> clients = new ArrayList<ClientObject>();
+    private final ArrayList<ClientObject> clients = new ArrayList<ClientObject>();
     private int clientID =999;
     private String lastMessage;
 

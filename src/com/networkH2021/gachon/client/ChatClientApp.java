@@ -6,6 +6,7 @@ import com.networkH2021.gachon.MainLobby;
 import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 
 public class ChatClientApp {
 	
@@ -49,10 +50,10 @@ public class ChatClientApp {
 
 			// 2. iostream 구현
 			BufferedReader br = new BufferedReader(
-							new InputStreamReader(socket.getInputStream(), "utf-8"));
+							new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8));
 
 			PrintWriter pw = new PrintWriter(
-							new OutputStreamWriter(socket.getOutputStream(), "utf-8"),true);
+							new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8),true);
 
 			// 3. join 프로토콜  -> 서버가 닉네임 받아서 처리 / 성공하면 다음 실행
 			pw.println("join:"+ name);

@@ -38,7 +38,7 @@ public class GameRoom {
             user.enterRoom(this);
         }
 
-        this.roomOwner = (GameUser) userList.get(0); // 첫번째 유저를 방장으로 설정
+        this.roomOwner = userList.get(0); // 첫번째 유저를 방장으로 설정
     }
 
     public void enterUser(GameUser user) {
@@ -67,7 +67,7 @@ public class GameRoom {
         }
 
         if (userList.size() < 2) { // 방에 남은 인원이 1명 이하라면
-            this.roomOwner = (GameUser) userList.get(0); // 리스트의 첫번째 유저가 방장이 된다.
+            this.roomOwner = userList.get(0); // 리스트의 첫번째 유저가 방장이 된다.
             return;
         }
     }

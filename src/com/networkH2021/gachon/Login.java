@@ -23,7 +23,7 @@ public class Login extends JFrame{
 
     private String ID_Str;
     private String PW_Str;
-    private GameUser user = GameLauncher.getUser();
+    private final GameUser user = GameLauncher.getUser();
 
     public Login() {
         setTitle("RSP Online");
@@ -50,7 +50,7 @@ public class Login extends JFrame{
                         GameLauncher.getUser().setUserID(ID_Str);
                         GameLauncher.getUser().setUserNickname(nick);
 
-                    };
+                    }
                     GameLauncher.MakeMainLobby();
                     GameLauncher.getMainLobby().setVisible(true);
                     GameLauncher.getMainLobby().startChatting();

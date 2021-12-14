@@ -2,9 +2,9 @@ package com.networkH2021.gachon.Networking;
 
 public class ClientObject {
 
-    private String address;
-    private int port;
-    private int id;
+    private final String address;
+    private final int port;
+    private final int id;
     private String nickName;
 
     private boolean reponsive = true;

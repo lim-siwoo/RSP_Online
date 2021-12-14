@@ -18,7 +18,7 @@ import static com.networkH2021.gachon.GameLauncher.*;
 public class UserDAO {
 
 
-    private GameUser user = getUser();   /// 점검
+    private final GameUser user = getUser();   /// 점검
     private Connection conn;
     private PreparedStatement pstmt;
     private ResultSet rs;
@@ -87,7 +87,7 @@ public class UserDAO {
 
         LocalDate day = LocalDate.now();
         LocalTime time = LocalTime.now();
-        String date = day.toString() + " " + time.toString().substring(0, 5);
+        String date = day + " " + time.toString().substring(0, 5);
         try {
             pstmt = conn.prepareStatement(SQL);
             pstmt.setString(1, date);
@@ -172,7 +172,7 @@ public class UserDAO {
 
         if (checkID(id) == -1){ // 아이디 중복
             return -1;
-        };
+        }
 
         try {
             pstmt = conn.prepareStatement(SQL);

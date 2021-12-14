@@ -7,8 +7,8 @@ import com.networkH2021.gachon.user.GameUser;
 
 public class RoomManager {
 
-    private static List roomList; // 방의 리스트
-    private static AtomicInteger atomicInteger;
+    private static final List roomList; // 방의 리스트
+    private static final AtomicInteger atomicInteger;
 
     static {
         roomList = new ArrayList();
