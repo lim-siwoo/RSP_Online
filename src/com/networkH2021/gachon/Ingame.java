@@ -10,7 +10,7 @@ public class Ingame{
         private JButton SENDButton;
         private JTextPane textPane1;
         private JPanel panelIngame;
-        private JButton button1;
+        private JButton EXITButton;
         private JTextArea textArea1;
         private JTextField textField1;
         private JButton button2;
