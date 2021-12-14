@@ -55,7 +55,7 @@ public class Ingame extends  JFrame{
                                         System.out.println("sendCheck:"+SendCheck);
                                         System.out.println("receiveCheck"+ReceiveCheck);
                                         if ((SendCheck == true) && (ReceiveCheck == true)) {
-                                                System.out.println("Both are true!!");
+                                                OPPBOTTON.setIcon(imgIcons[oppG]);
                                                 if(oppG==3){
                                                         res = "The other user left";
                                                         JOptionPane.showMessageDialog(null,res);
@@ -128,7 +128,6 @@ public class Ingame extends  JFrame{
                                 SendCheck= true;
                                 GameLauncher.getClient().send("\\G"+GameLauncher.getUserDAO().getNickname()+","+GameLauncher.getInvitation().getOppNick()+","+0);
                                 MYBOTTON.setIcon(imgIcons[0]);
-                                JOptionPane.showMessageDialog(null,"바위를 눌렀습니다!");
                         }
                 });
 
