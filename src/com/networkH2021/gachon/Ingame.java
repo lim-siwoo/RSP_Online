@@ -234,7 +234,7 @@ public class Ingame extends  JFrame{
         }
         private void sendMessage(){
                 String message = TypingBox.getText();
-                append(message);
+                append(GameLauncher.getUserDAO().getNickname()+":"+message+"\n");
                 ChatBox.setCaretPosition(ChatBox.getDocument().getLength());
                 GameLauncher.getClient().send("\\t"+GameLauncher.getUserDAO().getNickname()+","+GameLauncher.getInvitation().getOppNick()+","+message);
                 TypingBox.setText("");

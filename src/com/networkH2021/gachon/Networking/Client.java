@@ -145,8 +145,8 @@ public class Client {
             myNick = message.split(",")[0];
             oppoNick = message.split(",")[1];
             text = message.split(",")[2];
-            text = myNick+text+"\n";
-            GameLauncher.getGame().append(text);
+            text = myNick+":"+text+"\n";
+            GameLauncher.getGame().append(text+"\n");
             return true;
         }
         if (message.startsWith("\\r")){
