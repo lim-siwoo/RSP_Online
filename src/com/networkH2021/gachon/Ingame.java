@@ -140,6 +140,29 @@ public class Ingame extends  JFrame{
 
                 setDefaultCloseOperation(EXIT_ON_CLOSE);
 
+
+                // 외곽선 제거
+                SCISSOR.setBorderPainted(false);
+                ROCK.setBorderPainted(false);
+                PAPER.setBorderPainted(false);
+                MYBOTTON.setBorderPainted(false);
+                OPPBOTTON.setBorderPainted(false);
+
+                // 내용영역 채우기 안함
+                SCISSOR.setContentAreaFilled(false);
+                ROCK.setContentAreaFilled(false);
+                PAPER.setContentAreaFilled(false);
+                MYBOTTON.setContentAreaFilled(false);
+                OPPBOTTON.setContentAreaFilled(false);
+
+                // 선택(focus) 되었을 때 생기는 테두리 사용 안함
+                SCISSOR.setFocusPainted(false);
+                ROCK.setFocusPainted(false);
+                PAPER.setFocusPainted(false);
+                MYBOTTON.setFocusPainted(false);
+                OPPBOTTON.setFocusPainted(false);
+
+
                 // 기본 설정
                 setTitle("RSP online");
                 setContentPane(this.panelIngame);
