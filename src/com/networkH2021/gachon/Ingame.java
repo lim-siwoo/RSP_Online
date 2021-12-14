@@ -92,11 +92,12 @@ public class Ingame extends  JFrame{
 
         public Ingame() {
 
-                ROCK = new JButton(imgIcons[0]);
-                SCISSOR = new JButton(imgIcons[1]);
-                PAPER = new JButton(imgIcons[2]);
-                MYBOTTON = new JButton();
-                OPPBOTTON = new JButton();
+                ROCK.setIcon(imgIcons[0]);
+                SCISSOR.setIcon(imgIcons[1]);
+                PAPER.setIcon(imgIcons[2]);
+                MYBOTTON.setIcon(imgIcons[0]);
+                OPPBOTTON.setIcon(imgIcons[0]);
+
                 SendCheck=false;
                 ReceiveCheck=false;
 
