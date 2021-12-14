@@ -224,6 +224,7 @@ public class Ingame extends  JFrame{
         }
         public void append(String text){
                 try {
+                        //ChatBox.
                         Document doc = ChatBox.getDocument();
                         doc.insertString(doc.getLength(), text, null);
                         ChatBox.setCaretPosition(ChatBox.getDocument().getLength());
