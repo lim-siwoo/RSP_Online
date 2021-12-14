@@ -25,7 +25,8 @@ public class Game extends JFrame{
     ImageIcon[] imgIcons = {
             new ImageIcon("IMG/kawi.jpg"),
             new ImageIcon("IMG/bawi.jpg"),
-            new ImageIcon("IMG/bo.jpg")
+            new ImageIcon("IMG/bo.jpg"),
+            new ImageIcon("IMG/mainlobby.jpg")
 
     };
 
@@ -50,7 +51,7 @@ public class Game extends JFrame{
 
 
     class SelectPanel extends JPanel{
-        JButton[] btnButtons = new JButton[3];
+        JButton[] btnButtons = new JButton[4];
 
         public SelectPanel() {
             setBackground(Color.gray);
@@ -99,6 +100,12 @@ public class Game extends JFrame{
                     System.out.println("receiveCheck"+ReceiveCheck);
                     if ((SendCheck == true) && (ReceiveCheck == true)) {
                         System.out.println("Both are true!!");
+                        if(oppG==3){
+                            res = "The other user left";
+                            JOptionPane.showMessageDialog(null,res);
+                            setVisible(false);
+                            GameLauncher.getMainLobby().setVisible(true);
+                        }
                         if (myValue == 0 && oppG == 2 ||
                                 myValue == 1 && oppG == 0 ||
                                 myValue == 2 && oppG == 1) {
@@ -109,7 +116,9 @@ public class Game extends JFrame{
                                 myValue == 1 && oppG == 1 ||
                                 myValue == 2 && oppG == 2)
                             res = "DRAW!";
-                        else {
+                        else if((myValue == 2 && oppG == 0 ||
+                                myValue == 0 && oppG == 1 ||
+                                myValue == 1 && oppG == 2)){
                             res = "YOU LOSE";
                             GameLauncher.getUserDAO().updateLose(GameLauncher.getUser().getUserID());
                         }
@@ -151,7 +160,14 @@ public class Game extends JFrame{
                 a="2";
                 GameLauncher.getClient().send("\\G"+GameLauncher.getUserDAO().getNickname()+","+GameLauncher.getInvitation().getOppNick()+","+a);
             }
-
+            else if(btnSrc.getIcon() == imgIcons[3]){
+                myValue=3;
+                a="3";
+                GameLauncher.getClient().send("\\G"+GameLauncher.getUserDAO().getNickname()+","+GameLauncher.getInvitation().getOppNick()+","+a);
+                setVisible(false);
+                GameLauncher.getMainLobby().setVisible(true);
+                //로비로 이동
+            }
         }
 
     }
