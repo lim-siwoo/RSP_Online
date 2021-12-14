@@ -65,6 +65,9 @@ public class Ingame extends  JFrame{
 //                    System.out.println("OnThread");
                                         System.out.println("sendCheck:"+SendCheck);
                                         System.out.println("receiveCheck"+ReceiveCheck);
+                                        System.out.println("ReadyCheck"+ReadyCheck);
+                                        System.out.println("myReadyCheck"+myReadyCheck);
+
                                         if ((SendCheck == true) && (ReceiveCheck == true)&&(ReadyCheck == true)&&(myReadyCheck == true)) {
                                                 OPPBOTTON.setIcon(imgIcons[oppG]);
                                                 if(oppG==3){
@@ -129,7 +132,7 @@ public class Ingame extends  JFrame{
                 PAPER.setIcon(imgIcons[2]);
                 MYBOTTON.setIcon(imgIcons[0]);
                 OPPBOTTON.setIcon(imgIcons[0]);
-                //color
+
                 SendCheck=false;
                 ReceiveCheck=false;
                 ReadyCheck=false;
