@@ -146,7 +146,7 @@ public class Client {
             oppoNick = message.split(",")[1];
             text = message.split(",")[2];
             text = myNick+":"+text+"\n";
-            GameLauncher.getGame().append(text+"\n");
+            GameLauncher.getGame().append(text);
             return true;
         }
         if (message.startsWith("\\r")){
