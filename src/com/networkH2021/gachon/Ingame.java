@@ -29,7 +29,7 @@ public class Ingame extends  JFrame{
         private JButton OPPBOTTON;
         private JPanel ChoosePanel;
         private JPanel TextPanel;
-        private JScrollPane scrollPane = new JScrollPane(ChatBox);
+        //private JScrollPane scrollPane = new JScrollPane(ChatBox);
 
         private boolean SendCheck;
         private boolean ReceiveCheck;
@@ -115,7 +115,6 @@ public class Ingame extends  JFrame{
 
                 SendCheck=false;
                 ReceiveCheck=false;
-                getContentPane().add(scrollPane);
                 setDefaultCloseOperation(EXIT_ON_CLOSE);
 
                 // 기본 설정
