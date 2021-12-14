@@ -40,44 +40,6 @@ public class Ingame extends  JFrame{
 
         };
 
-
-        class EventHandler implements ActionListener{
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                        //getSource가 Object 타입임으로 타입변환을 해야한다.
-                        String a;
-                        JButton btnSrc = (JButton)e.getSource();
-
-                        String res = "";
-                        SendCheck= true;
-
-                        if(btnSrc.getIcon() == imgIcons[0]){
-                                myValue=0;
-                                a="0";
-                                GameLauncher.getClient().send("\\G"+GameLauncher.getUserDAO().getNickname()+","+GameLauncher.getInvitation().getOppNick()+","+a);
-                        }
-                        else if(btnSrc.getIcon() == imgIcons[1]){
-                                myValue=1;
-                                a="1";
-                                GameLauncher.getClient().send("\\G"+GameLauncher.getUserDAO().getNickname()+","+GameLauncher.getInvitation().getOppNick()+","+a);
-                        }
-                        else if(btnSrc.getIcon() == imgIcons[2]){
-                                myValue=2;
-                                a="2";
-                                GameLauncher.getClient().send("\\G"+GameLauncher.getUserDAO().getNickname()+","+GameLauncher.getInvitation().getOppNick()+","+a);
-                        }
-                        else if(btnSrc.getIcon() == imgIcons[3]){
-                                myValue=3;
-                                a="3";
-                                GameLauncher.getClient().send("\\G"+GameLauncher.getUserDAO().getNickname()+","+GameLauncher.getInvitation().getOppNick()+","+a);
-                                setVisible(false);
-                                GameLauncher.getMainLobby().setVisible(true);
-                                //로비로 이동
-                        }
-                }
-
-        }
-
         public String getOppNick() {
                 return oppNick;
         }
@@ -159,9 +121,7 @@ public class Ingame extends  JFrame{
 
 
 
-                // 액션 리스너
-
-                ROCK.addActionListener(new ActionListener() { // 나기기 버튼
+                ROCK.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
                                 SendCheck= true;

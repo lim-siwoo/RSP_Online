@@ -107,7 +107,6 @@ public class MainLobby extends JFrame{
     
     // 게임방
     public void showGameRoom(){
-
         GameLauncher.getMainLobby().setVisible(false);
         GameLauncher.getGame().setVisible(true);  // 게임방으로 만들 거임
     }
@@ -203,7 +202,6 @@ public class MainLobby extends JFrame{
                 JOptionPane.showMessageDialog(null, "INVITE :"+UserList.getSelectedValue());
                 String username= String.valueOf(UserList.getSelectedValue());
                 GameLauncher.getClient().send(username);
-
                 GameLauncher.getInvitation().setOppNick(username);
                 GameLauncher.getClient().send(username);
                 GameLauncher.getClient().send("\\n");
