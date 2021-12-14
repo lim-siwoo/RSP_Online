@@ -43,7 +43,7 @@ public class Ingame extends  JFrame{
         private String oppReady;
 
 
-        ImageIcon[] imgIcons = {
+        ImageIcon[] imgIcons = {  //이미지 파일 배열에 저장
                 new ImageIcon("IMG/kawi.jpg"),
                 new ImageIcon("IMG/bawi.jpg"),
                 new ImageIcon("IMG/bo.jpg"),
@@ -54,6 +54,8 @@ public class Ingame extends  JFrame{
         public String getOppNick() {
                 return oppNick;
         }
+
+        //thread 돌면서 조건이 만족되면 게임 실행
         public String getOppReady() {
                 return oppReady;
         }
@@ -71,24 +73,24 @@ public class Ingame extends  JFrame{
                                         if ((SendCheck == true) && (ReceiveCheck == true)&&(ReadyCheck == true)&&(myReadyCheck == true)) {
                                                 OPPBOTTON.setIcon(imgIcons[oppG]);
                                                 if(oppG==3){
-                                                        res = "The other user left";
+                                                        res = "The other user left"; //상대방이 로비로 나갔을 때
                                                         JOptionPane.showMessageDialog(null,res);
                                                         setVisible(false);
                                                         GameLauncher.getMainLobby().setVisible(true);
                                                 }
-                                                if (((myValue == 0) && (oppG == 2)) ||
+                                                if (((myValue == 0) && (oppG == 2)) ||  // 이긴 상황
                                                         ((myValue == 1) && (oppG == 0)) ||
                                                         ((myValue == 2) && (oppG == 1))) {
                                                         res = "YOU WIN!";
                                                         GameLauncher.getUserDAO().updateWin(GameLauncher.getUser().getUserID());
                                                 }
 
-                                                else if (((myValue == 0) && (oppG == 0)) ||
+                                                else if (((myValue == 0) && (oppG == 0)) || // 비긴 상황
                                                         ((myValue == 1) && (oppG == 1)) ||
                                                         ((myValue == 2) && (oppG == 2)))
                                                         res = "DRAW!";
 
-                                                else if(((myValue == 2) && (oppG == 0)) ||
+                                                else if(((myValue == 2) && (oppG == 0)) || //진 상황
                                                         ((myValue == 0) && (oppG == 1)) ||
                                                         ((myValue == 1) && (oppG == 2))){
                                                         res = "YOU LOSE";
@@ -125,7 +127,6 @@ public class Ingame extends  JFrame{
 
 
         public Ingame() {
-
 
                 SCISSOR.setIcon(imgIcons[0]);
                 ROCK.setIcon(imgIcons[1]);
@@ -174,7 +175,7 @@ public class Ingame extends  JFrame{
 
 
 
-                SCISSOR.addActionListener(new ActionListener() { // 나기기 버튼
+                SCISSOR.addActionListener(new ActionListener() { // 가위 버튼
                         @Override
                         public void actionPerformed(ActionEvent e) {
                                 SendCheck= true;
@@ -184,7 +185,7 @@ public class Ingame extends  JFrame{
                         }
                 });
 
-                ROCK.addActionListener(new ActionListener() {
+                ROCK.addActionListener(new ActionListener() {//주먹 버튼
                         @Override
                         public void actionPerformed(ActionEvent e) {
                                 SendCheck= true;
@@ -194,7 +195,7 @@ public class Ingame extends  JFrame{
                         }
                 });
 
-                PAPER.addActionListener(new ActionListener() { // 나기기 버튼
+                PAPER.addActionListener(new ActionListener() { // 보자기 버튼
                         @Override
                         public void actionPerformed(ActionEvent e) {
                                 SendCheck= true;
