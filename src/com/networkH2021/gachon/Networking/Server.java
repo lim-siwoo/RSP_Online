@@ -251,22 +251,6 @@ public class Server {
             send("\\r"+myNick+","+oppoNick,opponent.getAddress(),opponent.getPort());
             return true;
         }
-        if (message.startsWith("\\R")) {//로비로 돌아감
-            String myNick;
-            String oppoNick;
-
-            ClientObject opponent = null;
-            message = message.substring(2);
-            myNick = message.split(",")[0];
-            oppoNick = message.split(",")[1];
-
-            for (int i = 0; i < clients.size(); i++) {
-                if (clients.get(i).getNickName().equalsIgnoreCase(oppoNick)) {
-                    opponent = clients.get(i);
-                }
-            }
-            return true;
-        }
         return false;
     }
 
