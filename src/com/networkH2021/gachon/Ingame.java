@@ -62,19 +62,19 @@ public class Ingame extends  JFrame{
                                                         setVisible(false);
                                                         GameLauncher.getMainLobby().setVisible(true);
                                                 }
-                                                if (myValue == 0 && oppG == 2 ||
-                                                        myValue == 1 && oppG == 0 ||
-                                                        myValue == 2 && oppG == 1) {
+                                                if ((myValue == 0 && oppG == 2) ||
+                                                        (myValue == 1 && oppG == 0) ||
+                                                        (myValue == 2 && oppG == 1)) {
                                                         res = "YOU WIN!";
                                                         GameLauncher.getUserDAO().updateWin(GameLauncher.getUser().getUserID());
                                                 }
-                                                else if (myValue == 0 && oppG == 0 ||
-                                                        myValue == 1 && oppG == 1 ||
-                                                        myValue == 2 && oppG == 2)
+                                                else if ((myValue == 0 && oppG == 0) ||
+                                                        (myValue == 1 && oppG == 1) ||
+                                                        (myValue == 2 && oppG == 2))
                                                         res = "DRAW!";
-                                                else if((myValue == 2 && oppG == 0 ||
-                                                        myValue == 0 && oppG == 1 ||
-                                                        myValue == 1 && oppG == 2)){
+                                                else if(((myValue == 2 && oppG == 0) ||
+                                                        (myValue == 0 && oppG == 1) ||
+                                                        (myValue == 1 && oppG == 2))){
                                                         res = "YOU LOSE";
                                                         GameLauncher.getUserDAO().updateLose(GameLauncher.getUser().getUserID());
                                                 }
