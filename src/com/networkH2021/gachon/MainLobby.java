@@ -6,6 +6,7 @@ import com.networkH2021.gachon.user.GameUser;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import java.net.*;
@@ -73,11 +74,28 @@ public class MainLobby extends JFrame{
 
         GameLauncher.getUserDAO().info(gameUser.getUserNickname());
         String info = GameLauncher.getUserDAO().getInfo();
+
+        panel.setLayout(null);
         JLabel userinfo = new JLabel(info);
+
+        String sen = "NICK   WIN   LOSE";
+        JLabel sentence = new JLabel(sen);
+
+        sentence.setHorizontalAlignment(JLabel.CENTER);
+        sentence.setVerticalAlignment(JLabel.CENTER);
+
+        userinfo.setHorizontalAlignment(JLabel.CENTER);
+        userinfo.setVerticalAlignment(JLabel.CENTER);
+
+        userinfo.setFont(new Font("맑은 고딕", Font.BOLD, 30));
+        sentence.setFont(new Font("맑은 고딕", Font.BOLD, 30));
+
         frame.add(panel);
         panel.add(userinfo);
+        panel.add(sentence);
 
-        userinfo .setBounds((this.getX()+this.getWidth())/2 - 100/2,(this.getY()+this.getHeight())/2 - 50/2,100,50);
+        userinfo .setBounds(0, 0 ,400, 250);
+        sentence .setBounds(0, 0 ,400, 160);
         frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         frame.setVisible(true);
     }

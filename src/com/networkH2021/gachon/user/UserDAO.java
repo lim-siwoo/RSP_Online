@@ -225,7 +225,7 @@ public class UserDAO {
                 if (rs.wasNull()) win = "null";
                 String lose = rs.getString(3);
                 if (rs.wasNull()) lose = "null";
-                info = nickname + "\t" + win + "\t" + lose;
+                info = nickname + "       " + win + "       " + lose;
             }
             return 0;       // 정상적으로 작동할 경우
 

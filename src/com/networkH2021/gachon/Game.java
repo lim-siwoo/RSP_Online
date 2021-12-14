@@ -96,8 +96,8 @@ public class Game extends JFrame{
                 while (true) {
                     String res = "";
 //                    System.out.println("OnThread");
-                    System.out.println("sendCheck:"+SendCheck);
-                    System.out.println("receiveCheck"+ReceiveCheck);
+                    //System.out.println("sendCheck:"+SendCheck);
+                    //System.out.println("receiveCheck"+ReceiveCheck);
                     if ((SendCheck == true) && (ReceiveCheck == true)) {
                         System.out.println("Both are true!!");
                         if(oppG==3){
