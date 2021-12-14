@@ -11,6 +11,7 @@ public class Ingame{
         private JTextPane textPane1;
         private JPanel panelIngame;
         private JButton EXITButton;
+        private JButton ROBBYButton;
         private JTextArea textArea1;
         private JTextField textField1;
         private JButton button2;
