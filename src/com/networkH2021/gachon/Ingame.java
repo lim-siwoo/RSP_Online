@@ -18,6 +18,11 @@ public class Ingame extends  JFrame{
         private JLabel OPPINFO;
         private JPanel GameTop;
         private JPanel GameBottom;
+        private JButton SCISSOR;
+        private JButton ROCK;
+        private JButton PAPER;
+        private JButton MYBOTTON;
+        private JButton OPPBOTTON;
 
         private boolean SendCheck;
         private boolean ReceiveCheck;
@@ -191,6 +196,36 @@ public class Ingame extends  JFrame{
                 
 
                 // 액션 리스너
+
+                ROCK.addActionListener(new ActionListener() { // 나기기 버튼
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                                // 서버로 메시지 전송 필요, 대결 유저도 대기실로 나가게
+                                GameLauncher.getClient().send("\\y"+GameLauncher.getUserDAO().getNickname());       /// 수정 필요
+                                GameLauncher.getExit().setVisible(true);
+                        }
+                });
+
+                SCISSOR.addActionListener(new ActionListener() { // 나기기 버튼
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                                // 서버로 메시지 전송 필요, 대결 유저도 대기실로 나가게
+                                GameLauncher.getClient().send("\\y"+GameLauncher.getUserDAO().getNickname());       /// 수정 필요
+                                GameLauncher.getExit().setVisible(true);
+                        }
+                });
+                PAPER.addActionListener(new ActionListener() { // 나기기 버튼
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                                // 서버로 메시지 전송 필요, 대결 유저도 대기실로 나가게
+                                GameLauncher.getClient().send("\\y"+GameLauncher.getUserDAO().getNickname());       /// 수정 필요
+                                GameLauncher.getExit().setVisible(true);
+                        }
+                });
+
+
+                // 하단 버튼
+
                 EXITButton.addActionListener(new ActionListener() { // 나기기 버튼
                         @Override
                         public void actionPerformed(ActionEvent e) {
