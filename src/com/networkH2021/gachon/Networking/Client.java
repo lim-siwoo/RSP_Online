@@ -156,8 +156,9 @@ public class Client {
             message = message.substring(2);
             myNick = message.split(",")[0];
             oppoNick = message.split(",")[1];
-
-
+            GameLauncher.getGame().setMyNick(myNick);
+            GameLauncher.getGame().setOppNick(oppoNick);
+            GameLauncher.getGame().setReadyCheck(true);
             return true;
         }
 

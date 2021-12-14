@@ -57,8 +57,8 @@ public class Ingame extends  JFrame{
                                 while (true) {
                                         String res = "";
 //                    System.out.println("OnThread");
-                                        //System.out.println("sendCheck:"+SendCheck);
-                                        //System.out.println("receiveCheck"+ReceiveCheck);
+                                        System.out.println("sendCheck:"+SendCheck);
+                                        System.out.println("receiveCheck"+ReceiveCheck);
                                         if ((SendCheck == true) && (ReceiveCheck == true)) {
                                                 OPPBOTTON.setIcon(imgIcons[oppG]);
                                                 if(oppG==3){
@@ -88,27 +88,12 @@ public class Ingame extends  JFrame{
                                                 SendCheck=false;
                                                 ReceiveCheck=false;
                                                 JOptionPane.showMessageDialog(null,res);
-                                                gameInfo();
                                         }
                                 }
                         }
                 }; thread.start();
 
         }
-
-
-        public void gameInfo(){
-
-                // 전적 라벨
-                GameLauncher.getUserDAO().info(GameLauncher.getUserDAO().getNickname());
-                String me = GameLauncher.getUserDAO().getInfo();
-                GameLauncher.getUserDAO().info(GameLauncher.getInvitation().getOppNick());
-                String opp = GameLauncher.getUserDAO().getInfo();
-
-                MYINFO.setText(me);
-                OPPINFO.setText(opp);
-        }
-
 
         public Ingame() {
 
@@ -131,8 +116,15 @@ public class Ingame extends  JFrame{
                 setVisible(false);
 
                 receive();
+                
+                // 전적 라벨
+                GameLauncher.getUserDAO().info(GameLauncher.getUserDAO().getNickname());
+                String me = GameLauncher.getUserDAO().getInfo();
+                GameLauncher.getUserDAO().info(GameLauncher.getInvitation().getOppNick());
+                String opp = GameLauncher.getUserDAO().getInfo();
 
-
+                MYINFO.setText(me);
+                OPPINFO.setText(opp);
 
                 SCISSOR.addActionListener(new ActionListener() { // 나기기 버튼
                         @Override
