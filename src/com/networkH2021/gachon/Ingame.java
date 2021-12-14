@@ -23,6 +23,8 @@ public class Ingame extends  JFrame{
         private JButton PAPER;
         private JButton MYBOTTON;
         private JButton OPPBOTTON;
+        private JPanel ChoosePanel;
+        private JPanel TextPanel;
 
         private boolean SendCheck;
         private boolean ReceiveCheck;

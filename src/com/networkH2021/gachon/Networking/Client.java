@@ -1,6 +1,5 @@
 package com.networkH2021.gachon.Networking;
 
-import com.networkH2021.gachon.Game;
 import com.networkH2021.gachon.GameLauncher;
 
 import javax.management.remote.JMXServerErrorException;
