@@ -34,6 +34,7 @@ public class Ingame extends  JFrame{
         private boolean SendCheck;
         private boolean ReceiveCheck;
         private boolean ReadyCheck;
+        private boolean myReadyCheck;
 
         private int myValue;
         private String myNick;
@@ -64,7 +65,7 @@ public class Ingame extends  JFrame{
 //                    System.out.println("OnThread");
                                         System.out.println("sendCheck:"+SendCheck);
                                         System.out.println("receiveCheck"+ReceiveCheck);
-                                        if ((SendCheck == true) && (ReceiveCheck == true)&&(ReadyCheck == true)) {
+                                        if ((SendCheck == true) && (ReceiveCheck == true)&&(ReadyCheck == true)&&(myReadyCheck == true)) {
                                                 OPPBOTTON.setIcon(imgIcons[oppG]);
                                                 if(oppG==3){
                                                         res = "The other user left";
@@ -95,6 +96,7 @@ public class Ingame extends  JFrame{
                                                 SendCheck=false;
                                                 ReceiveCheck=false;
                                                 ReadyCheck=false;
+                                                myReadyCheck=false;
 
                                                 JOptionPane.showMessageDialog(null,res);
                                                 gameInfo();
@@ -130,6 +132,9 @@ public class Ingame extends  JFrame{
 
                 SendCheck=false;
                 ReceiveCheck=false;
+                ReadyCheck=false;
+                myReadyCheck=false;
+
                 setDefaultCloseOperation(EXIT_ON_CLOSE);
 
                 // 기본 설정
@@ -175,7 +180,6 @@ public class Ingame extends  JFrame{
 
 
                 // 하단 버튼
-
                 EXITButton.addActionListener(new ActionListener() { // 나기기 버튼
                         @Override
                         public void actionPerformed(ActionEvent e) {
@@ -232,6 +236,7 @@ public class Ingame extends  JFrame{
                         exc.printStackTrace();
                 }
         }
+
         private void sendMessage(){
                 String message = TypingBox.getText();
                 append(message);

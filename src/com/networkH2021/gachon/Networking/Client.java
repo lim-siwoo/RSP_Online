@@ -160,6 +160,7 @@ public class Client {
             GameLauncher.getGame().setMyNick(myNick);
             GameLauncher.getGame().setOppNick(oppoNick);
             GameLauncher.getGame().setReadyCheck(true);
+            JOptionPane.showMessageDialog(null, myNick+"이(가) 준비를 완료했습니다.패를 골라주세요");
             return true;
         }
 
