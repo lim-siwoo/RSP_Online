@@ -10,61 +10,48 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import java.net.*;
-import java.util.ArrayList;
 
 public class MainLobby extends JFrame{
 
-    private JTextField ChatTextField;//보낼채팅들어가는필드임
+    private JTextField chatTextField;//보낼채팅들어가는필드임
     private JButton Rankbutton;//랭크버튼임
-    private JButton Sendbutton;//채팅 보내기 버튼임
+    private JButton sendbutton;//채팅 보내기 버튼임
     private JPanel panelLobby;////유저리스트의 상위 파넬
-    private JList<GameUser> UserList;//유저리스트가 나옴
+    private JList<GameUser> userList;//유저리스트가 나옴
     DefaultListModel<GameUser> model = new DefaultListModel<>();
-    private JTextArea ChatTextArea;//채팅택스트
-    private JButton Exit;
+    private JTextArea chatTextArea;//채팅택스트
+    private JButton Exit;//게임종료버튼
     private JLabel ChatRoom;
     private JScrollPane scrollPane;
 
     public JTextField getChatTextField() {
-        return ChatTextField;
+        return chatTextField;
     }
 
     public void setChatTextField(JTextField chatTextField) {
-        ChatTextField = chatTextField;
+        this.chatTextField = chatTextField;
     }
 
     public JTextArea getChatTextArea() {
-        return ChatTextArea;
+        return chatTextArea;
     }
 
     public void setChatTextArea(JTextArea chatTextArea) {
-        ChatTextArea = chatTextArea;
+        this.chatTextArea = chatTextArea;
     }
 
     public JButton getSendbutton() {
-        return Sendbutton;
+        return sendbutton;
     }
 
     public void setSendbutton(JButton sendbutton) {
-        Sendbutton = sendbutton;
+        this.sendbutton = sendbutton;
     }
 
-    private Socket socket;
-    private String name;
-
-    private PrintWriter pw;
-    private BufferedReader br;
-    private String totalUser;
     private static ChatClientApp CCA;
 
-    //private DatagramSocket socket;//User Datagram Protocol
-    //private DatagramPacket packet;//Data packet
-    //private InetAddress address;//상대방주소
-    private final int myPort = 10001;//내 포트
-    private final int oppPort = 10002;//상대 포트
-
     public void startChatting() {
-        CCA = new ChatClientApp(this);
+        CCA = new ChatClientApp();
     }
 
     public void showUserInfo(GameUser gameUser){
@@ -100,7 +87,7 @@ public class MainLobby extends JFrame{
         frame.setVisible(true);
     }
 
-    public void showGameInvite(String opponent){
+    public void showGameInvite(String opponent){//게임초대를 받음
         GameLauncher.getInvitation().getInviteLabel().setText(opponent+"이(가) 대전을 요청했습니다!");
         GameLauncher.getInvitation().setVisible(true);
     }
@@ -114,28 +101,17 @@ public class MainLobby extends JFrame{
 
 
 
-    private class JListHandler implements ListSelectionListener
-    {
-        // 리스트의 항목이 선택이 되면
-        public void valueChanged(ListSelectionEvent event)
-        {
-            GameUser gameUser = UserList.getSelectedValue();
-            JOptionPane.showMessageDialog(null, gameUser.getUserNickname());
-        }
-    }
-
-
     public void refreshList(String[] userList){
         model.clear();
         for (int i =0; i < userList.length; i++){
             model.addElement(new GameUser("test1",userList[i]));
-            ChatTextArea.setCaretPosition(ChatTextArea.getDocument().getLength());
+            chatTextArea.setCaretPosition(chatTextArea.getDocument().getLength());
         }
     }
 
     public MainLobby() {
         final JPopupMenu menu = new JPopupMenu("Menu");//유저리스트에서 오른쪽마우스하면 뜨는 ContextMenu구현임
-        UserList.setModel(model);
+        userList.setModel(model);
         JMenuItem info = new JMenuItem("info");
         JMenuItem invite = new JMenuItem("invite");
         ChatRoom.setText("Chat Room");
@@ -144,11 +120,9 @@ public class MainLobby extends JFrame{
         menu.add(invite);
         setVisible(true);
 
-        //ChatTextArea.add(scrollPane);
-        //scrollPane.setVisible(true);
 
         setTitle("RSP Online Main Lobby");//Frame시작
-//        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -170,47 +144,40 @@ public class MainLobby extends JFrame{
                 GameLauncher.getUserDAO().rank();
                 GameLauncher.getRank().update();
                 GameLauncher.getRank().setVisible(true);
-                ChatTextArea.setCaretPosition(ChatTextArea.getDocument().getLength());
+                chatTextArea.setCaretPosition(chatTextArea.getDocument().getLength());
             }
         });
 
 
-        UserList.addMouseListener(new MouseAdapter() {
+        userList.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e) {
+            public void mouseClicked(MouseEvent e) {//유저리스트가 클릭됨
                 super.mouseClicked(e);
                 if (SwingUtilities.isRightMouseButton(e) && e.getClickCount()==1){
-                    menu.show(UserList, e.getX(), e.getY());
+                    menu.show(userList, e.getX(), e.getY());
                     JList list = (JList)e.getSource();
                     int row = list.locationToIndex(e.getPoint());
                     list.setSelectedIndex(row);
-//                    JList<GameUser> selected = (JList<GameUser>) e.getSource();
-//                    int index = selected.locationToIndex(e.getPoint());
-//                    System.out.println(index);
                 }
             }
         });
         info.addActionListener(new AbstractAction("info") {
             public void actionPerformed(ActionEvent e) {
-                showUserInfo(UserList.getSelectedValue());
+                showUserInfo(userList.getSelectedValue());
             }
         });
 
 
-        invite.addActionListener(new ActionListener() {
+        invite.addActionListener(new ActionListener() {//초대하기
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "INVITE :"+UserList.getSelectedValue());
-                String username= String.valueOf(UserList.getSelectedValue());
+                JOptionPane.showMessageDialog(null, "INVITE :"+ userList.getSelectedValue());
+                String username= String.valueOf(userList.getSelectedValue());
                 GameLauncher.getClient().send(username);
                 GameLauncher.getInvitation().setOppNick(username);
                 GameLauncher.getClient().send(username);
                 GameLauncher.getClient().send("\\i"+GameLauncher.getUserDAO().getNickname()+","+username);
                 GameLauncher.getClient().send("\\l");
-
-
-                //게임시작 코드를 추가해야함 넘겨주는값
-                //상대방한태 초대받았다고 알려주는 코드 추가해야함
             }
         });
 

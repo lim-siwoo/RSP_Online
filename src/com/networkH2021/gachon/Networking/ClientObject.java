@@ -14,7 +14,7 @@ public class ClientObject {
     private String userID;
 
 
-    public ClientObject(String address, int port, int id, String clientNick, String userID){
+    public ClientObject(String address, int port, int id, String clientNick, String userID){//서버에서 유저저장용 객체
         this.address = address;
         this.port = port;
         this.id = id;

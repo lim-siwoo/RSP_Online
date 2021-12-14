@@ -49,7 +49,7 @@ public class Server {
                         if (!parseCommand(message, packet)) {
                             lastMessage = message;
                         }
-                        if (message.equalsIgnoreCase("ping")){
+                        if (message.equalsIgnoreCase("ping")){//네트워크 테스트용
                             send("pong",packet.getAddress().getHostAddress(),packet.getPort());
                         }
                     } catch (Exception e) {
@@ -91,6 +91,7 @@ public class Server {
             clientID++;
             return true;
         }else
+            //유저삭제
             if (message.startsWith("\\d")){//delete client parse
                 int id = Integer.parseInt(message.substring(2));
                 String nickname = message.substring(2);
@@ -104,6 +105,7 @@ public class Server {
                 System.out.println("Server: Error, Client With ID"+id+", was not found!");
                 return true;
             }
+            //유저리스트를 모든 유저에게 뿌림
             if (message.startsWith("\\l")){//send userlist
                 String userList = "\\l";
                 for (int i=0;i<clients.size();i++){
@@ -116,6 +118,7 @@ public class Server {
                 updateClient(userList);
                 return true;
             }
+            //초대장보내기
             if (message.startsWith("\\i")){
                 String myNick;
                 String oppoNick;

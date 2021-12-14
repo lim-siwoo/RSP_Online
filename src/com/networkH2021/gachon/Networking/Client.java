@@ -72,16 +72,16 @@ public class Client {
     }
 
     public boolean parseCommand(String message){
-        if(message.startsWith("\\cid:")){
+        if(message.startsWith("\\cid:")){//서버에서 관리하는 유저 아이디를 받음
             this.clientID = Integer.parseInt(message.substring(5));
             return true;
         }
-        if (message.startsWith("\\l")){
+        if (message.startsWith("\\l")){//유저리스트를 받음
             String[] userList = message.substring(2).split(",");
             GameLauncher.getMainLobby().refreshList(userList);
             return true;
         }
-        if (message.startsWith("\\i")){
+        if (message.startsWith("\\i")){//초대장을 받음
             String myNick = GameLauncher.getUserDAO().getNickname();
             String oppoNick = message.substring(2);
 
@@ -110,7 +110,7 @@ public class Client {
             return true;
         }
 
-        if (message.startsWith("\\g")){
+        if (message.startsWith("\\g")){//게임통신
             int opp;
             String myNick;
             String oppoNick;
@@ -123,25 +123,24 @@ public class Client {
             GameLauncher.getGame().setOppNick(oppoNick);
             GameLauncher.getGame().setOppG(opp);
             GameLauncher.getGame().setReceiveCheck(true);
-            if (opp == 3){
+            if (opp == 3){//상대방이 나갔을때
                 GameLauncher.getMainLobby().setVisible(true);
                 GameLauncher.getGame().setVisible(false);
                 GameLauncher.getGame().getChatBox().setText("");
-                if (GameLauncher.getGame().getReadyCheck() == true){
-                    GameLauncher.getGame().append("상대방이 탈주하여 자동 승리 처리됩니다.\n");
+                if (GameLauncher.getGame().getReadyCheck() == true){//게임중에 탈주
+                    JOptionPane.showMessageDialog(null,"상대방이 탈주하여 자동 승리 처리됩니다.");
                     GameLauncher.getUserDAO().updateWin(GameLauncher.getUser().getUserID());
                 }
                 JOptionPane.showMessageDialog(null,"상대방이 나갔습니다.");
             }
-            System.out.println("Received");
             return true;
         }
-        if (message.equals("\\concheck")){
+        if (message.equals("\\concheck")){//접속중인지 확인하는용
             send("\\conalive:"+clientID);
             return true;
         }
 
-        if (message.startsWith("\\t")){
+        if (message.startsWith("\\t")){//채팅용프로토콜
             String myNick;
             String oppoNick;
             String text;
@@ -154,7 +153,7 @@ public class Client {
             GameLauncher.getGame().append(text);
             return true;
         }
-        if (message.startsWith("\\r")){
+        if (message.startsWith("\\r")){//게임준비 받음
             String myNick;
             String oppoNick;
             String text;

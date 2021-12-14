@@ -6,7 +6,7 @@ import java.net.UnknownHostException;
 
 
 
-public class ServerMain {
+public class ServerMain {//게임통신용서버
     private static Server server;
 
     public static void main(String[] args){

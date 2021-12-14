@@ -19,7 +19,7 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="4f00a" class="javax.swing.JList" binding="UserList">
+          <component id="4f00a" class="javax.swing.JList" binding="userList">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="50"/>
@@ -29,7 +29,7 @@
           </component>
         </children>
       </grid>
-      <component id="9c272" class="javax.swing.JTextArea" binding="ChatTextArea">
+      <component id="9c272" class="javax.swing.JTextArea" binding="chatTextArea">
         <constraints>
           <grid row="1" column="0" row-span="5" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <preferred-size width="300" height="300"/>
@@ -60,7 +60,7 @@
           <text value="USER LIST"/>
         </properties>
       </component>
-      <component id="ea9f8" class="javax.swing.JTextField" binding="ChatTextField">
+      <component id="ea9f8" class="javax.swing.JTextField" binding="chatTextField">
         <constraints>
           <grid row="6" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -90,7 +90,7 @@
           <text value="EXIT"/>
         </properties>
       </component>
-      <component id="b5874" class="javax.swing.JButton" binding="Sendbutton">
+      <component id="b5874" class="javax.swing.JButton" binding="sendbutton">
         <constraints>
           <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>

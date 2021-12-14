@@ -12,32 +12,9 @@ public class ChatClientApp {
 	
 	private static final String SERVER_IP = "14.47.251.177";//시우집 컴퓨터 WAN 아이피랑 외부 포트
 	private static final int SERVER_PORT = 9997;
-	//private MainLobby  mainLobby = new MainLobby();
-	public ChatClientApp(MainLobby mainLobby) {
+	public ChatClientApp() {
 		String name = null;
 
-
-//		while( true ) {
-//
-//			System.out.println("대화명을 입력하세요.");
-//			System.out.print(">>> ");
-//			//name = GameLauncher.getUser().getUserName();
-//			//name = "siwoo";
-//			//name = GameLauncher.getUser().getUserNickname();
-//
-////			System.out.println(ChatServer.checkNickname(name));
-////			if (ChatServer.checkNickname(name)==0) {
-////				break;
-////			}
-//
-//			if (name.isEmpty() == false) {
-//				break;
-//			}
-//
-//
-//			System.out.println("사용할 수 없는 닉네임 입니다.\n");
-//
-//		}
 		name = GameLauncher.getUserDAO().getNickname();
 		// 1. 소켓 만들고
 		Socket socket = null;
@@ -58,18 +35,10 @@ public class ChatClientApp {
 			// 3. join 프로토콜  -> 서버가 닉네임 받아서 처리 / 성공하면 다음 실행
 			pw.println("join:"+ name);
 			String ack = br.readLine();  // blocking
-//			System.out.println("------->" + ack);
-
-			//GameLauncher.MakeMainLobby();
-			//MainLobby mainLobby = GameLauncher.getMainLobby();
-			//mainLobby.setTitle("TestTestTest");
-			//System.out.println(mainLobby);
-			//GameLauncher.getMainLobby().Chatting(name,socket,ack);
-			//mainLobby.Chatting(name, socket,ack);
 			ChatWindow chatWindow = new ChatWindow(name,socket,ack);
 			chatWindow.show();
 		} catch(IOException e) {
-			System.out.println("서버가 존재하지 않습니다.");
+			System.out.println("server is not exist");
 		}
 
 	}
