@@ -25,6 +25,7 @@ public class Exit extends JFrame{
         yesButton.addActionListener(new ActionListener() { //승낙했을때!
             @Override
             public void actionPerformed(ActionEvent e) {
+                GameLauncher.getClient().send("\\G"+GameLauncher.getUserDAO().getNickname()+","+GameLauncher.getInvitation().getOppNick()+","+3);
                 GameLauncher.getClient().send("\\d"+GameLauncher.getClient().getClientID());
                 System.exit(0);
             }

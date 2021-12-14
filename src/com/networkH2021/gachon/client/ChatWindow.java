@@ -20,7 +20,7 @@ public class ChatWindow {
 	private String name;
 	private PrintWriter pw;
 	private BufferedReader br;
-	
+	private JTextPane textPane;
 	private String totalUser;
 	
 	
@@ -34,7 +34,8 @@ public class ChatWindow {
 		//buttonSend = new Button("Send"); // 패널의 자식
 		textField = GameLauncher.getMainLobby().getChatTextField();
 		//textField = new TextField(); // 패널의 자석
-		textArea = GameLauncher.getMainLobby().getChatTextArea();;
+		textArea = GameLauncher.getMainLobby().getChatTextArea();
+		//textPane =
 		//textArea = new TextArea(20, 10); // 대화 뜨는 공간;
 	}
 

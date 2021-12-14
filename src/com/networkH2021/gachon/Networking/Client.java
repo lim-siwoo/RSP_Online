@@ -124,11 +124,29 @@ public class Client {
             GameLauncher.getGame().setOppNick(oppoNick);
             GameLauncher.getGame().setOppG(opp);
             GameLauncher.getGame().setReceiveCheck(true);
+            if (opp == 3){
+                GameLauncher.getMainLobby().setVisible(true);
+                GameLauncher.getGame().setVisible(false);
+                JOptionPane.showMessageDialog(null,"상대방이 나갔습니다.");
+            }
             System.out.println("Received");
             return true;
         }
         if (message.equals("\\concheck")){
             send("\\conalive:"+clientID);
+            return true;
+        }
+
+        if (message.startsWith("\\t")){
+            String myNick;
+            String oppoNick;
+            String text;
+            ClientObject opponent = null;
+            message = message.substring(2);
+            myNick = message.split(",")[0];
+            oppoNick = message.split(",")[1];
+            text = message.split(",")[2];
+
             return true;
         }
         return false;

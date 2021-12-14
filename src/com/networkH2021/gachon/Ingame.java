@@ -40,44 +40,6 @@ public class Ingame extends  JFrame{
 
         };
 
-        GameBottom select = new Ingame.GameBottom();
-        GameTop result = new Ingame.GameTop();
-
-        class GameBottom extends JPanel{
-                JButton[] btnButtons = new JButton[4];
-
-                public GameBottom() {
-                        setBackground(Color.gray);
-
-                        for(int i=0; i<imgIcons.length; i++) {
-                                btnButtons[i] = new JButton(imgIcons[i]);
-                                this.add(btnButtons[i]);
-
-                                btnButtons[i].addActionListener(new Ingame.EventHandler());
-                        }
-                }
-        }
-
-        class GameTop extends JPanel{
-                JLabel userJLabel = new JLabel("user1");
-                JLabel comJLabel = new JLabel("user2");
-                JLabel resultJLabel = new JLabel("winner");
-
-                public GameTop() {
-                        setBackground(Color.white);
-                        add(userJLabel);
-                        add(resultJLabel);
-                        add(comJLabel);
-                }
-                public void output(Icon img,Icon comImage, String res ) {
-                        userJLabel.setIcon(img);
-                        userJLabel.setHorizontalTextPosition(JLabel.LEFT);
-                        comJLabel.setIcon(comImage);
-                        resultJLabel.setText(res);
-                        result.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
-
-                }
-        }
 
         class EventHandler implements ActionListener{
                 @Override
@@ -126,8 +88,8 @@ public class Ingame extends  JFrame{
                                 while (true) {
                                         String res = "";
 //                    System.out.println("OnThread");
-                                        //System.out.println("sendCheck:"+SendCheck);
-                                        //System.out.println("receiveCheck"+ReceiveCheck);
+                                        System.out.println("sendCheck:"+SendCheck);
+                                        System.out.println("receiveCheck"+ReceiveCheck);
                                         if ((SendCheck == true) && (ReceiveCheck == true)) {
                                                 System.out.println("Both are true!!");
                                                 if(oppG==3){
@@ -157,7 +119,6 @@ public class Ingame extends  JFrame{
                                                 SendCheck=false;
                                                 ReceiveCheck=false;
                                                 JOptionPane.showMessageDialog(null,res);
-                                                System.out.println("success");
                                         }
                                 }
                         }
@@ -167,14 +128,15 @@ public class Ingame extends  JFrame{
 
         public Ingame() {
 
+                ROCK = new JButton(imgIcons[0]);
+                SCISSOR = new JButton(imgIcons[1]);
+                PAPER = new JButton(imgIcons[2]);
+                MYBOTTON = new JButton();
+                OPPBOTTON = new JButton();
                 SendCheck=false;
                 ReceiveCheck=false;
-                receive();
 
                 setDefaultCloseOperation(EXIT_ON_CLOSE);
-
-                GameTop.add(result,"Center");
-                GameBottom.add(select, "South");
 
                 // 기본 설정
                 setTitle("RSP online");
@@ -184,6 +146,7 @@ public class Ingame extends  JFrame{
                 setLocationRelativeTo(null);
                 setVisible(false);
 
+                receive();
                 
                 // 전적 라벨
                 GameLauncher.getUserDAO().info(GameLauncher.getUserDAO().getNickname());
@@ -193,33 +156,34 @@ public class Ingame extends  JFrame{
 
                 MYINFO.setText(me);
                 OPPINFO.setText(opp);
-                
+
+
 
                 // 액션 리스너
 
                 ROCK.addActionListener(new ActionListener() { // 나기기 버튼
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                                // 서버로 메시지 전송 필요, 대결 유저도 대기실로 나가게
-                                GameLauncher.getClient().send("\\y"+GameLauncher.getUserDAO().getNickname());       /// 수정 필요
-                                GameLauncher.getExit().setVisible(true);
+                                SendCheck= true;
+                                GameLauncher.getClient().send("\\G"+GameLauncher.getUserDAO().getNickname()+","+GameLauncher.getInvitation().getOppNick()+","+0);
+                                MYBOTTON.setIcon(imgIcons[0]);
                         }
                 });
 
                 SCISSOR.addActionListener(new ActionListener() { // 나기기 버튼
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                                // 서버로 메시지 전송 필요, 대결 유저도 대기실로 나가게
-                                GameLauncher.getClient().send("\\y"+GameLauncher.getUserDAO().getNickname());       /// 수정 필요
-                                GameLauncher.getExit().setVisible(true);
+                                SendCheck= true;
+                                GameLauncher.getClient().send("\\G"+GameLauncher.getUserDAO().getNickname()+","+GameLauncher.getInvitation().getOppNick()+","+1);
+                                MYBOTTON.setIcon(imgIcons[1]);
                         }
                 });
                 PAPER.addActionListener(new ActionListener() { // 나기기 버튼
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                                // 서버로 메시지 전송 필요, 대결 유저도 대기실로 나가게
-                                GameLauncher.getClient().send("\\y"+GameLauncher.getUserDAO().getNickname());       /// 수정 필요
-                                GameLauncher.getExit().setVisible(true);
+                                SendCheck= true;
+                                GameLauncher.getClient().send("\\G"+GameLauncher.getUserDAO().getNickname()+","+GameLauncher.getInvitation().getOppNick()+","+2);
+                                MYBOTTON.setIcon(imgIcons[2]);
                         }
                 });
 
@@ -230,7 +194,6 @@ public class Ingame extends  JFrame{
                         @Override
                         public void actionPerformed(ActionEvent e) {
                                 // 서버로 메시지 전송 필요, 대결 유저도 대기실로 나가게
-                                GameLauncher.getClient().send("\\y"+GameLauncher.getUserDAO().getNickname());       /// 수정 필요
                                 GameLauncher.getExit().setVisible(true);
                         }
                 });
@@ -240,7 +203,7 @@ public class Ingame extends  JFrame{
                         public void actionPerformed(ActionEvent e) {
                                 
                                 // 서버로 메시지 전송 필요, 대결 유저도 대기실로 나가게
-                                GameLauncher.getClient().send("\\y"+GameLauncher.getUserDAO().getNickname());       /// 수정 필요
+                                GameLauncher.getClient().send("\\G"+GameLauncher.getUserDAO().getNickname()+","+GameLauncher.getInvitation().getOppNick()+","+3);
                                 GameLauncher.getMainLobby().setVisible(true);
                                 setVisible(false);
                         }
@@ -251,6 +214,14 @@ public class Ingame extends  JFrame{
 
                                 // 레디버튼 누르면 서버로 전송 필요
 
+                        }
+                });
+                SENDButton.setBackground(Color.GRAY);
+                SENDButton.setForeground(Color.WHITE);
+                SENDButton.addActionListener(new ActionListener() {//전송
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                                GameLauncher.getClient().send("");
                         }
                 });
 

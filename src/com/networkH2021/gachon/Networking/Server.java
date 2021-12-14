@@ -199,6 +199,24 @@ public class Server {
             return true;
         }
 
+        if (message.startsWith("\\t")){
+            String myNick;
+            String oppoNick;
+            String text;
+            ClientObject opponent = null;
+            message = message.substring(2);
+            myNick = message.split(",")[0];
+            oppoNick = message.split(",")[1];
+            text = message.split(",")[2];
+
+            for (int i=0;i<clients.size();i++){
+                if (clients.get(i).getNickName().equalsIgnoreCase(oppoNick)){
+                    opponent = clients.get(i);
+                }
+            }
+            send("\\t"+myNick+","+oppoNick+","+text,opponent.getAddress(),opponent.getPort());
+            return true;
+        }
         return false;
     }
 
