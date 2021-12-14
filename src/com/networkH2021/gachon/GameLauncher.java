@@ -22,7 +22,7 @@ public class GameLauncher {
     private static Invitation invitation;
     private static Exit exit;
 
-    public GameLauncher() throws UnknownHostException {
+    public GameLauncher() throws UnknownHostException {//생성자
         login = new Login();
         signUp = new SignUp();
         rank = new Rank();

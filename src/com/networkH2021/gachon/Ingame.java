@@ -210,7 +210,6 @@ public class Ingame extends  JFrame{
                                 myReadyCheck= true;
                                 append("준비중!!\n");
                                 // 레디버튼 누르면 서버로 전송 필요
-
                         }
                 });
                 SENDButton.setBackground(Color.GRAY);
