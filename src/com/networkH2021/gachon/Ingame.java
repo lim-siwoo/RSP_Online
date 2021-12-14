@@ -73,7 +73,7 @@ public class Ingame extends  JFrame{
                                         if ((SendCheck == true) && (ReceiveCheck == true)&&(ReadyCheck == true)&&(myReadyCheck == true)) {
                                                 OPPBOTTON.setIcon(imgIcons[oppG]);
                                                 if(oppG==3){
-                                                        res = "The other user left"; //상대방이 로비로 나갔을 때
+                                                        res = "The OPPONENT PLAYER LEAVE!"; //상대방이 로비로 나갔을 때
                                                         JOptionPane.showMessageDialog(null,res);
                                                         setVisible(false);
                                                         GameLauncher.getMainLobby().setVisible(true);
