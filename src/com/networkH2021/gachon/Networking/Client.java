@@ -127,6 +127,10 @@ public class Client {
                 GameLauncher.getMainLobby().setVisible(true);
                 GameLauncher.getGame().setVisible(false);
                 GameLauncher.getGame().getChatBox().setText("");
+                if (GameLauncher.getGame().getReadyCheck() == true){
+                    GameLauncher.getGame().append("상대방이 탈주하여 자동 승리 처리됩니다.\n");
+                    GameLauncher.getUserDAO().updateWin(GameLauncher.getUser().getUserID());
+                }
                 JOptionPane.showMessageDialog(null,"상대방이 나갔습니다.");
             }
             System.out.println("Received");
