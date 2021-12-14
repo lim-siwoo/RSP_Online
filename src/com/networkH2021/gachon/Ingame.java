@@ -33,10 +33,13 @@ public class Ingame extends  JFrame{
 
         private boolean SendCheck;
         private boolean ReceiveCheck;
+        private boolean ReadyCheck;
+
         private int myValue;
         private String myNick;
         private int oppG;
         private String oppNick;
+        private String oppReady;
 
 
         ImageIcon[] imgIcons = {
@@ -50,7 +53,9 @@ public class Ingame extends  JFrame{
         public String getOppNick() {
                 return oppNick;
         }
-
+        public String getOppReady() {
+                return oppReady;
+        }
         public void receive() {
                 Thread thread = new Thread() {
                         public void run() {
@@ -59,7 +64,7 @@ public class Ingame extends  JFrame{
 //                    System.out.println("OnThread");
                                         System.out.println("sendCheck:"+SendCheck);
                                         System.out.println("receiveCheck"+ReceiveCheck);
-                                        if ((SendCheck == true) && (ReceiveCheck == true)) {
+                                        if ((SendCheck == true) && (ReceiveCheck == true)&&(ReadyCheck == true)) {
                                                 OPPBOTTON.setIcon(imgIcons[oppG]);
                                                 if(oppG==3){
                                                         res = "The other user left";
@@ -73,10 +78,12 @@ public class Ingame extends  JFrame{
                                                         res = "YOU WIN!";
                                                         GameLauncher.getUserDAO().updateWin(GameLauncher.getUser().getUserID());
                                                 }
+
                                                 else if (((myValue == 0) && (oppG == 0)) ||
                                                         ((myValue == 1) && (oppG == 1)) ||
                                                         ((myValue == 2) && (oppG == 2)))
                                                         res = "DRAW!";
+
                                                 else if(((myValue == 2) && (oppG == 0)) ||
                                                         ((myValue == 0) && (oppG == 1)) ||
                                                         ((myValue == 1) && (oppG == 2))){
@@ -87,6 +94,8 @@ public class Ingame extends  JFrame{
                                                 //result.output(btnSrc.getIcon(), imgIcons[Integer.parseInt(opp)], res);
                                                 SendCheck=false;
                                                 ReceiveCheck=false;
+                                                ReadyCheck=false;
+
                                                 JOptionPane.showMessageDialog(null,res);
                                         }
                                 }
@@ -181,7 +190,7 @@ public class Ingame extends  JFrame{
                 READYButton.addActionListener(new ActionListener() { // 레디버튼
                         @Override
                         public void actionPerformed(ActionEvent e) {
-
+                                GameLauncher.getClient().send("\\r"+GameLauncher.getUserDAO().getNickname()+","+GameLauncher.getInvitation().getOppNick());
                                 // 레디버튼 누르면 서버로 전송 필요
 
                         }
@@ -237,6 +246,14 @@ public class Ingame extends  JFrame{
 
         public void setReceiveCheck(boolean receiveCheck) {
                 ReceiveCheck = receiveCheck;
+        }
+
+        public boolean isReadyCheck() {
+                return SendCheck;
+        }
+
+        public void setReadyCheck(boolean sendCheck) {
+                SendCheck = sendCheck;
         }
 
         public String getMyNick() {

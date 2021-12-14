@@ -220,7 +220,7 @@ public class Server {
         if (message.startsWith("\\r")){
             String myNick;
             String oppoNick;
-            String text;
+
             ClientObject opponent = null;
             message = message.substring(2);
             myNick = message.split(",")[0];
