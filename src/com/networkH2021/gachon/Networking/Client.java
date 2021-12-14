@@ -162,7 +162,7 @@ public class Client {
             GameLauncher.getGame().setOppNick(oppoNick);
             GameLauncher.getGame().setReadyCheck(true);
             GameLauncher.getGame().append("상대방이 준비를 완료했습니다.\n");
-            JOptionPane.showMessageDialog(null, myNick+"이(가) 준비를 완료했습니다.패를 골라주세요");
+            JOptionPane.showMessageDialog(null, myNick+"이(가) 준비를 완료했습니다.");
             return true;
         }
 
