@@ -1,7 +1,6 @@
 package com.networkH2021.gachon;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -16,7 +15,8 @@ public class Ingame extends  JFrame{
         private JButton ROBBYButton;
         private JLabel MYINFO;
         private JLabel OPPINFO;
-        private JPanel GamePanel;
+        private JPanel GameTop;
+        private JPanel GameBottom;
 
 
         public Ingame() {
@@ -26,7 +26,7 @@ public class Ingame extends  JFrame{
                 setTitle("RSP online");
                 setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 setContentPane(this.panelIngame);
-                setContentPane(this.GamePanel);
+                setContentPane(this.GameTop);
                 pack();
                 setLocationRelativeTo(null);
                 setVisible(false);
