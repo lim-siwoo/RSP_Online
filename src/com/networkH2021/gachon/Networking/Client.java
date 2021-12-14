@@ -127,7 +127,10 @@ public class Client {
             System.out.println("Received");
             return true;
         }
-
+        if (message.equals("\\concheck")){
+            send("\\conalive:"+clientID);
+            return true;
+        }
         return false;
     }
 

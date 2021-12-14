@@ -7,7 +7,7 @@ public class ClientObject {
     private int id;
     private String nickName;
 
-    private boolean reponsive;
+    private boolean reponsive = true;
     private double checkTime;
     private int timeSinceCheck;
 

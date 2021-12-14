@@ -186,9 +186,55 @@ public class Server {
             send("\\g"+myNick+","+oppoNick+","+oppG,opponent.getAddress(),opponent.getPort());
             return true;
         }
-
+        //Check for RESPONSE COMMAND
+        if (message.startsWith("\\conalive:")){
+            int id = Integer.parseInt(message.substring(10));
+            for (ClientObject client: clients){
+                if (client.getId() == id){
+                    client.setReponsive(true);
+                    //System.out.println("Client#"+id+"Is Responsive!");
+                }
+            }
+            return true;
+        }
 
         return false;
+    }
+
+    private void checkConnection(){
+        Thread thread = new Thread(){
+            @Override
+            public void run() {
+                super.run();
+                double startTime = System.currentTimeMillis();
+                int next =1;
+                while(online){
+                    double nowTime =(System.currentTimeMillis()-startTime)/1000;
+
+                    if(nowTime >= next){
+
+                        for (int i = 0;i<clients.size();i++){
+                            ClientObject client = clients.get(i);
+                            if (client.getTimeSinceCheck()>=5) {
+                                //CHECK THE CLIENTS CONNECTION STATUS
+                                client.setTimeSinceCheck(0);
+                                if (client.isReponsive()) {
+                                    //send connection CHECK
+                                    client.setCheckTime(System.currentTimeMillis());
+                                    client.setReponsive(false);
+                                    send("\\concheck",client.getAddress(),client.getPort());
+                                } else {
+                                    //CLIENT IS NOT RESPONSIVE
+                                    clients.remove(i);
+                                    i--;
+                                }
+                            }
+                        }
+                        next++;
+                    }
+                }
+            }
+        };thread.start();
     }
 
     public int getPort() {
