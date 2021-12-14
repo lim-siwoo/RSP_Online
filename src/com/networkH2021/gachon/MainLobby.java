@@ -109,6 +109,7 @@ public class MainLobby extends JFrame{
     public void showGameRoom(){
         GameLauncher.getMainLobby().setVisible(false);
         GameLauncher.getGame().setVisible(true);  // 게임방으로 만들 거임
+        GameLauncher.getGame().gameInfo();
     }
 
 
