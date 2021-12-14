@@ -208,7 +208,7 @@ public class Ingame extends  JFrame{
                         public void actionPerformed(ActionEvent e) {
                                 GameLauncher.getClient().send("\\r"+GameLauncher.getUserDAO().getNickname()+","+GameLauncher.getInvitation().getOppNick());
                                 myReadyCheck= true;
-                                append("준비중!\n");
+                                append("준비중!!\n");
                                 // 레디버튼 누르면 서버로 전송 필요
 
                         }
