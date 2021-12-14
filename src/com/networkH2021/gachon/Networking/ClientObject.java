@@ -10,7 +10,7 @@ public class ClientObject {
     private boolean reponsive = true;
     private double checkTime;
     private int timeSinceCheck;
-
+    private boolean inGame = false;
     private String userID;
 
 
@@ -72,5 +72,13 @@ public class ClientObject {
 
     public void setTimeSinceCheck(int timeSinceCheck) {
         this.timeSinceCheck = timeSinceCheck;
+    }
+
+    public boolean getInGame() {
+        return inGame;
+    }
+
+    public void setInGame(boolean inGame) {
+        this.inGame = inGame;
     }
 }

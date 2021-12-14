@@ -145,9 +145,21 @@ public class Client {
             myNick = message.split(",")[0];
             oppoNick = message.split(",")[1];
             text = message.split(",")[2];
+            return true;
+        }
+        if (message.startsWith("\\r")){
+            String myNick;
+            String oppoNick;
+            String text;
+            ClientObject opponent = null;
+            message = message.substring(2);
+            myNick = message.split(",")[0];
+            oppoNick = message.split(",")[1];
+
 
             return true;
         }
+
         return false;
     }
 

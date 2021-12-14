@@ -217,6 +217,23 @@ public class Server {
             send("\\t"+myNick+","+oppoNick+","+text,opponent.getAddress(),opponent.getPort());
             return true;
         }
+        if (message.startsWith("\\r")){
+            String myNick;
+            String oppoNick;
+            String text;
+            ClientObject opponent = null;
+            message = message.substring(2);
+            myNick = message.split(",")[0];
+            oppoNick = message.split(",")[1];
+
+            for (int i=0;i<clients.size();i++){
+                if (clients.get(i).getNickName().equalsIgnoreCase(oppoNick)){
+                    opponent = clients.get(i);
+                }
+            }
+            send("\\r"+myNick+","+oppoNick,opponent.getAddress(),opponent.getPort());
+            return true;
+        }
         return false;
     }
 
