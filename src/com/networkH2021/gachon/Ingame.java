@@ -92,8 +92,9 @@ public class Ingame extends  JFrame{
 
         public Ingame() {
 
-                ROCK.setIcon(imgIcons[1]);
+
                 SCISSOR.setIcon(imgIcons[0]);
+                ROCK.setIcon(imgIcons[1]);
                 PAPER.setIcon(imgIcons[2]);
                 MYBOTTON.setIcon(imgIcons[0]);
                 OPPBOTTON.setIcon(imgIcons[0]);
