@@ -105,7 +105,6 @@ public class Ingame extends  JFrame{
 
                 // 기본 설정
                 setTitle("RSP online");
-                setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 setContentPane(this.panelIngame);
                 pack();
                 setLocationRelativeTo(null);
@@ -127,7 +126,7 @@ public class Ingame extends  JFrame{
                         public void actionPerformed(ActionEvent e) {
                                 SendCheck= true;
                                 GameLauncher.getClient().send("\\G"+GameLauncher.getUserDAO().getNickname()+","+GameLauncher.getInvitation().getOppNick()+","+0);
-                                MYBOTTON.setIcon(imgIcons[1]);
+                                MYBOTTON.setIcon(imgIcons[0]);
                         }
                 });
 
@@ -136,7 +135,7 @@ public class Ingame extends  JFrame{
                         public void actionPerformed(ActionEvent e) {
                                 SendCheck= true;
                                 GameLauncher.getClient().send("\\G"+GameLauncher.getUserDAO().getNickname()+","+GameLauncher.getInvitation().getOppNick()+","+1);
-                                MYBOTTON.setIcon(imgIcons[0]);
+                                MYBOTTON.setIcon(imgIcons[1]);
                         }
                 });
 
