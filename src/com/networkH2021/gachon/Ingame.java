@@ -129,7 +129,7 @@ public class Ingame extends  JFrame{
                 PAPER.setIcon(imgIcons[2]);
                 MYBOTTON.setIcon(imgIcons[0]);
                 OPPBOTTON.setIcon(imgIcons[0]);
-
+                //color
                 SendCheck=false;
                 ReceiveCheck=false;
                 ReadyCheck=false;
