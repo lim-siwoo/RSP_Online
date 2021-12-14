@@ -11,7 +11,7 @@ import java.net.UnknownHostException;
 public class GameLauncher {
 
     public static MainLobby mainLobby;
-    private static Game game;
+    private static Ingame game;
     private static SignUp signUp;
     private static Login login;
     private static Rank rank;
@@ -30,7 +30,7 @@ public class GameLauncher {
         user = new GameUser("NULL", "NULL");
         mainLobby = new MainLobby();
         invitation = new Invitation();
-        game = new Game();
+        game = new Ingame();
         exit = new Exit();
     }
     public static Login getLogin(){
@@ -87,11 +87,11 @@ public class GameLauncher {
         GameLauncher.invitation = invitation;
     }
 
-    public static Game getGame() {
+    public static Ingame getGame() {
         return game;
     }
 
-    public static void setGame(Game game) {
+    public static void setGame(Ingame game) {
         GameLauncher.game = game;
     }
 
