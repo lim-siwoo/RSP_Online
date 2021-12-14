@@ -20,6 +20,7 @@ public class GameLauncher {
     public static Client client;
     public static Server server;
     private static Invitation invitation;
+    private static Exit exit;
 
     public GameLauncher() throws UnknownHostException {
         login = new Login();
@@ -30,6 +31,7 @@ public class GameLauncher {
         mainLobby = new MainLobby();
         invitation = new Invitation();
         game = new Game();
+        exit = new Exit();
     }
     public static Login getLogin(){
         return login;
@@ -91,6 +93,14 @@ public class GameLauncher {
 
     public static void setGame(Game game) {
         GameLauncher.game = game;
+    }
+
+    public static Exit getExit() {
+        return exit;
+    }
+
+    public static void setExit(Exit exit) {
+        GameLauncher.exit = exit;
     }
 
     public static void main(String[] args) throws UnknownHostException {

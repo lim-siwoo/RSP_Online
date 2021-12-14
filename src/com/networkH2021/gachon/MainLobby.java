@@ -20,7 +20,8 @@ public class MainLobby extends JFrame{
     private JList<GameUser> UserList;//유저리스트가 나옴
     DefaultListModel<GameUser> model = new DefaultListModel<>();
     private JTextArea ChatTextArea;//채팅택스트
-    private JButton Refreshbutton;
+    private JButton Exit;
+    private JLabel ChatRoom;
     private JScrollPane scrollPane;
 
     public JTextField getChatTextField() {
@@ -93,12 +94,6 @@ public class MainLobby extends JFrame{
         GameLauncher.getGame().setVisible(true);  // 게임방으로 만들 거임
     }
 
-    //////// 나중에 확인
-    /*
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-    }
-    */
 
     private class JListHandler implements ListSelectionListener
     {
@@ -123,6 +118,7 @@ public class MainLobby extends JFrame{
         UserList.setModel(model);
         JMenuItem info = new JMenuItem("info");
         JMenuItem invite = new JMenuItem("invite");
+        ChatRoom.setText("Chat Room");
 
         menu.add(info);
         menu.add(invite);
@@ -197,18 +193,12 @@ public class MainLobby extends JFrame{
             }
         });
 
-        Refreshbutton.addActionListener(new ActionListener() {//버튼을 누르면 유저리스트를 새로고침함
+        Exit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                if (GameLauncher.getClient() != null){
-
-                }
-                GameLauncher.getClient().send("\\l");
+                GameLauncher.getExit().setVisible(true);
             }
         });
-
-        //UserList.addListSelectionListener(new JListHandler());
 
     }
 }

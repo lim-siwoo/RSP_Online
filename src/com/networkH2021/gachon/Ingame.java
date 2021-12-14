@@ -16,4 +16,9 @@ public class Ingame{
         private JButton button2;
 
 
+
+
+
+
+
 }
