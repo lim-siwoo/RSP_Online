@@ -93,7 +93,7 @@
         </constraints>
         <properties>
           <font size="16"/>
-          <text value="Button"/>
+          <text value="SEND"/>
         </properties>
       </component>
     </children>
