@@ -92,8 +92,8 @@ public class Ingame extends  JFrame{
 
         public Ingame() {
 
-                ROCK.setIcon(imgIcons[0]);
-                SCISSOR.setIcon(imgIcons[1]);
+                ROCK.setIcon(imgIcons[1]);
+                SCISSOR.setIcon(imgIcons[0]);
                 PAPER.setIcon(imgIcons[2]);
                 MYBOTTON.setIcon(imgIcons[0]);
                 OPPBOTTON.setIcon(imgIcons[0]);
@@ -122,23 +122,24 @@ public class Ingame extends  JFrame{
                 MYINFO.setText(me);
                 OPPINFO.setText(opp);
 
-                ROCK.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                                SendCheck= true;
-                                GameLauncher.getClient().send("\\G"+GameLauncher.getUserDAO().getNickname()+","+GameLauncher.getInvitation().getOppNick()+","+0);
-                                MYBOTTON.setIcon(imgIcons[0]);
-                        }
-                });
-
                 SCISSOR.addActionListener(new ActionListener() { // 나기기 버튼
                         @Override
                         public void actionPerformed(ActionEvent e) {
                                 SendCheck= true;
-                                GameLauncher.getClient().send("\\G"+GameLauncher.getUserDAO().getNickname()+","+GameLauncher.getInvitation().getOppNick()+","+1);
+                                GameLauncher.getClient().send("\\G"+GameLauncher.getUserDAO().getNickname()+","+GameLauncher.getInvitation().getOppNick()+","+0);
                                 MYBOTTON.setIcon(imgIcons[1]);
                         }
                 });
+
+                ROCK.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                                SendCheck= true;
+                                GameLauncher.getClient().send("\\G"+GameLauncher.getUserDAO().getNickname()+","+GameLauncher.getInvitation().getOppNick()+","+1);
+                                MYBOTTON.setIcon(imgIcons[0]);
+                        }
+                });
+
                 PAPER.addActionListener(new ActionListener() { // 나기기 버튼
                         @Override
                         public void actionPerformed(ActionEvent e) {
