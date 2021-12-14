@@ -16,6 +16,7 @@ public class SignUp extends JFrame{
     private JTextField NameField;
     private JTextField textField1;
     private JTextField textField2;
+    private JButton BACKButton;
 
     private String name;
     private String id;
@@ -65,6 +66,21 @@ public class SignUp extends JFrame{
                 }
             }
         });
+
+
+
+        BACKButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                GameLauncher.getLogin().setVisible(true);
+                setVisible(false);
+            }
+        });
+
+
+
+
     }
 
 }
