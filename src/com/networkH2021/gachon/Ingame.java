@@ -126,6 +126,7 @@ public class Ingame extends  JFrame{
                         @Override
                         public void actionPerformed(ActionEvent e) {
                                 SendCheck= true;
+                                myValue =0;
                                 GameLauncher.getClient().send("\\G"+GameLauncher.getUserDAO().getNickname()+","+GameLauncher.getInvitation().getOppNick()+",0");
                                 MYBOTTON.setIcon(imgIcons[0]);
                         }
@@ -135,6 +136,7 @@ public class Ingame extends  JFrame{
                         @Override
                         public void actionPerformed(ActionEvent e) {
                                 SendCheck= true;
+                                myValue =1;
                                 GameLauncher.getClient().send("\\G"+GameLauncher.getUserDAO().getNickname()+","+GameLauncher.getInvitation().getOppNick()+",1");
                                 MYBOTTON.setIcon(imgIcons[1]);
                         }
@@ -144,6 +146,7 @@ public class Ingame extends  JFrame{
                         @Override
                         public void actionPerformed(ActionEvent e) {
                                 SendCheck= true;
+                                myValue =2;
                                 GameLauncher.getClient().send("\\G"+GameLauncher.getUserDAO().getNickname()+","+GameLauncher.getInvitation().getOppNick()+",2");
                                 MYBOTTON.setIcon(imgIcons[2]);
                         }
