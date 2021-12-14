@@ -119,14 +119,13 @@ public class Ingame extends  JFrame{
                 MYINFO.setText(me);
                 OPPINFO.setText(opp);
 
-
-
                 ROCK.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
                                 SendCheck= true;
                                 GameLauncher.getClient().send("\\G"+GameLauncher.getUserDAO().getNickname()+","+GameLauncher.getInvitation().getOppNick()+","+0);
                                 MYBOTTON.setIcon(imgIcons[0]);
+                                JOptionPane.showMessageDialog(null,"바위를 눌렀습니다!");
                         }
                 });
 
@@ -184,6 +183,7 @@ public class Ingame extends  JFrame{
                                 GameLauncher.getClient().send("");
                         }
                 });
+
 
         }
         public boolean isSendCheck() {
