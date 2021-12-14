@@ -62,7 +62,7 @@ public class Ingame extends  JFrame{
                                 setVisible(false);
                         }
                 });
-                READYButton.addActionListener(new ActionListener() { //
+                READYButton.addActionListener(new ActionListener() { // 레디버튼
                         @Override
                         public void actionPerformed(ActionEvent e) {
 
