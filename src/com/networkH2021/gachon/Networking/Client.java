@@ -154,6 +154,7 @@ public class Client {
             GameLauncher.getGame().append(text);
             return true;
         }
+        //상대방이 준비 버튼을 눌렀을 때
         if (message.startsWith("\\r")){
             String myNick;
             String oppoNick;
