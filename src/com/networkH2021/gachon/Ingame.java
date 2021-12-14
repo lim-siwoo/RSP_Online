@@ -194,6 +194,7 @@ public class Ingame extends  JFrame{
 
                                 // 서버로 메시지 전송 필요, 대결 유저도 대기실로 나가게
                                 GameLauncher.getClient().send("\\G"+GameLauncher.getUserDAO().getNickname()+","+GameLauncher.getInvitation().getOppNick()+","+3);
+                                GameLauncher.getClient().send("\\R"+GameLauncher.getUserDAO().getNickname()+","+GameLauncher.getInvitation().getOppNick());
                                 GameLauncher.getMainLobby().setVisible(true);
                                 setVisible(false);
                         }

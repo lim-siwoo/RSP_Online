@@ -205,8 +205,9 @@ public class MainLobby extends JFrame{
                 GameLauncher.getClient().send(username);
                 GameLauncher.getInvitation().setOppNick(username);
                 GameLauncher.getClient().send(username);
-                GameLauncher.getClient().send("\\n");
                 GameLauncher.getClient().send("\\i"+GameLauncher.getUserDAO().getNickname()+","+username);
+                GameLauncher.getClient().send("\\l");
+
 
                 //게임시작 코드를 추가해야함 넘겨주는값
                 //상대방한태 초대받았다고 알려주는 코드 추가해야함

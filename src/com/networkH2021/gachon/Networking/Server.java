@@ -108,8 +108,9 @@ public class Server {
                 String userList = "\\l";
                 for (int i=0;i<clients.size();i++){
                     ClientObject client = clients.get(i);
-                    //send(message, client.getAddress(),client.getPort());
-                    userList = userList +client.getNickName()+",";
+                    if (client.getInGame() == false){
+                        userList = userList +client.getNickName()+",";
+                    }
                 }
 //                send(userList, packet.getAddress().getHostAddress(), packet.getPort());
                 updateClient(userList);
@@ -125,6 +126,10 @@ public class Server {
                 for (int i=0;i<clients.size();i++){
                     if (clients.get(i).getNickName().equalsIgnoreCase(oppoNick)){
                         opponent = clients.get(i);
+                        clients.get(i).setInGame(true);
+                    }
+                    if (clients.get(i).getNickName().equalsIgnoreCase(myNick)){
+                        clients.get(i).setInGame(true);
                     }
                 }
                 send("\\i"+myNick,opponent.getAddress(),opponent.getPort());
@@ -199,7 +204,7 @@ public class Server {
             return true;
         }
 
-        if (message.startsWith("\\t")){
+        if (message.startsWith("\\t")){//채팅
             String myNick;
             String oppoNick;
             String text;
@@ -217,7 +222,7 @@ public class Server {
             send("\\t"+myNick+","+oppoNick+","+text,opponent.getAddress(),opponent.getPort());
             return true;
         }
-        if (message.startsWith("\\r")){
+        if (message.startsWith("\\r")){//레디
             String myNick;
             String oppoNick;
 
@@ -232,6 +237,22 @@ public class Server {
                 }
             }
             send("\\r"+myNick+","+oppoNick,opponent.getAddress(),opponent.getPort());
+            return true;
+        }
+        if (message.startsWith("\\R")) {//로비로 돌아감
+            String myNick;
+            String oppoNick;
+
+            ClientObject opponent = null;
+            message = message.substring(2);
+            myNick = message.split(",")[0];
+            oppoNick = message.split(",")[1];
+
+            for (int i = 0; i < clients.size(); i++) {
+                if (clients.get(i).getNickName().equalsIgnoreCase(oppoNick)) {
+                    opponent = clients.get(i);
+                }
+            }
             return true;
         }
         return false;
