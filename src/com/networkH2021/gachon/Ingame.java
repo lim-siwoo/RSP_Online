@@ -1,9 +1,13 @@
 package com.networkH2021.gachon;
 
 import javax.swing.*;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Ingame extends  JFrame{
 
@@ -25,6 +29,7 @@ public class Ingame extends  JFrame{
         private JButton OPPBOTTON;
         private JPanel ChoosePanel;
         private JPanel TextPanel;
+        private JScrollPane scrollPane = new JScrollPane(ChatBox);
 
         private boolean SendCheck;
         private boolean ReceiveCheck;
@@ -101,7 +106,7 @@ public class Ingame extends  JFrame{
 
                 SendCheck=false;
                 ReceiveCheck=false;
-
+                getContentPane().add(scrollPane);
                 setDefaultCloseOperation(EXIT_ON_CLOSE);
 
                 // 기본 설정
@@ -186,11 +191,37 @@ public class Ingame extends  JFrame{
                 SENDButton.addActionListener(new ActionListener() {//전송
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                                GameLauncher.getClient().send("");
+                                sendMessage();
+                        }
+                });
+                TypingBox.addKeyListener(new KeyAdapter() {
+                        @Override
+                        public void keyPressed(KeyEvent e) {
+                                super.keyPressed(e);
+                                char keyCode = e.getKeyChar();
+                                if (keyCode == KeyEvent.VK_ENTER) {
+                                        sendMessage();
+                                }
                         }
                 });
 
-
+        }
+        public void append(String text){
+                try {
+                        Document doc = ChatBox.getDocument();
+                        doc.insertString(doc.getLength(), text, null);
+                        ChatBox.setCaretPosition(ChatBox.getDocument().getLength());
+                } catch(BadLocationException exc) {
+                        exc.printStackTrace();
+                }
+        }
+        private void sendMessage(){
+                String message = TypingBox.getText();
+                append(message);
+                ChatBox.setCaretPosition(ChatBox.getDocument().getLength());
+                GameLauncher.getClient().send("\\t"+GameLauncher.getUserDAO().getNickname()+","+GameLauncher.getInvitation().getOppNick()+","+message);
+                TypingBox.setText("");
+                TypingBox.requestFocus();
         }
         public boolean isSendCheck() {
                 return SendCheck;

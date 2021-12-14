@@ -3,6 +3,8 @@ package com.networkH2021.gachon;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import com.networkH2021.gachon.Networking.Client;
 import com.networkH2021.gachon.user.GameUser;
@@ -70,6 +72,17 @@ public class Login extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
                 GameLauncher.getSignUp().setVisible(true);
+            }
+        });
+        SignUpbutton.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+                char keyCode = e.getKeyChar();
+                if (keyCode == KeyEvent.VK_ENTER) {
+                    setVisible(false);
+                    GameLauncher.getSignUp().setVisible(true);
+                }
             }
         });
     }
