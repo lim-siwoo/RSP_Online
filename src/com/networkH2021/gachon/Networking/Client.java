@@ -126,6 +126,7 @@ public class Client {
             if (opp == 3){
                 GameLauncher.getMainLobby().setVisible(true);
                 GameLauncher.getGame().setVisible(false);
+                GameLauncher.getGame().getChatBox().setText("");
                 JOptionPane.showMessageDialog(null,"상대방이 나갔습니다.");
             }
             System.out.println("Received");
@@ -160,6 +161,7 @@ public class Client {
             GameLauncher.getGame().setMyNick(myNick);
             GameLauncher.getGame().setOppNick(oppoNick);
             GameLauncher.getGame().setReadyCheck(true);
+            GameLauncher.getGame().append("상대방이 준비를 완료했습니다.\n");
             JOptionPane.showMessageDialog(null, myNick+"이(가) 준비를 완료했습니다.패를 골라주세요");
             return true;
         }

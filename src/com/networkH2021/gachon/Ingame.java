@@ -198,6 +198,7 @@ public class Ingame extends  JFrame{
                                 // 서버로 메시지 전송 필요, 대결 유저도 대기실로 나가게
                                 GameLauncher.getClient().send("\\G"+GameLauncher.getUserDAO().getNickname()+","+GameLauncher.getInvitation().getOppNick()+","+3);
                                 GameLauncher.getClient().send("\\l");
+                                ChatBox.setText("");
                                 GameLauncher.getMainLobby().setVisible(true);
                                 setVisible(false);
                         }
@@ -207,6 +208,7 @@ public class Ingame extends  JFrame{
                         public void actionPerformed(ActionEvent e) {
                                 GameLauncher.getClient().send("\\r"+GameLauncher.getUserDAO().getNickname()+","+GameLauncher.getInvitation().getOppNick());
                                 myReadyCheck= true;
+                                append("준비중!\n");
                                 // 레디버튼 누르면 서버로 전송 필요
 
                         }
@@ -294,4 +296,11 @@ public class Ingame extends  JFrame{
                 this.oppNick = oppNick;
         }
 
+        public JTextPane getChatBox() {
+                return ChatBox;
+        }
+
+        public void setChatBox(JTextPane chatBox) {
+                ChatBox = chatBox;
+        }
 }
