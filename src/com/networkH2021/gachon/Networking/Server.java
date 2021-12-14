@@ -186,9 +186,21 @@ public class Server {
 
             for (int i=0;i<clients.size();i++){
                 if (clients.get(i).getNickName().equalsIgnoreCase(oppoNick)){
+                    if (oppG.equalsIgnoreCase("3")){
+                        clients.get(i).setInGame(false);
+                    }
                     opponent = clients.get(i);
                 }
+                if (clients.get(i).getNickName().equalsIgnoreCase(myNick)){
+                    if (oppG.equalsIgnoreCase("3")){
+                        clients.get(i).setInGame(false);
+                    }
+                }
             }
+            if (oppG.equalsIgnoreCase("3")){
+
+            }
+
             send("\\g"+myNick+","+oppoNick+","+oppG,opponent.getAddress(),opponent.getPort());
             return true;
         }
