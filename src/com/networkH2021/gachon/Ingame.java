@@ -270,8 +270,8 @@ public class Ingame extends  JFrame{
                 return SendCheck;
         }
 
-        public void setReadyCheck(boolean sendCheck) {
-                SendCheck = sendCheck;
+        public void setReadyCheck(boolean readyCheck) {
+                ReadyCheck = readyCheck;
         }
 
         public String getMyNick() {
