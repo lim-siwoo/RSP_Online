@@ -171,7 +171,16 @@ public class Server {
                     if (clients.get(i).getNickName().equalsIgnoreCase(oppoNick)){
                         opponent = clients.get(i);
                     }
+                    if (clients.get(i).getNickName().equalsIgnoreCase(oppoNick)){
+                        opponent = clients.get(i);
+                        clients.get(i).setInGame(false);
+                    }
+                    if (clients.get(i).getNickName().equalsIgnoreCase(myNick)){
+                        clients.get(i).setInGame(false);
+                    }
                 }
+
+
                 send("\\n"+myNick+","+oppoNick,opponent.getAddress(),opponent.getPort());
                 return true;
             }
