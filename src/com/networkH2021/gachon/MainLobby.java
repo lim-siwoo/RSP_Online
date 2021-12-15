@@ -65,7 +65,7 @@ public class MainLobby extends JFrame{
         panel.setLayout(null);
         JLabel userinfo = new JLabel(info);
 
-        String sen = "NICK   WIN   LOSE";
+        String sen = "  NICK       WIN     LOSE";
         JLabel sentence = new JLabel(sen);
 
         sentence.setHorizontalAlignment(JLabel.CENTER);
