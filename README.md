@@ -1,11 +1,59 @@
-# RSP_Online
+# RSP_Online 네트워크 프로젝트
 
-**RSP_Online Gachon Term Project**
+**프로젝트 멤버:**
+- 이동학: DBMS, 게임 GUI, 게임 기능, 네트워크 구현
+- 임시우: 소켓 서버, 멀티 스레드(서버, 클라이언트), 클라이언트 GUI, 채팅 기능(전체, 1:1)
+- 박상현: 게임 GUI, 게임 기능, 네트워크 구현
 
-Gachon Network Term Project: Rock Scissor Paper Online in Java
+## 1. **프로젝트 소개**
+- **목표:**
+  1. 실시간 온라인 게임 개발
+  2. 네트워크를 사용한 서버 및 클라이언트 개발
+  3. GUI를 사용한 게임 개발
+  4. DBMS를 활용한 사용자 정보 관리
+  5. 팀 협업 능력 향상
 
-자세한 설명은 [Network TermProject Team H.pdf](./Network%20TermProject%20Team%20H.pdf)를 참조하세요.
+- **게임 소개:**
+  - 사용자들이 실시간으로 가위바위보 게임을 플레이할 수 있는 온라인 게임.
+  - 실시간 채팅 시스템을 통해 사용자는 자유롭게 대화하며 게임을 즐길 수 있음.
+  - 대기실에서 채팅 가능, 유저 정보 및 랭킹 표시, 초대 기능 제공.
 
-유튜브 시연 영상입니다.
+## 2. **구현 세부 사항**
+
+### **로그인 및 회원가입**
+- **클라이언트:** 
+  - 사용자는 ID와 비밀번호를 입력해 로그인.
+  - 회원가입을 통해 신규 회원을 등록 가능.
+- **서버:** 
+  - DBMS를 통해 사용자 정보를 관리하며, ID와 비밀번호를 비교해 로그인 처리.
+  - 비밀번호는 SHA-2 방식으로 암호화해 저장.
+
+### **대기실 (Lobby)**
+- **기능:** 
+  - 사용자 간의 실시간 채팅 제공.
+  - 참여자 수 및 정보 표시.
+  - 유저 리스트를 통해 대기 중인 사용자를 확인하고, 초대 및 랭킹 확인 가능.
+- **특별 기능:** 
+  - 첫 번째로 입장한 사용자가 방장이 되어 특정 기능을 수행 가능.
+  - 1:1 초대 기능 제공.
+  
+### **게임방 (Game Room)**
+- **1:1 게임 기능:** 
+  - 두 사용자는 게임 시작 전에 ‘준비(Ready)’ 버튼을 눌러야 함.
+  - 게임 결과는 채팅방을 통해 전달되며, 승패 기록이 업데이트됨.
+- **게임 결과:** 
+  - 가위바위보 결과에 따라 승리, 패배, 무승부가 결정됨.
+  - 게임 종료 후 다시 시작하거나 대기실로 돌아갈 수 있음.
+
+## 3. **링크**
+- **깃허브 저장소:** [https://github.com/lim-siwoo/RSP_Online](https://github.com/lim-siwoo/RSP_Online)
+- **유튜브 시연 영상:** [https://www.youtube.com/watch?v=RMFb6O_aZ4U](https://www.youtube.com/watch?v=RMFb6O_aZ4U)
+
+- 자세한 설명은 [Network TermProject Team H.pdf](./Network%20TermProject%20Team%20H.pdf)를 참조하세요.
+
+- 유튜브 시연 영상입니다.
 
 [![시연 영상](https://img.youtube.com/vi/8wdaTPWxY2M/0.jpg)](https://www.youtube.com/watch?v=8wdaTPWxY2M)
+---
+
+
