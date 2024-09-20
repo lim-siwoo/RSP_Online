@@ -4,7 +4,7 @@
 
 Gachon Network Term Project: Rock Scissor Paper Online in Java
 
-자세한 설명은 [Network TermProject Team H.pdf](파일_링크)를 참조하세요.
+자세한 설명은 [Network TermProject Team H.pdf](./Network%20TermProject%20Team%20H.pdf)를 참조하세요.
 
 유튜브 시연 영상입니다.
 
