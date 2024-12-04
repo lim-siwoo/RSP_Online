@@ -47,8 +47,7 @@
 
 ## 3. **링크**
 - **깃허브 저장소:** [https://github.com/lim-siwoo/RSP_Online](https://github.com/lim-siwoo/RSP_Online)
-- **유튜브 시연 영상:** [https://www.youtube.com/watch?v=RMFb6O_aZ4U](https://www.youtube.com/watch?v=RMFb6O_aZ4U)
-
+- **유튜브 시연 영상:** [https://www.youtube.com/watch?v=8wdaTPWxY2M](https://www.youtube.com/watch?v=8wdaTPWxY2M)
 - 자세한 설명은 [Network TermProject Team H.pdf](./Network%20TermProject%20Team%20H.pdf)를 참조하세요.
 
 - 유튜브 시연 영상입니다.
